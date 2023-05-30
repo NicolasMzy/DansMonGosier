@@ -18,4 +18,4 @@
 
 ### Release Branches :
 
-  - **release/<release-number>**: When you are preparing to release a new version of your application, you can create a release branch from develop. This branch allows you to stabilize functionality and focus on fixing bugs related to the specific version being prepared. Once the version is ready, the version branch is merged into both develop and main (or master), and a tag is created to mark the version.
+  - **release/\<release-number>: When you are preparing to release a new version of your application, you can create a release branch from develop. This branch allows you to stabilize functionality and focus on fixing bugs related to the specific version being prepared. Once the version is ready, the version branch is merged into both develop and main (or master), and a tag is created to mark the version.
