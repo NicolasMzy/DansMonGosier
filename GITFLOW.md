@@ -8,11 +8,9 @@
 
 - main: This is the main branch of the project, also known as the "stable" branch. This is the branch on which production versions of the code are stored. Validations of this branch are generally deployed on production servers.
 
-- develop: This is the main development branch. Features under development, bug fixes and other modifications are merged into this branch. Feature branches are created from this branch.
-
 ### Dev branches :
 
-- dev/< 
+- develop: This is the main development branch. Features under development, bug fixes and other modifications are merged into this branch. Feature branches are created from this branch.
 
 ### Feature Branches :
  
