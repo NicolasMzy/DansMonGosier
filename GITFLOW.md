@@ -10,7 +10,7 @@
 
 ### Dev branches :
 
-- **evelop :** This is the main development branch. Features under development, bug fixes and other modifications are merged into this branch. Feature branches are created from this branch.
+- **develop :** This is the main development branch. Features under development, bug fixes and other modifications are merged into this branch. Feature branches are created from this branch.
 
 ### Feature Branches :
  
