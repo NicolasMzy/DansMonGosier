@@ -9,7 +9,7 @@ Chaque partie en détail :
  
  Voici quelques types courants: 
 
- - 	**feat :** Une nouvelle fonctionnalité ajoutée. 
+ - **feat :** Une nouvelle fonctionnalité ajoutée. 
 
  - **fix :** Une correction de bogue. 
 
