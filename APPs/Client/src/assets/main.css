@@ -1,23 +1,25 @@
 @import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Roboto:wght@300&display=swap%27');
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
+  color:black;
 }
 
 a,
-.green {
+.red {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: #ff5757;
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(0, 100%, 61%, 0.2);
   }
 }
 
@@ -32,4 +34,49 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ccc;
+}
+
+input[type=submit] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ff5757;
+  border-radius: 4px;
+  color: white;
+  background-color: #ff5757;
+}
+
+.facebook {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black;
+  background-color: white;
+  background-image: url('../assets/icoFacebook.png');
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.google {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black;
+  background-color: white;
+  background-image: url('../assets/icoGoogle.png');
+  background-repeat: no-repeat;
+  background-position: left;
 }
