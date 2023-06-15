@@ -1,5 +1,4 @@
-const itemsModel = require('../../models/mongodb/itemsSchema'); 
-
+const itemsModel = require('../models/itemsSchema'); 
 
 exports.getItemsService = async (type, price, name, id) => {
   const filter = {};

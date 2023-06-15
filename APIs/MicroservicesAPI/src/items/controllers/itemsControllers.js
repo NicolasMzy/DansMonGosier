@@ -1,4 +1,4 @@
-const itemsService = require('../services/items/itemsServices');
+const itemsService = require('../services/itemsServices');
 // const itemsModel = require('../../models/mongodb/itemsSchema');
 
 exports.getItems = async (req, res) => {
