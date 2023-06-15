@@ -1,13 +1,13 @@
 const sequelize = require('./config/db');
 const models = require('./models/index');
 
-exports.create = async (email, phoneNumber, password, userType) => {
+exports.create = async (email, phoneNb, password, userType) => {
     await sequelize.sync();
 
     await models.Credentials.create(
         { 
             email: email,
-            phone_nb: phoneNumber,
+            phone_nb: phoneNb,
             pwd: password,
             user_type: userType,
         }
@@ -34,4 +34,33 @@ exports.get = async (accountId) => {
     return account;
 };
 
+exports.update = async (accountId, { email, phoneNb, password }) => {
+    await sequelize.sync();
 
+    const account = models.Credentials.update(
+        {
+            email: email,
+            phone_nb: phoneNb,
+            pwd: password,
+        },
+        {
+            where: {
+                id: accountId
+            }
+        }
+    );
+
+    return account;
+};
+
+exports.delete = async (accountId) => {
+    await sequelize.sync();
+
+    const account = await models.Credentials.destroy({
+        where: {
+            id: accountId
+        }
+    });
+
+    return account;
+};

@@ -2,10 +2,16 @@ const microservice = require('./microservice');
 
 exports.createAccount = async (req, res) => {
     try {
-        const { email, phone_number, password, user_type } = req.body;
-        await microservice.create(email, phone_number, password, user_type);
+        const { 
+            mail: email, 
+            phone: phoneNb, 
+            pwd: password,
+            type: userType 
+        } = req.body;
 
-        res.status(201).json('Account successfully created !');
+        const account = await microservice.create(email, phoneNb, password, userType);
+        
+        res.status(201).json(account);
     } 
     catch (error) {
         console.error(error);
@@ -41,48 +47,44 @@ exports.getUserById = async (req, res) => {
     }
 };
 
-//   async updateUser(req, res) {
-//     try {
-//       const { id } = req.params;
-//       const { name, email } = req.body;
+exports.updateAccount = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const {
+            mail: email,
+            phone: phoneNb,
+            pwd: password
+        } = req.body;
 
-//       // Call the appropriate microservice to update a user
-//       // Example: const updatedUser = await UserMicroservice.updateUser(id, { name, email });
+        const account = await microservice.update(id, { email, phoneNb, password});
 
-//       const user = await User.findByPk(id);
-//       if (!user) {
-//         return res.status(404).json({ error: 'User not found' });
-//       }
+        if (account.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
 
-//       user.name = name;
-//       user.email = email;
-//       await user.save();
+        res.status(200).json(account);
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server Error' });
+    }
+};
 
-//       res.status(200).json(user);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: 'Server Error' });
-//     }
-//   }
+exports.deleteAccount = async (req, res) => {
+    try {
+        const { id } = req.params;
 
-//   async deleteUser(req, res) {
-//     try {
-//       const { id } = req.params;
+        const account = await microservice.delete(id);
 
-//       // Call the appropriate microservice to delete a user
-//       // Example: await UserMicroservice.deleteUser(id);
+        if (account.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
 
-//       const user = await User.findByPk(id);
-//       if (!user) {
-//         return res.status(404).json({ error: 'User not found' });
-//       }
+        res.status(204).end();
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server Error' });
+    }
+};
 
-//       await user.destroy();
-
-//       res.status(204).end();
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: 'Server Error' });
-//     }
-//   }
-// };

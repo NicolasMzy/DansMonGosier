@@ -3,19 +3,19 @@ const router = express.Router();
 
 const controller = require('./controller');
 
-// Create a user
+// Create an account
 router.post('/accounts', controller.createAccount);
 
-// Get all users
+// Get all accounts
 router.get('/accounts', controller.getAllAccounts);
 
-// Get a user by ID
+// Get an account by ID
 router.get('/accounts/:id', controller.getUserById);
 
-// Update a user
-// router.put('/users/:id', controller.updateUser);
+// Update an account
+router.put('/accounts/:id', controller.updateAccount);
 
-// Delete a user
-// router.delete('/users/:id', controller.deleteUser);
+// Delete an account
+router.delete('/accounts/:id', controller.deleteAccount);
 
 module.exports = router;
