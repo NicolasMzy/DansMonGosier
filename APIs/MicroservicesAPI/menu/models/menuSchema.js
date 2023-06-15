@@ -9,7 +9,7 @@ const menuSchema = new mongoose.Schema({
   id_restaurant:  { type: String, required: true },
   items: [
     {
-      itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'items', required: true },
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: 'items', required: true },
       quantity: { type: Number, required: true },
     }
   ],
