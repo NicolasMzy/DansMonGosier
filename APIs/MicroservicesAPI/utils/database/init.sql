@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS app_user (
 );
 CREATE TABLE IF NOT EXISTS restaurant (
     id              SERIAL PRIMARY KEY,
-    business_name   VARCHAR(100) NOT NULL,
+    business_name   VARCHAR(100) UNIQUE NOT NULL,
     id_credentials  INTEGER NOT NULL,
 );
 CREATE TABLE IF NOT EXISTS adress (
