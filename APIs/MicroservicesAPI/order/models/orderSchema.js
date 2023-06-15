@@ -1,14 +1,25 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('../../utils/mongodb/mongodb_connexion');
-connectToMongoDB("items")
+const connectToMongoDB = require('../mongodb_connexion');
+connectToMongoDB("orders")
 
-const itemsSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  price: { type: Number, required: true },
-  type: { type: String, enum: ['plat', 'boisson', 'sauce', 'accompagnement'], required: true },
+const orderSchema = new mongoose.Schema({
+  id_user: { type: String, required: true },
+  id_restaurant: { type: String, required: true },
+  order_number: { type: String, required: true },
+  order_payment: { type: String, enum: ['paid','unpaid'], required: true },
+  order_status: { type: String, enum: ['ordering', 'accepted_order', 'accepted_delivery', 'delivered'], required: true },
+  order_date: { type: String, required: true },
+  order_address: { type: String, required: true },
+  deliverer: { type: String, require: true },
+  order_details: [
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      type: { type: String, enum: ['item','menu'], required: true },
+      quantity: { type: Number, required: true },
+    }
+  ],
 });
 
-const itemsModel = mongoose.model('items', itemsSchema);
+const orderModel = mongoose.model('orders', orderSchema);
 
-module.exports = itemsModel;
+module.exports = orderModel;
