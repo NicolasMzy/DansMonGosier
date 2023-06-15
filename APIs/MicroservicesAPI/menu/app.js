@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const itemsRoutes = require('./routes/menuRoutes');
+const menuRoutes = require('./routes/menuRoutes');
 
 
 app.use(express.json()) ;
 
-app.use(itemsRoutes);
+app.use(menuRoutes);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
