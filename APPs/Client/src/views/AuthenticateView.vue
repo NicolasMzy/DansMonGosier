@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormAuth from '../components/FormAuth.vue'
+import FormAuth from '../../../FrontEnd/src/components/FormAuth.vue'
 </script>
 
 <template>

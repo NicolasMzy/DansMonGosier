@@ -1,38 +1,33 @@
-<script lang='ts' setup>
-import { ref } from 'vue'
-import WelcomeItem from './WelcomeItem.vue'
-const text = ref('Email')
-const text2 = ref('Password')
+<script setup lang="ts">
+import FormRegister from '../components/FormRegister.vue'
+import TierAuthView from '../components/TierAuthView.vue'
 </script>
 
 <template>
- <div class="item">
-    <div class="details">
-      <h2>
-        <slot name="heading">Just Sign in, <br> we'll do the cooking</slot>
-      </h2>
-      <p>
-        <slot>If you don't have an<br> account please <a href="/">Sign up here</a></slot>
-      </p>
-        <form action="#">
-            <label for="fname">Email:</label><br>
-            <input type="text" id="fname" name="fname" placeholder="Email"><br>
-            <label for="lname">Password:</label><br>
-            <input type="text" id="lname" name="lname" placeholder="Password"><br>
-            <a href="#" class="forget">Forgot password?</a>
-            <input type="submit" value="Submit">
-        </form> 
-        <p text-align="center">Or</p>
-        <button href="/" class="google" type="button">Connect with Google</button><br>
-        <button href="/" class="facebook" type="button">Connect with Facebook</button>
-    </div>
-  </div>
-        
-        <br>
-</template>
+  <div class="item">
+     <div class="details">
+       <h2>
+         <slot name="heading">Let's sign you up, <br> your meal awaits</slot>
+       </h2>
+       <p>
+         <slot>If you have an<br> account please <router-link to="/authenticate">Sign in here</router-link></slot>
+       </p>
+         <FormRegister />
+         <TierAuthView />
+     </div>
+   </div>
+  </template>
   
 <style scoped>
-a.forget {
+  @media (min-width: 1024px) {
+    .formAuth {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  a.forget {
     color: black;
     position: relative;
     align-self: right;
@@ -116,4 +111,4 @@ h3 {
     display: none;
   }
 }
-</style>
+  </style>
