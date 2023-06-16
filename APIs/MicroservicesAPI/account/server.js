@@ -1,12 +1,19 @@
+const sequelize = require('./config/db')
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
 const accountRoutes = require('./route');
 
-app.use(express.json());
-app.use('/api', accountRoutes);
+const main = async () => {
+  await sequelize.sync();
+  
+  const app = express();
+  
+  app.use(express.json());
+  app.use('/api', accountRoutes);
+  
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+};
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+main();

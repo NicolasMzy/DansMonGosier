@@ -1,9 +1,6 @@
-const sequelize = require('./config/db');
 const models = require('./models/index');
 
 exports.create = async (email, phoneNb, password, userType) => {
-    await sequelize.sync();
-
     await models.Credentials.create(
         { 
             email: email,
@@ -15,16 +12,12 @@ exports.create = async (email, phoneNb, password, userType) => {
 };
 
 exports.getAll = async () => {
-    await sequelize.sync();
-
     const accounts = await models.Credentials.findAll();
 
     return accounts;
 };
 
 exports.get = async (accountId) => {
-    await sequelize.sync();
-
     const account = await models.Credentials.findAll({
         where: {
             id: accountId
@@ -35,8 +28,6 @@ exports.get = async (accountId) => {
 };
 
 exports.update = async (accountId, { email, phoneNb, password }) => {
-    await sequelize.sync();
-
     const account = models.Credentials.update(
         {
             email: email,
@@ -54,8 +45,6 @@ exports.update = async (accountId, { email, phoneNb, password }) => {
 };
 
 exports.delete = async (accountId) => {
-    await sequelize.sync();
-
     const account = await models.Credentials.destroy({
         where: {
             id: accountId
