@@ -3,15 +3,16 @@ const router = express.Router();
 
 const itemsController = require('../controllers/itemsControllers'); 
 
-
-router.get('/items', itemsController.getItems);
-
+// Create Item
 router.post('/items', itemsController.createItem);
 
-// PUT /items/:itemId
+// Get Item by ID
+router.get('/items/:itemId', itemsController.getItem);
+
+// Update Item by ID
 router.put('/items/:itemId', itemsController.updateItem);
 
-// DELETE /items/:itemId
+// Delete Item by ID
 router.delete('/items/:itemId', itemsController.deleteItem);
 
 
