@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
   id_restaurant: { type: String, required: true },
   order_number: { type: String, required: true },
   order_payment: { type: String, enum: ['paid','unpaid'], required: true },
-  order_status: { type: String, enum: ['ordering', 'accepted_order', 'accepted_delivery', 'delivered'], required: true },
+  order_status: { type: String, enum: ['ordering', 'accepted_order', 'accepted_delivery', 'delivered', 'refused'], required: true },
   order_date: { type: String, required: true },
   order_address: { type: String, required: true },
   deliverer: { type: String, require: true },
