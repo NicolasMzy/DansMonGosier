@@ -1,6 +1,7 @@
 <template>
   <header>
     <div id="app">
+      <!-- <HeaderDMG/> -->
       <DeliveryHome/>
     </div>
   </header>
@@ -8,11 +9,12 @@
 
 <script>
 import DeliveryHome from './views/DeliveryPageView.vue';
-
+// import HeaderDMG from './components/Header.vue'
 export default {
   name: 'App',
   components: {
     DeliveryHome,
+    HeaderDMG,
   },
 }
 </script>
