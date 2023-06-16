@@ -1,20 +1,21 @@
 const orderModel = require('../models/orderSchema'); 
 
-
 exports.createOrder = async (req, res) => {
   try {
-    const { id_user, id_restaurant, order_number, order_details, order_payment, order_status, order_date, order_address, deliverer } = req.body;
+    const { id_user, id_restaurant,price,number,payment,status,date,address,deliverer,menus,items } = req.body;
 
     const newOrder = new orderModel({
       id_user,
       id_restaurant,
-      order_number,
-      order_details,
-      order_payment,
-      order_status,
-      order_date,
-      order_address,
-      deliverer
+      price,
+      number,
+      payment,
+      status,
+      date,
+      address,
+      deliverer,
+      menus,
+      items
     });
 
     const savedOrder = await newOrder.save();
