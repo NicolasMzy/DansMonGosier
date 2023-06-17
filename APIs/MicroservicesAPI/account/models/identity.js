@@ -1,18 +1,21 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-class Restaurant extends Model {}
+class Identity extends Model {}
 
-Restaurant.init(
+Identity.init(
   {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    business_name: {
+    first_name: {
         type: DataTypes.STRING,
-        unique: true,
+        allowNull: false,
+    },
+    last_name: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     id_credentials: {
@@ -22,10 +25,10 @@ Restaurant.init(
   },
   {
     sequelize,
-    modelName: 'Restaurant',
-    tableName: 'restaurant',
+    modelName: 'AppUser',
+    tableName: 'app_user',
     timestamps: false,
   }
 );
 
-module.exports =  Restaurant;
+module.exports = Identity;

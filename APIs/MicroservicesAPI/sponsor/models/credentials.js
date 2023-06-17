@@ -1,34 +1,37 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-class AppUser extends Model {}
+class Credentials extends Model {}
 
-AppUser.init(
+Credentials.init(
   {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    first_name: {
+    email: {
+        type: DataTypes.STRING,
+        unique: true
+    },
+    phone_nb: {
+        type: DataTypes.STRING,
+    },
+    pwd: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    last_name: {
+    user_type: {
         type: DataTypes.STRING,
-        allowNull: false,
-    },
-    id_credentials: {
-        type: DataTypes.INTEGER,
         allowNull: false,
     },
   },
   {
     sequelize,
-    modelName: 'AppUser',
-    tableName: 'app_user',
+    modelName: 'Credentials',
+    tableName: 'credentials',
     timestamps: false,
   }
 );
 
-module.exports = AppUser;
+module.exports = Credentials;
