@@ -13,7 +13,7 @@ async function register() {
     console.log(email)
     try{
         const {data} = await axios.post('http://localhost:3000/api/accounts', {
-        'email': email,
+        'mail': email,
         'pwd': pwd,
         'phone': phone,
         'type': type
