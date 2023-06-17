@@ -1,4 +1,3 @@
-const sequelize = require('./config/db');
 const models = require('./models/index');
 
 exports.new = async (sponsor, sponsored, bonus) => {

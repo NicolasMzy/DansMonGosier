@@ -3,7 +3,7 @@ const express = require('express');
 const sponsorRoutes = require('./route');
 
 const main = async () => {
-  await sequelize.sync({ alter: true });
+  await sequelize.sync();
   
   const app = express();
   

@@ -6,7 +6,7 @@ class Sponsor extends Model {}
 Sponsor.init(
   {
     bonus: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     progress: {
       type: DataTypes.STRING,
@@ -14,10 +14,12 @@ Sponsor.init(
     },
     id_sponsor: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
     },
     id_sponsored: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
     },
   },
