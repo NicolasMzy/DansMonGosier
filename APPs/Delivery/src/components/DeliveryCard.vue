@@ -52,7 +52,6 @@
   .delivery--card{
         margin : 10px 5px;
         margin-bottom: 2%;
-        width: 30%;
         min-width: 220px;
         height:30vh ; 
         p {
@@ -60,7 +59,7 @@
         }
         .delivery--image {
             background-image: url('../assets/bk.jpeg');
-            height: 65%;
+            min-height: 65%;
             background-size: cover;
             background-position: center;
             border-radius:4%;

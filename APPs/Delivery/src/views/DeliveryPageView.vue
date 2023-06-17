@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <DeliveryRow v-for="(data,i) in data_delivery" :key="i" :three_deliveries="data"/>
-  </div>
+    <SpecialityRow/>
+</div>
 </template>
 
 <script>
@@ -10,9 +11,11 @@ import { onMounted, ref } from 'vue'
 import BDD from '../BDDex'
 // COMPONENTS
 import DeliveryRow from '../components/DeliveryRow.vue'
+import SpecialityRow from '../components/SpecialityRow.vue'
 export default {
     components: {
-         DeliveryRow
+         DeliveryRow,
+         SpecialityRow,
     },
     setup() {
         
@@ -34,7 +37,7 @@ export default {
             for (const delivery of BDD){
                 const new_delivery = new Delivery(delivery.RestaurantName, delivery.note, delivery.image, delivery.drive_time, delivery.ClientName, delivery.price)   
                 
-                if (three_deliveries.length === 2){
+                if (three_deliveries.length === 4){
                     three_deliveries.push(new_delivery);
                     data_delivery.value.push(three_deliveries);
                     three_deliveries = [];
