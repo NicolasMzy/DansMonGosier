@@ -1,7 +1,7 @@
 {
-  "name": "microservice_account",
+  "name": "microservice_sponsor",
   "version": "1.0.0",
-  "description": "Microservice handling accounts operations",
+  "description": "microservice handling sponsoring functionnalities",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
     "express.js",
     "sequelize",
     "postgre",
-    "crud"
+    "sponsor"
   ],
   "author": "DansMonGosier inc.",
   "license": "ISC",
