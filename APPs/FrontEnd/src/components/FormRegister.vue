@@ -1,9 +1,6 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
-const name = ref('Name')
-const surname = ref('Surname')
-const email = ref('Email')
-const password = ref('Password')
+
 </script>
 
 <template>
