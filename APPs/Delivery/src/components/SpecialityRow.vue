@@ -1,54 +1,66 @@
 <template>
-    <div class="speciality--card">
-        <img class="img" src="../assets/Speciality/burger.jpg">
-        <p>Burger</p>
+  <div class="row">
+    <div class="speciality--row">
+        <div class="wrapper--card">
+            <SpecialityCard v-for="(card,index) in speciality " :info_speciality="card" :key="index"/>
+        </div>
     </div>
+  </div>
 </template>
-  
 
-  
-  <script>
-  //IMPORT
-  import {computed} from 'vue'
-  export default {
-    name : "SpecialityCard",
-    props:{
-        info_speciality: Object
+<script>
+import SpecialityCard from './SpecialityCard.vue'
+
+export default {
+    name: 'SpecialityRow',
+    components : {
+        SpecialityCard,
     },
-    setup(props){
-        const changeBackground = computed(() => {
-            return {
-                backgroundImage:  `url(${props.info_delivery.image})`,
-            }
-        })
-    //return
-    return {
-        changeBackground
-    }
-    
-    }
-  }
-  </script>
-  
-  
-  <style lang="scss">
-    .speciality--card {
+    setup() {
         
-        display: flex;
-        flex-direction: column;
+        const speciality = [
+            {
+                name : 'Burger',
+                img : '/src/assets/Speciality/burger.jpg'
+            },
+            
+            {
+                name : 'Pizza',
+                img : '/src/assets/Speciality/pizza.jpeg'
+            },
+            
+            {
+                name : 'Ramen',
+                img : '/src/assets/Speciality/ramen.png'
+            },
 
-        .img{
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            }
+            {
+                name : 'Sushi',
+                img : '/src/assets/Speciality/sushi.jpeg'
+            },
 
-        .p{
-            display: flex;
-            justify-content: center;
+            {
+                name : 'Tacos',
+                img : '/src/assets/Speciality/tacos.jpeg'
+            },
+        ]
+        
+        //return
+        return{
+            speciality,   
         }
-
     }
+}
+</script>
 
-  
-  </style>
+<style lang="scss">
+    
+    .row {
+            
+        .wrapper--card {
+            overflow-x: auto;
+            display: flex;
+        }
+    }
+        
+</style>
