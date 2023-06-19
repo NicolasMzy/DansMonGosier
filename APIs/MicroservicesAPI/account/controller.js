@@ -3,7 +3,7 @@ const microservice = require('./microservice');
 exports.createAccount = async (req, res) => {
     try {
         const { 
-            mail: email, 
+            email: email, 
             phone: phoneNb, 
             pwd: password,
             type: userType 
@@ -12,7 +12,7 @@ exports.createAccount = async (req, res) => {
         const account = await microservice.create(email, phoneNb, password, userType);
         
         res.status(201).json(account);
-    } 
+    }
     catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server Error' });
