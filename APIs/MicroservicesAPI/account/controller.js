@@ -1,6 +1,5 @@
 const microservice = require('./microservice');
 
-
 exports.createAccount = async (req, res) => {
     try {
         const { 
@@ -58,7 +57,7 @@ exports.getUserById = async (req, res) => {
         }
 
         res.status(200).json(account);
-    } 
+    }
     catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server Error' });
