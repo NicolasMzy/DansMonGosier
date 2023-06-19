@@ -47,7 +47,7 @@
       background-position: center;
       height: 100px;
       width: 100px;
-      border-radius: 50%;
+      border-radius: 10%;
     }
   
     p {

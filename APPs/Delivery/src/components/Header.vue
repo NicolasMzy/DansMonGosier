@@ -1,14 +1,11 @@
 <template>
   
     <div class="navbar">
-        <div class="positionBox">
-            <p>ta position</p>
-            <p>30 rue des bananiers</p>
+        <div class="positionbox">
+            <p class="tposition">Ta Position</p>
+            <p class="adresse">30 rue des bananiers</p>
         </div>
-        <img src="../assets/image-removebg-preview (12).png"/>
-        <div class="settingsbox">
-            <p>settings</p>
-        </div>
+        <div class="settingsbox"></div>
     
     </div>
 </template>
@@ -20,20 +17,38 @@ export default {
 </script>
 
 <style lang="scss">
-        
+
+    @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Roboto:wght@700&display=swap');
     .navbar{
         display: flex;
         align-items: center;
-        justify-content: center;
-        img{
-            width: 33vh;
+        justify-content: space-between;
+
+        .positionbox {
+            
+            margin-left: 5%;
+            font-weight: 900;
+
+            .tposition{
+                
+                color: #c51212;
+            }
+
         }
-        .positionbox{
-            width: 33vh;
+        
+        .settingsbox {
+            
+            display: flex;
+            justify-content: center;
+            background-image: url('../assets/settings.png');
+            background-size: cover;
+            background-position: center;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%; 
+            margin-right: 5%;
         }
-        .settingsbox{
-            width: 33vh;
-        }
+
     }
        
 

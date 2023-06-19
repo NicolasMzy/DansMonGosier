@@ -57,6 +57,10 @@ export default {
     
     .row {
             
+        .wrapper--card::-webkit-scrollbar {
+            display: none;
+        }
+        
         .wrapper--card {
             overflow-x: auto;
             display: flex;

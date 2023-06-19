@@ -2,25 +2,22 @@
     <div class="row">
         
         <div class="delivery--row">
-            <h2 class="title">
-                A proximité
-            </h2>
-            <div class="wrapper--card">
-                <deliveryCardRow v-for="(card,index) in three_deliveries" :info_delivery="card" :key="index"/>
+            <div class="wrapper--cardcolumns">
+                <deliveryCardColumn v-for="(card,index) in deliveries" :info_delivery="card" :key="index"/>
             </div>
           </div>
     </div>
 </template>
 
 <script>
-import DeliveryCardRow from './DeliveryCardRow.vue'
+import DeliveryCardColumn from './DeliveryCardColumn.vue'
 export default {
-    name: "DeliveryRow",
+    name: "DeliveryColumn",
     components : {
-        DeliveryCardRow,
+        DeliveryCardColumn,
     },
     props :{
-        three_deliveries: Array
+        deliveries: Array
     }
 }
 </script>
@@ -31,13 +28,14 @@ export default {
         
         .delivery--row{
 
+            
             .wrapper--card::-webkit-scrollbar {
                 display: none;
             }
             
-            .wrapper--card{
+            .wrapper--cardcolumns{
                 display: flex;
-                overflow-x: auto;
+                flex-direction: column;
             }
             .title{
                 display: flex;
