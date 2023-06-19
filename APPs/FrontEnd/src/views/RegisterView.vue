@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import FormRegister from '../components/FormRegister.vue'
 import TierAuthView from '../components/TierAuthView.vue'
+
+
 </script>
 
 <template>
