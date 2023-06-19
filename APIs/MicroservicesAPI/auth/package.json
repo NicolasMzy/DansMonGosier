@@ -1,13 +1,12 @@
 {
-  "name": "microservice_account",
+  "name": "microservice_auth",
   "version": "1.0.0",
-  "description": "Microservice handling accounts operations",
+  "description": "Microservice handling authenticate operations",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "API",
     "microservice",
     "node.js",
     "express.js",
@@ -18,10 +17,7 @@
   "author": "DansMonGosier inc.",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "json-web-token": "^3.2.0",
     "pg": "^8.11.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.0"
