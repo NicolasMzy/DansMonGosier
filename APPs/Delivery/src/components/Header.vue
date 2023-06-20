@@ -1,6 +1,6 @@
 <template>
   
-    <div class="navbar">
+    <div class="navbar-H">
         <div class="positionbox">
             <p class="tposition">Ta Position</p>
             <p class="adresse">30 rue des bananiers</p>
@@ -19,7 +19,7 @@ export default {
 <style lang="scss">
 
     @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Roboto:wght@700&display=swap');
-    .navbar{
+    .navbar-H{
         display: flex;
         align-items: center;
         justify-content: space-between;

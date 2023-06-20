@@ -14,12 +14,15 @@
                     <p class="note-chiffre-C">{{info_delivery.note}}</p>
                 </div>
                 <img class="point-C" src="../assets/point.png"/>
-                <div class="estimaationtime-">
-                    <img class="estimationtime--img" src="../assets/point.png"/>
+                <div class="estimationtime-C">
+                    <img class="estimationtime--img" src="../assets/time.png"/>
                     <p class="estimationtime--textC">{{info_delivery.drive_time}}</p>
                 </div>
                 <img class="point-C" src="../assets/point.png"/>
-                <p class="price-C">{{info_delivery.price}}</p>
+                <div class="price-C">
+                    <img class="price-imgC" src="../assets/delivery.png"/>
+                    <p class="price-textC">{{info_delivery.price}}</p>
+                </div>
             </div>
         </div>
 </div>
@@ -67,7 +70,7 @@
             min-height: 65%;
             background-size: cover;
             background-position: center;
-            border-radius:4%;
+            border-radius:10px;
         }
         .delivery--information-C{
            margin: 0px 5px;
@@ -98,13 +101,29 @@
                 justify-content: space-start;
                 gap: 4%;
                 
-                .estimationtime--textC{
-                    font-size: 0.8em;
-                    font-weight: 900; 
-                 }
+                .estimationtime-C {
 
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    height:22px ;
+                    width: 90px;
+
+                    .estimationtime--textC{
+                        font-size: 0.8em;
+                        font-weight: 900; 
+                     }
+    
+                    .estimationtime--img {
+                        background-size: cover;
+                        background-position: center;
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+                
                 .note-C{
-                    border-radius: 8%; 
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -133,8 +152,25 @@
                 }
 
                 .price-C{
-                    font-size: 0.8em;
-                    font-weight: 900;
+                    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    height:22px ;
+                    width: 50px;
+
+                    .price-textC{
+                        font-size: 0.8em;
+                        font-weight: 900;
+                    }
+
+                    .price-imgC{
+                        background-size: cover;
+                        background-position: center;
+                        height: 20px;
+                        width: 20px;
+                    }
                 }
                 
             }

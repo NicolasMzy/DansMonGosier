@@ -19,6 +19,7 @@
         </div>
         <DeliveryColumn  :deliveries="data_delivery_column"/>
     </div>
+    <FooterNavbar/>
 </div>
 </template>
 
@@ -31,12 +32,14 @@ import DeliveryRow from '../components/DeliveryRow.vue';
 import DeliveryColumn from '../components/DeliveryColumn.vue'
 import SpecialityRow from '../components/SpecialityRow.vue'
 import HeaderDMG from '../components/Header.vue';
+import FooterNavbar from '../components/footerNavbar.vue'
 export default {
     components: {
          DeliveryRow,
          DeliveryColumn,
          SpecialityRow,
          HeaderDMG,
+         FooterNavbar,
     },
     setup() {
         
