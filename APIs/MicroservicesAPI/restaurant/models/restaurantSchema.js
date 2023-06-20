@@ -8,6 +8,16 @@ const restaurantSchema = new mongoose.Schema({
   photo: { type: String, required: true },
   schedule: { type: String, required: true },
   id_address: { type: String, required: true },
+  category: { type: String, required: true },
+  mean_rate: { type: Number, required: true },
+  rates: [
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      id_user: { type: Number, required: true }, 
+      rate: { type: Number, required: true },
+      comment: { type: String, required: true },
+    }
+  ],
   menus: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'menus',

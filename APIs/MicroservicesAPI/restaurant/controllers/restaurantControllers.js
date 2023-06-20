@@ -39,6 +39,21 @@ exports.getRestaurant = async (req, res) => {
     res.status(500).json({ message: 'Error while retrieving the restaurant' });
   }
 };
+exports.getRestaurantCategories = async (req, res) => {
+  try {
+    const categories = await restaurantModel
+    .distinct('category');
+
+    if (!categories) {
+      return res.status(404).json({ message: 'No categories' });
+    }
+
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error('Error while retrieving the categories:', error);
+    res.status(500).json({ message: 'Error while retrieving the categories' });
+  }
+};
 
 exports.updateRestaurant = async (req, res) => {
   try {
