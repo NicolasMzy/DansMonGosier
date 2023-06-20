@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script setup>
 import FormAuth from '../components/FormAuth.vue'
-import TierAuthView from '../components/TierAuthView.vue'
+import TierAuthView from '@/components/TierAuthView.vue'
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 

@@ -9,9 +9,8 @@ exports.createAccount = async (req, res) => {
             type: userType 
         } = req.body;
 
-        const account = await microservice.create(email, phoneNb, password, userType);
-        
-        res.status(201).json(account);
+        await microservice.create(email, phoneNb, password, userType);
+        res.status(201).send('Bienvenue salope');
     }
     catch (error) {
         console.error(error);
