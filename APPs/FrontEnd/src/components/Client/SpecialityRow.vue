@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import SpecialityCard from './SpecialityCard.vue'
 
 interface Speciality {
@@ -23,28 +24,18 @@ export default {
     SpecialityCard,
   },
   setup() {
-    const speciality = ref<Speciality[]>([
-      {
-        name : 'Burger',
-        img : '/src/assets/Speciality/burger.jpg'
-      },
-      {
-        name : 'Pizza',
-        img : '/src/assets/Speciality/pizza.jpeg'
-      },
-      {
-        name : 'Ramen',
-        img : '/src/assets/Speciality/ramen.png'
-      },
-      {
-        name : 'Sushi',
-        img : '/src/assets/Speciality/sushi.jpeg'
-      },
-      {
-        name : 'Tacos',
-        img : '/src/assets/Speciality/tacos.jpeg'
-      },
-    ]);
+    const speciality = ref<Speciality[]>([]);
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3013/restaurants');
+        speciality.value = response.data;
+      } catch (error) {
+        console.error('An error occurred while fetching the data:', error);
+      }
+    };
+      
+    onMounted(fetchData);
       
     //return
     return{
@@ -53,6 +44,7 @@ export default {
   }
 }
 </script>
+
 
 <!-- <script lang="ts">
 import SpecialityCard from './SpecialityCard.vue'
