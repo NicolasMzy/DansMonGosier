@@ -4,9 +4,9 @@ exports.createAccount = async (req, res) => {
     try {
         const { 
             email: email, 
-            phone: phoneNb, 
+            phone_nb: phoneNb, 
             pwd: password,
-            type: userType 
+            user_type: userType 
         } = req.body;
 
         await microservice.create(email, phoneNb, password, userType);
@@ -21,9 +21,9 @@ exports.createAccount = async (req, res) => {
 exports.login = async (req, res) => {
     
     try {
-        const { email, password } = req.body;
+        const { email, pwd } = req.body;
 
-        const token = await microservice.login(email, password);
+        const token = await microservice.login(email, pwd);
         
         res.status(201).json(token);
     } 
@@ -67,8 +67,8 @@ exports.updateAccount = async (req, res) => {
     try {
         const { id } = req.params;
         const {
-            mail: email,
-            phone: phoneNb,
+            email: email,
+            phone_nb: phoneNb,
             pwd: password
         } = req.body;
 
