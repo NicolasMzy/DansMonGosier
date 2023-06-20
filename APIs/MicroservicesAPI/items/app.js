@@ -2,8 +2,13 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
 const itemsRoutes = require('./routes/itemsRoutes');
 
+const swaggerDocument = YAML.load('./swagger_items.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json()) ;
 
