@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Mon API
+  title: DansMonGosier
   description: Description de mon API
   version: 1.0.0
 servers:
