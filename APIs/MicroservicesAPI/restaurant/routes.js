@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const restaurantsController = require('../controllers/restaurantControllers'); 
+const restaurantsController = require('./controllers'); 
 
 // Create restaurant
 router.post('/restaurants', restaurantsController.createRestaurant);
@@ -14,6 +14,9 @@ router.put('/restaurants/:restaurantId', restaurantsController.updateRestaurant)
 
 // Delete restaurant by ID
 router.delete('/restaurants/:restaurantId', restaurantsController.deleteRestaurant);
+
+// Get top 10 rated restaurant
+router.get('/restaurants-top-rated/', restaurantsController.getTopRatedRestaurants);
 
 
 module.exports = router;

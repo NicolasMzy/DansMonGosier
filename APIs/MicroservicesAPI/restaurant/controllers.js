@@ -1,8 +1,8 @@
-const restaurantModel = require('../models/restaurantSchema'); 
-
+const restaurantModel = require('./schema'); 
+ 
 exports.createRestaurant = async (req, res) => {
   try {
-    const {id_credentials,name,photo,schedule,id_address,menus,items } = req.body;
+    const {id_credentials,name,photo,schedule,id_address,category,mean_rate,rates,menus,items } = req.body;
 
     const newRestaurant = new restaurantModel({
       id_credentials,
@@ -10,6 +10,9 @@ exports.createRestaurant = async (req, res) => {
       photo,
       schedule,
       id_address,
+      category,
+      mean_rate,
+      rates,
       menus,
       items
     });
@@ -75,3 +78,16 @@ exports.deleteRestaurant = async (req, res) => {
   }
 };
 
+exports.getTopRatedRestaurants = async (req, res) => {
+  try {
+    const topRestaurants = await restaurantModel
+      .find()
+      .sort({ mean_rate: -1 }) // Tri décroissant sur la propriété mean_rate (note moyenne)
+      .limit(2); // Limite les résultats aux 10 premiers restaurants
+
+    res.status(200).json(topRestaurants);
+  } catch (error) {
+    console.error('Error retrieving top rated restaurants:', error);
+    res.status(500).json({ message: 'Error retrieving top rated restaurants' });
+  }
+};

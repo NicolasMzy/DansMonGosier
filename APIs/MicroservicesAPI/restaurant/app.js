@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const restaurantRoutes = require('./routes/restaurantRoutes');
+const restaurantRoutes = require('./routes');
 
 
 app.use(express.json()) ;
