@@ -1,16 +1,37 @@
+# Docker bridge network for our services
 networks:
-  app-tier:
+  dmg-net:
     driver: bridge
 
 services:
+  # PostgreSQL database
   postgresql:
-    container_name: postgres
+    container_name: postgre
     image: 'bitnami/postgresql:15.3.0'
     networks:
-      - app-tier
+      - dmg-net
     environment:
-      - POSTGRESQL_DATABASE=dmg
-      - POSTGRESQL_USERNAME=gosier
-      - POSTGRESQL_PASSWORD=gosier
+      - POSTGRESQL_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRESQL_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRESQL_PASSWORD=${POSTGRE_PASSWORD}
     ports:
       - "5432:5432"
+  # Reverse proxy and load balancing service with traefik
+  traefik:
+    container_name: traefik
+    image: 'traefik:v3.0'
+    command:
+      - --api.insecure=true                       # Launch traefik on insecure mode implying that authentication is not needed to pass through
+      - --providers.docker                        # Use docker as dynamic configuration provider
+      - --providers.docker.exposedbydefault=false # Not automatically expose containers to traefik
+      - --entrypoints.web.address=:80             # WEB entrypoint
+    labels:
+      - traefik.http.middlewares.access-control-jwt-authn.forwardauth.address=access-control                # Access control address
+      - traefik.http.middlewares.access-control-jwt-authn.forwardauth.authResponseHeaders=X-Forwarded-User  # En-tête contenant l'identifiant de l'utilisateur
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - ${DOCKER_SOCKET_PATH_LINUX}:/var/run/docker.sock # Give traefik access to host's docker socket
+  # Access control middleware
+  

@@ -13,8 +13,7 @@
     "Services",
     "API",
     "express.js",
-    "node.js",
-    "typescript"
+    "node.js"
   ],
   "author": "DansMonGosier inc.",
   "license": "ISC",
