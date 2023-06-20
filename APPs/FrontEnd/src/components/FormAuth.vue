@@ -10,38 +10,32 @@
 <br>
 </template>
   
-<script setup>
+<script lang='ts' setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
-export default {
-  data() {
-    return {
-      form: {
-        email: '',
-        pwd: ''
-      }
-    }
-  },
-  methods: {
-    loginForm() {
-      axios.post('http://localhost:3000/api/login', this.form, {
+const form = ref({
+  email: '',
+  password: '',
+});
+
+const loginForm = async () => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/login', form.value, {
       headers: {
-        'Access-Control-Allow-Origin': true,
+        'Access-Control-Allow-Origin': '*',
         // Add other headers as needed
-      }
-    })
-        .then(response => {
-          console.log(response.data);
-          document.cookie = `token=${response.data}; expires=${new Date(new Date().getTime() + 1 * 60 * 1000).toUTCString()}; path=/about`;
-          console.log(document.cookie)
-          this.$router.push('/about');
-        })
-        .catch(error => {
-          console.log(error);
-          // Handle the error here
-        });
-    }
+      },
+    });
+    console.log(response.data);
+    document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()}; path=/about`;
+    console.log(document.cookie);
+    router.push('/about');
+  } catch (error) {
+    console.log(error);
+    // Handle the error here
   }
-}
+};
 </script>

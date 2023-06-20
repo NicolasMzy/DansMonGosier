@@ -28,39 +28,33 @@
 </template>
 
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue'
-import axios from 'axios';
+import axios from 'axios'
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
-export default {
-  data() {
-    return {
-      form: {
-        email: '',
-        phone:'',
-        pwd: '',
-        type:''
+const form = ref({
+    email: '',
+    phone:'',
+    pwd: '',
+    type:''
+});
 
-      }
-    }
-  },
-  methods: {
-    registerForm() {
-      axios.post('http://localhost:3000/api/accounts', this.form, {
+const registerForm = async () => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/accounts', form.value, {
       headers: {
-        'Access-Control-Allow-Origin': true,
+        'Access-Control-Allow-Origin': '*',
         // Add other headers as needed
-      }
-    })
-        .then(response => {
-          console.log(response.data);
-          this.$router.push('/');
-        })
-        .catch(error => {
-          console.log(error);
-          // Handle the error here
-        });
-    }
+      },
+    });
+    console.log(response.data);
+    console.log(document.cookie);
+    router.push('/');
+  } catch (error) {
+    console.log(error);
+    // Handle the error here
   }
-}
+};
 </script>
