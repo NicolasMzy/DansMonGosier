@@ -10,7 +10,7 @@
 <br>
 </template>
   
-<script>
+<script setup>
 import { ref } from 'vue'
 import axios from 'axios'
 
