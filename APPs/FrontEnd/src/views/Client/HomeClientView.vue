@@ -22,7 +22,7 @@
       <FooterNavbar/>
     </div>
   </template>
-  
+
   <script lang="ts">
   import { onMounted, ref } from 'vue'
   import axios from 'axios'
@@ -32,7 +32,7 @@
   import SpecialityRow from '../../components/Client/SpecialityRow.vue'
   import HeaderDMG from '../../components/Header.vue'
   import FooterNavbar from '../../components/footerNavbar.vue'
-  
+
   interface Restaurant {
         restaurantName: string
         note: string
@@ -40,7 +40,7 @@
         drive_time: string
         //price: string
   }
-   
+
   export default {
       components: {
           ProximityResRow,
@@ -52,20 +52,20 @@
       setup() {
             var data_proximity_row = ref<Restaurant[][]>([]);
             var data_delivery_column = ref<Restaurant[]>([]);
-  
+
               const makeDataDelivery = async () => {
                 let restaurants: Restaurant[] = [];
                 let new_proxRestaurant: Restaurant;
                 let new_popRestaurant: Restaurant;
 
                 try {
-                    
+
                     const responseProx = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
                     var proximityRestaurants = responseProx.data; // Assuming the data is an array of restaurants
-                    console.log(proximityRestaurants); 
+                    console.log(proximityRestaurants);
 
                     for (var restaurant of proximityRestaurants) {
-                        var new_delivery: Restaurant = {
+                        new_proxRestaurant = {
                             restaurantName: restaurant.name,
                             note: restaurant.mean_rate,
                             image: restaurant.photo,
@@ -80,21 +80,21 @@
                     //     drive_time: '',
                     // }
 
-                    const responsePop = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
-                    var popularRestaurants = responsePop.data; // Assuming the data is an array of restaurants
-                    console.log(popularRestaurants); 
-                        for (var popRestaurant of popularRestaurants) {
-                        new_popRestaurant = {
-                            restaurantName: popRestaurant.name,
-                            note: popRestaurant.mean_rate,
-                            image: popRestaurant.photo,
-                            drive_time: '',
-                        };
-                    }
+                    // const responsePop = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
+                    // var popularRestaurants = responsePop.data; // Assuming the data is an array of restaurants
+                    // console.log(popularRestaurants);
+                    //     for (var popRestaurant of popularRestaurants) {
+                    //     new_popRestaurant = {
+                    //         restaurantName: popRestaurant.name,
+                    //         note: popRestaurant.mean_rate,
+                    //         image: popRestaurant.photo,
+                    //         drive_time: '',
+                    //     };
+                    // }
 
-                    if (data_delivery_column.value.length < 2){
-                      data_delivery_column.value.push(new_popRestaurant);
-                    }
+                    // if (data_delivery_column.value.length < 2){
+                    //     data_delivery_column.value.push(new_popRestaurant);
+                    // }
 
                     if (restaurants.length === 9) {
                         restaurants.push(new_proxRestaurant);
@@ -109,9 +109,9 @@
                     console.error(error);
                 }
                 }
-  
+
           onMounted(makeDataDelivery);
-  
+
           return {
             data_proximity_row,
             data_delivery_column,
@@ -119,7 +119,7 @@
       },
   }
   </script>
-  
+
 
 <!-- <script lang="ts">
 import { onMounted, ref } from 'vue'
@@ -150,7 +150,7 @@ export default {
          FooterNavbar,
     },
     setup() {
-        
+
         class Delivery {
             constructor (RestaurantName, note, image,drive_time,ClientName,price){
                 this.RestaurantName = RestaurantName
@@ -166,17 +166,17 @@ export default {
         let data_delivery_column = ref([]);
 
         const makeDataDelivery = () => {
-            
+
             let three_deliveries = [];
 
             for (const delivery of BDD){
-                const new_delivery = new Delivery(delivery.RestaurantName, delivery.note, delivery.image, delivery.drive_time, delivery.ClientName, delivery.price)   
-                
+                const new_delivery = new Delivery(delivery.RestaurantName, delivery.note, delivery.image, delivery.drive_time, delivery.ClientName, delivery.price)
+
                 //recommanded
                 if (data_delivery_column.value.length < 2){
                     data_delivery_column.value.push(new_delivery);
                 }
-               
+
                 //Proximited
                 if (three_deliveries.length === 9){
                     three_deliveries.push(new_delivery);
@@ -192,7 +192,7 @@ export default {
         return{
             data_delivery_row,
             data_delivery_column,
-               
+
         }
     },
 
@@ -201,7 +201,7 @@ export default {
 
 <style lang="scss">
     .home {
-        
+
         font-weight: 900;
         .speciality{
 
@@ -210,7 +210,7 @@ export default {
             }
         }
         .popular{
-            
+
             .popular--navbar{
                 display: flex;
                 justify-content: space-between;
