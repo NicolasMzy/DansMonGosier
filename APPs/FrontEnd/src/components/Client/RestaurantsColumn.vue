@@ -18,8 +18,7 @@ interface Delivery {
     note: string
     image: string
     drive_time: string
-    clientName: string
-    price: string
+    // price: string
 }
 
 export default {

@@ -3,9 +3,6 @@
         <div :style="changeBackground" class="delivery--image-C"></div>
         <div class="delivery--information-C">
             <div class="top-C">
-                <p class="clientname-C">{{info_delivery.clientName}}</p>     
-            </div>
-            <div class="middle-C">
                 <p class="name-C">{{info_delivery.restaurantName}}</p>
             </div>
             <div class="bottom-C">
@@ -19,10 +16,10 @@
                     <p class="estimationtime--textC">{{info_delivery.drive_time}}</p>
                 </div>
                 <img class="point-C" src="../../assets/point.png"/>
-                <div class="price-C">
+                <!-- <div class="price-C">
                     <img class="price-imgC" src="../../assets/delivery.png"/>
                     <p class="price-textC">{{info_delivery.price}}</p>
-                </div>
+                </div> -->
             </div>
         </div>
 </div>
@@ -38,8 +35,7 @@
     note: string
     image: string
     drive_time: string
-    clientName: string
-    price: string
+    // price: string
   }
   
   export default {
