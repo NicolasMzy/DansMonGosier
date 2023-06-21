@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('../mongodb_connexion');
-connectToMongoDB("addresses")
 
 const addressSchema = new mongoose.Schema({
   id_credentials: { type: String, required: true },
@@ -12,6 +10,6 @@ const addressSchema = new mongoose.Schema({
   postcode: { type: String, required: true }
 });
 
-const addressModel = mongoose.model('addresses', addressSchema);
+const AddressModel = mongoose.model('addresses', addressSchema);
 
-module.exports = addressModel;
+module.exports = AddressModel;

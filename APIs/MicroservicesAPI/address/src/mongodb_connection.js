@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const connectToMongoDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://math4fpv:tGJRpkHkKSjPp2Bf@mongosier.zhj1puu.mongodb.net/', {
+    await mongoose.connect(process.env.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('Connexion à MongoDB réussie');
+    console.log('Successful connection to MongoDB');
   } catch (error) {
-    console.error('Erreur de connexion à MongoDB :', error);
+    console.error('MongoDB connection error :', error);
   }
 };
 

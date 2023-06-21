@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const addressController = require('../controllers/addressControllers'); 
+const addressController = require('./controllers'); 
 
 // Create address
 router.post('/address', addressController.createAddress);
