@@ -6,13 +6,40 @@
                 A proximité
             </h2>
             <div class="wrapper--card">
-                <deliveryCardRow v-for="(card,index) in three_deliveries" :info_delivery="card" :key="index"/>
+                <DeliveryCardRow v-for="(card,index) in three_deliveries" :info_delivery="card" :key="index"/>
             </div>
           </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType } from 'vue'
+import DeliveryCardRow from './DeliveryCardRow.vue'
+
+interface Delivery {
+        restaurantName: string
+        note: string
+        image: string
+        drive_time: string
+        clientName: string
+        price: string
+}
+
+export default {
+  name: "DeliveryRow",
+  components: {
+    DeliveryCardRow,
+  },
+  props: {
+    three_deliveries: {
+      type: Array as PropType<Delivery[]>,
+      required: true,
+    },
+  }
+}
+</script>
+
+<!-- <script>
 import DeliveryCardRow from './DeliveryCardRow.vue'
 export default {
     name: "DeliveryRow",
@@ -23,7 +50,7 @@ export default {
         three_deliveries: Array
     }
 }
-</script>
+</script> -->
 
 <style lang="scss">
 

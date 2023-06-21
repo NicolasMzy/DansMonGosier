@@ -22,7 +22,43 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+export default {
+  setup() {
+    const isNavbarVisible = ref(false);
+    let prevScrollPos = ref(window.pageYOffset);
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      isNavbarVisible.value = prevScrollPos.value >= currentScrollPos;
+      prevScrollPos.value = currentScrollPos;
+    };
+
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', handleScroll);
+    });
+
+    const navigate = (page: string) => {
+      // Handle navigation to different pages here
+      // You could use vue-router or another navigation method
+      console.log("Navigating to", page);
+    };
+
+    return {
+      isNavbarVisible,
+      navigate
+    };
+  }
+};
+</script>
+
+<!-- <script lang="ts">
 export default {
   data() {
     return {
@@ -49,7 +85,7 @@ export default {
     }
   }
 };
-</script>
+</script> -->
 
 <style>
 .navbar {

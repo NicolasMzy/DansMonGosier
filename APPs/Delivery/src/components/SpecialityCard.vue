@@ -5,8 +5,41 @@
     </div>
 </template>
   
+<script lang="ts">
+  //IMPORT
+  import {computed} from 'vue'
+  import type {PropType} from 'vue'
+  
+  interface Speciality {
+    img: string;
+    name: string;
+    // Add other properties here as needed...
+  }
 
-  <script>
+  export default {
+    name: "SpecialityCard",
+    props:{
+      info_speciality: {
+        type: Object as PropType<Speciality>,
+        required: true,
+      }
+    },
+    setup(props) {
+      const changeBackground = computed(() => {
+        return {
+          backgroundImage: `url(${props.info_speciality.img})`,
+        }
+      });
+
+      //return
+      return {
+        changeBackground
+      }
+    }
+  }
+  </script>
+
+  <!-- <script lang="ts">
   //IMPORT
   import {computed} from 'vue'
   export default {
@@ -27,7 +60,7 @@
     
     }
   }
-  </script>
+  </script> -->
   
   
   <style lang="scss">
