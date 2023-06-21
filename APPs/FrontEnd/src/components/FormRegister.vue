@@ -58,3 +58,35 @@ const registerForm = async () => {
   }
 };
 </script>
+
+<style scoped>
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ccc;
+}
+select {
+  appearance: none;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ccc;
+}
+
+input[type=submit] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ff5757;
+  border-radius: 4px;
+  color: white;
+  background-color: #ff5757;
+}
+</style>

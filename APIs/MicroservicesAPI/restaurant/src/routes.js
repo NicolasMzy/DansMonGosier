@@ -9,6 +9,9 @@ router.post('/restaurants', restaurantsController.createRestaurant);
 // Get restaurant by ID 
 router.get('/restaurants/:restaurantId', restaurantsController.getRestaurant);
 
+// Get restaurant by ID 
+router.get('/restaurants-categories', restaurantsController.getRestaurantCategories);
+
 // Update restaurant by ID
 router.put('/restaurants/:restaurantId', restaurantsController.updateRestaurant);
 
