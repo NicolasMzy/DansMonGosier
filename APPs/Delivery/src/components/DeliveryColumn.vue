@@ -3,7 +3,7 @@
         
         <div class="delivery--row">
             <div class="wrapper--cardcolumns">
-                <deliveryCardColumn v-for="(card,index) in deliveries" :info_delivery="card" :key="index"/>
+                <deliveryCardColumn v-for="(card,index) in deliveries" :infos="card" :key="index"/>
             </div>
           </div>
     </div>

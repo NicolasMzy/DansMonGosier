@@ -1,22 +1,22 @@
 <template>
-    <div class="delivery--card">
+    <div class="Card">
         <div :style="changeBackground" class="delivery--image"></div>
         <div class="delivery--information">
             <div class="top">
-                <p class="clientname">{{info_delivery.ClientName}}</p>     
+                <p class="clientname">{{infos.ClientName}}</p>     
             </div>
             <div class="middle">
-                <p class="name">{{info_delivery.RestaurantName}}</p>
+                <p class="name">{{infos.RestaurantName}}</p>
             </div>
             <div class="bottom">
                 <div class="note">
                     <img class="star" src="../assets/star.png"/>
-                    <p class="note-chiffre">{{info_delivery.note}}</p>
+                    <p class="note-chiffre">{{infos.note}}</p>
                 </div>
                 <img class="point" src="../assets/point.png"/>
-                <p class="estimationtime">{{info_delivery.drive_time}}</p>
+                <p class="estimationtime">{{infos.drive_time}}</p>
                 <img class="point" src="../assets/point.png"/>
-                <p class="price">{{info_delivery.price}}</p>
+                <p class="price">{{infos.price}}</p>
             </div>
         </div>
 </div>
@@ -28,14 +28,14 @@
   //IMPORT
   import {computed} from 'vue'
   export default {
-    name : "DeliveryCard",
+    name : "CarouselCardRow",
     props:{
-        info_delivery: Object
+        infos: Object
     },
     setup(props){
         const changeBackground = computed(() => {
             return {
-                backgroundImage:  `url(${props.info_delivery.image})`,
+                backgroundImage:  `url(${props.infos.image})`,
             }
         })
     //return
@@ -48,8 +48,8 @@
   </script>
   
   
-  <style lang="scss">
-  .delivery--card{
+  <style lang="scss" scoped>
+  .Card{
         margin : 10px 5px;
         margin-bottom: 2%;
         min-width: 220px;

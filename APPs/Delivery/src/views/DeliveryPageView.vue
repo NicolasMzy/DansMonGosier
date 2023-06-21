@@ -10,7 +10,7 @@
         <SpecialityRow/>
     </div>
     <div class="proximity">
-        <DeliveryRow v-for="(data,i) in data_delivery_row" :key="i" :three_deliveries="data"/>
+        <CarouselRow v-for="(data,i) in data_delivery_row" :key="i" :three_deliveries="data"/>
     </div>
     <div class="popular">
         <div class="popular--navbar">
@@ -28,14 +28,14 @@ import { onMounted, ref } from 'vue'
 //IMPORT
 import BDD from '../BDDex'
 // COMPONENTS
-import DeliveryRow from '../components/DeliveryRow.vue';
+import CarouselRow from '../components/CarouselRow.vue';
 import DeliveryColumn from '../components/DeliveryColumn.vue'
 import SpecialityRow from '../components/SpecialityRow.vue'
 import HeaderDMG from '../components/Header.vue';
 import FooterNavbar from '../components/footerNavbar.vue'
 export default {
     components: {
-         DeliveryRow,
+         CarouselRow,
          DeliveryColumn,
          SpecialityRow,
          HeaderDMG,

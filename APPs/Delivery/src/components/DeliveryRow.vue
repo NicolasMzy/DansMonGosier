@@ -1,26 +1,26 @@
 <template>
     <div class="row">
         
-        <div class="delivery--row">
+        <div class="container--row">
             <h2 class="title">
                 A proximité
             </h2>
             <div class="wrapper--card">
-                <deliveryCardRow v-for="(card,index) in three_deliveries" :info_delivery="card" :key="index"/>
+                <CarouselCardRow v-for="(card,index) in items" :infos="card" :key="index"/>
             </div>
           </div>
     </div>
 </template>
 
 <script>
-import DeliveryCardRow from './DeliveryCardRow.vue'
+import CarouselCardRow from './CarouselCardRow.vue'
 export default {
-    name: "DeliveryRow",
+    name: "CarouselRow",
     components : {
-        DeliveryCardRow,
+        CarouselCardRow,
     },
     props :{
-        three_deliveries: Array
+        items: Array
     }
 }
 </script>
@@ -29,7 +29,7 @@ export default {
 
     .row{    
         
-        .delivery--row{
+        .container--row{
 
             .wrapper--card::-webkit-scrollbar {
                 display: none;

@@ -1,27 +1,27 @@
 <template>
-    <div class="delivery--card-C">
+    <div class="Card-C">
         <div :style="changeBackground" class="delivery--image-C"></div>
         <div class="delivery--information-C">
             <div class="top-C">
-                <p class="clientname-C">{{info_delivery.ClientName}}</p>     
+                <p class="clientname-C">{{infos.ClientName}}</p>     
             </div>
             <div class="middle-C">
-                <p class="name-C">{{info_delivery.RestaurantName}}</p>
+                <p class="name-C">{{infos.RestaurantName}}</p>
             </div>
             <div class="bottom-C">
                 <div class="note-C">
                     <img class="star-C" src="../assets/star.png"/>
-                    <p class="note-chiffre-C">{{info_delivery.note}}</p>
+                    <p class="note-chiffre-C">{{infos.note}}</p>
                 </div>
                 <img class="point-C" src="../assets/point.png"/>
                 <div class="estimationtime-C">
                     <img class="estimationtime--img" src="../assets/time.png"/>
-                    <p class="estimationtime--textC">{{info_delivery.drive_time}}</p>
+                    <p class="estimationtime--textC">{{infos.drive_time}}</p>
                 </div>
                 <img class="point-C" src="../assets/point.png"/>
                 <div class="price-C">
                     <img class="price-imgC" src="../assets/delivery.png"/>
-                    <p class="price-textC">{{info_delivery.price}}</p>
+                    <p class="price-textC">{{infos.price}}</p>
                 </div>
             </div>
         </div>
@@ -36,12 +36,12 @@
   export default {
     name : "DeliveryCard",
     props:{
-        info_delivery: Object
+        infos: Object
     },
     setup(props){
         const changeBackground = computed(() => {
             return {
-                backgroundImage:  `url(${props.info_delivery.image})`,
+                backgroundImage:  `url(${props.infos.image})`,
             }
         })
     //return
@@ -56,7 +56,7 @@
   
   <style lang="scss">
   
-  .delivery--card-C{
+  .Card-C{
         margin : 10px 5px;
         margin-bottom: 2%;
         min-width: 220px;
