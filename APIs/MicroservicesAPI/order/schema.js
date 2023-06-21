@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('../mongodb_connexion');
+const connectToMongoDB = require('./mongodb_connexion');
 connectToMongoDB("orders")
 
 const orderSchema = new mongoose.Schema({
