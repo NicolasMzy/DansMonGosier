@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: DansMonGosier
+  description: API for managing restaurants
+  version: 1.0.0
+servers:
+  - url: http://localhost:3013
+paths:
+  /restaurants:
+    post:
+      summary: Create a new restaurant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestaurantInput'
+      responses:
+        '201':
+          description: Restaurant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+    get:
+      summary: Get all restaurants
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Restaurant'
+  /restaurants/{restaurantId}:
+    get:
+      summary: Get a restaurant by ID
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Restaurant found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+        '404':
+          description: Restaurant not found
+    put:
+      summary: Update a restaurant by ID
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestaurantInput'
+      responses:
+        '200':
+          description: Restaurant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+        '404':
+          description: Restaurant not found
+    delete:
+      summary: Delete a restaurant by ID
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Restaurant deleted successfully
+        '404':
+          description: Restaurant not found
+  /restaurants-top-rated:
+    get:
+      summary: Get top rated restaurants
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Restaurant'
+components:
+  schemas:
+    Restaurant:
+      type: object
+      properties:
+        _id:
+          type: string
+        id_credentials:
+          type: string
+        name:
+          type: string
+        photo:
+          type: string
+        schedule:
+          type: string
+        id_address:
+          type: string
+        category:
+          type: string
+        mean_rate:
+          type: number
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              id_user:
+                type: number
+              rate:
+                type: number
+              comment:
+                type: string
+        menus:
+          type: array
+          items:
+            type: string
+        items:
+          type: array
+          items:
+            type: string
+    RestaurantInput:
+      type: object
+      properties:
+        id_credentials:
+          type: string
+        name:
+          type: string
+        photo:
+          type: string
+        schedule:
+          type: string
+        id_address:
+          type: string
