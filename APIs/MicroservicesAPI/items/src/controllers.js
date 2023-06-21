@@ -1,4 +1,4 @@
-const itemsModel = require('../models/itemsSchema');
+const itemsModel = require('./schema');
 
 exports.createItem = async (req, res) => {
   try {

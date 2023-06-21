@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('../mongodb_connexion');
-connectToMongoDB("items")
 
 const itemsSchema = new mongoose.Schema({
   id_restaurant:  { type: String, required: true },
@@ -14,5 +12,3 @@ const itemsSchema = new mongoose.Schema({
 const itemsModel = mongoose.model('items', itemsSchema);
 
 module.exports = itemsModel;
-
-
