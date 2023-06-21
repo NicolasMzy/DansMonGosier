@@ -50,8 +50,8 @@
           FooterNavbar,
       },
       setup() {
-            var data_proximity_row = ref<Restaurant[][]>([]);
-            var data_delivery_column = ref<Restaurant[]>([]);
+            let data_proximity_row = ref<Restaurant[][]>([]);
+            let data_delivery_column = ref<Restaurant[]>([]);
 
               const makeDataDelivery = async () => {
                 let restaurants: Restaurant[] = [];
@@ -61,10 +61,10 @@
                 try {
 
                     const responseProx = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
-                    var proximityRestaurants = responseProx.data; // Assuming the data is an array of restaurants
+                    let proximityRestaurants = responseProx.data; // Assuming the data is an array of restaurants
                     console.log(proximityRestaurants);
 
-                    // for (var restaurant of proximityRestaurants) {
+                    // for (let restaurant of proximityRestaurants) {
                     //     new_proxRestaurant = {
                     //         restaurantName: restaurant.name,
                     //         note: restaurant.mean_rate,
@@ -81,7 +81,7 @@
                     }
 
                     const responsePop = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
-                    var popularRestaurants = responsePop.data; // Assuming the data is an array of restaurants
+                    let popularRestaurants = responsePop.data; // Assuming the data is an array of restaurants
                     console.log(popularRestaurants);
 
                     new_popRestaurant = {
@@ -91,7 +91,7 @@
                         drive_time: '',
                     }
 
-                    //     for (var popRestaurant of popularRestaurants) {
+                    //     for (let popRestaurant of popularRestaurants) {
                     //     new_popRestaurant = {
                     //         restaurantName: popRestaurant.name,
                     //         note: popRestaurant.mean_rate,

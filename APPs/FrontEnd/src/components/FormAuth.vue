@@ -26,16 +26,14 @@ const loginForm = async () => {
     const response = await axios.post('http://localhost:3000/api/login', form.value, {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        // Add other headers as needed
       },
     });
     console.log(response.data);
     document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()}; path=/about`;
     console.log(document.cookie);
-    router.push('/about');
+    router.push('/client');
   } catch (error) {
     console.log(error);
-    // Handle the error here
   }
 };
 </script>

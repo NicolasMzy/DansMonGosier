@@ -12,7 +12,7 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-
+import Navbar from 'dmg-navbarheader';
 
 interface Restaurant {
       restaurantName: string
@@ -22,14 +22,29 @@ interface Restaurant {
       //price: string
 }
 
+interface NavItem {
+  path: string;
+  logo: string;
+  name: string;
+}
+
 export default {
-    // components: {
-    //     ProximityResRow,
-    //     DeliveryColumn,
-    //     SpecialityRow,
-    //     HeaderDMG,
-    //     FooterNavbar,
-    // },
+    components: {
+        // ProximityResRow,
+        // DeliveryColumn,
+        // SpecialityRow,
+        // HeaderDMG,
+        Navbar,
+    },
+    data(){
+      return {
+        navbarItems: [
+          { path: '/home', logo: '/src/assets/test/file-text-fill.png', name: 'testicule' },
+          { path: '/about', logo: '/src/assets/test/file-text-fill.png', name: 'About' },
+          { path: '/contact', logo: '/src/assets/test/file-text-fill.png', name: 'Contact' },
+        ] as NavItem[],
+      };
+    },
     setup() {
           let data_proximity_row = ref<Restaurant[][]>([]);
           let data_delivery_column = ref<Restaurant[]>([]);
