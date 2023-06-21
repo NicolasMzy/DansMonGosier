@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('../mongodb_connexion');
-connectToMongoDB("menus")
 
 const menuSchema = new mongoose.Schema({
   id_restaurant:  { type: String, required: true },

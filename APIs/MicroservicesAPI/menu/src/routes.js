@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const menusController = require('../controllers/menuControllers'); 
+const menusController = require('./controllers'); 
 
 // Create Menu
 router.post('/menus', menusController.createMenus);

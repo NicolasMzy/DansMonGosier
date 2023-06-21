@@ -1,4 +1,4 @@
-const menusModel = require('../models/menuSchema'); 
+const menusModel = require('./schema'); 
 
 exports.createMenus = async (req, res) => {
   try {
