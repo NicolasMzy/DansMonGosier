@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const connectToMongoDB = require('./mongodb_connexion');
-connectToMongoDB("orders")
 
 const orderSchema = new mongoose.Schema({
   id_user: { type: String, required: true },
