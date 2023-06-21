@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const http = require('http');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -29,16 +30,13 @@ const server = http.createServer(app);
 // Middleware for handling JSON requests
 app.use(express.json());
 
+// Middleware for handling CORS headers
+app.use(cors({
+  origin: '*'
+}));
+
 // Use routes 
 app.use(routes);
-
-// Middleware for handling CORS headers
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  next();
-});
 
 // Middleware for logging request reception
 app.use((req, res, next) => {
