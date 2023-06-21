@@ -1,10 +1,10 @@
-const restaurantModel = require('./schema'); 
+const RestaurantModel = require('./schema'); 
  
 exports.createRestaurant = async (req, res) => {
   try {
-    const {id_credentials,name,photo,schedule,id_address,category,mean_rate,rates,menus,items } = req.body;
+    const { id_credentials,name,photo,schedule,id_address,category,mean_rate,rates,menus,items } = req.body;
 
-    const newRestaurant = new restaurantModel({
+    const newRestaurant = new RestaurantModel({
       id_credentials,
       name,
       photo,
@@ -30,7 +30,7 @@ exports.getRestaurant = async (req, res) => {
   try {
     const restaurantId = req.params.restaurantId;
 
-    const restaurant = await restaurantModel.findById(restaurantId);
+    const restaurant = await RestaurantModel.findById(restaurantId);
 
     if (!restaurant) {
       return res.status(404).json({ message: 'Restaurant not found' });
@@ -48,7 +48,7 @@ exports.updateRestaurant = async (req, res) => {
     const restaurantId = req.params.restaurantId;
     const updates = req.body;
 
-    const updatedRestaurant = await restaurantModel.findByIdAndUpdate(restaurantId, updates, { new: true });
+    const updatedRestaurant = await RestaurantModel.findByIdAndUpdate(restaurantId, updates, { new: true });
 
     if (!updatedRestaurant) {
       return res.status(404).json({ message: 'Restaurant not found' });
@@ -65,7 +65,7 @@ exports.deleteRestaurant = async (req, res) => {
   try {
     const restaurantId = req.params.restaurantId;
 
-    const deletedRestaurant = await restaurantModel.findByIdAndDelete(restaurantId);
+    const deletedRestaurant = await RestaurantModel.findByIdAndDelete(restaurantId);
 
     if (!deletedRestaurant) {
       return res.status(404).json({ message: 'Restaurant not found' });
@@ -80,7 +80,7 @@ exports.deleteRestaurant = async (req, res) => {
 
 exports.getTopRatedRestaurants = async (req, res) => {
   try {
-    const topRestaurants = await restaurantModel
+    const topRestaurants = await RestaurantModel
       .find()
       .sort({ mean_rate: -1 }) // Tri décroissant sur la propriété mean_rate (note moyenne)
       .limit(2); // Limite les résultats aux 10 premiers restaurants

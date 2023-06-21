@@ -1,23 +1,36 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const http = require('http');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Import Swagger dependencies
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 
 // Import routes
-const restaurantRoutes = require('./routes');
+const routes = require('./routes');
 
 // Load Swagger YAML document
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load('./src/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Connexion MongoDB Collection
+const connectToMongoDB = require('./mongodb_connection');
+connectToMongoDB(process.env.COLLECTION)
+
+// Server Express set PORT 
+app.set('port', process.env.PORT);
+const server = http.createServer(app);
 
 // Middleware for handling JSON requests
 app.use(express.json());
 
-// Use routes for items
-app.use(restaurantRoutes);
+// Use routes 
+app.use(routes);
 
 // Middleware for handling CORS headers
 app.use((req, res, next) => {
@@ -59,4 +72,8 @@ mongoose.connection.on('connected', function() {
 });
 mongoose.connection.on('disconnected', function() {
   console.log("Database is disconnected");
+});
+
+server.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${app.get('port')}`);
 });
