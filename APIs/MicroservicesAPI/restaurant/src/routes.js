@@ -1,25 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-const restaurantsController = require('./controllers'); 
+const restaurantController = require('./controllers/controllers'); 
+const rateController = require('./controllers/rate_controllers'); 
+const itemController = require('./controllers/item_controllers'); 
 
-// Create restaurant
-router.post('/restaurants', restaurantsController.createRestaurant);
+// Restaurant
+router.post('/restaurants', restaurantController.createRestaurant);
+router.get('/restaurants/:restaurantId', restaurantController.getRestaurant);
+router.get('/restaurants-categories', restaurantController.getRestaurantCategories);
+router.put('/restaurants/:restaurantId', restaurantController.updateRestaurant);
+router.delete('/restaurants/:restaurantId', restaurantController.deleteRestaurant);
+router.get('/restaurants-top-rated/', restaurantController.getTopRatedRestaurants);
 
-// Get restaurant by ID 
-router.get('/restaurants/:restaurantId', restaurantsController.getRestaurant);
+// Rates
+router.post('/restaurants/:restaurantId/rates', rateController.addRateToRestaurant);
 
-// Get restaurant by ID 
-router.get('/restaurants-categories', restaurantsController.getRestaurantCategories);
-
-// Update restaurant by ID
-router.put('/restaurants/:restaurantId', restaurantsController.updateRestaurant);
-
-// Delete restaurant by ID
-router.delete('/restaurants/:restaurantId', restaurantsController.deleteRestaurant);
-
-// Get top 10 rated restaurant
-router.get('/restaurants-top-rated/', restaurantsController.getTopRatedRestaurants);
+// Items 
+router.post('/restaurants/:restaurantId/items', itemController.createItem);
+router.get('/restaurants/:restaurantId/items', itemController.getItems);
+router.get('/restaurants/:restaurantId/items/:itemId', itemController.getItem);
+router.put('/restaurants/:restaurantId/items/:itemId', itemController.updateItem);
+router.delete('/restaurants/:restaurantId/items/:itemId', itemController.deleteItem);
 
 
 module.exports = router;

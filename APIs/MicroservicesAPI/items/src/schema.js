@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const itemsSchema = new mongoose.Schema({
-  id_restaurant:  { type: String, required: true },
   label: { type: String, required: true },
   description: { type: String, required: true },
   photo: { type: String, required: true },
