@@ -3,9 +3,9 @@ const Restaurant = require('../models/schema');
  // Create a new item for a specific restaurant
 exports.createItem = async (req, res) => {
   const { restaurantId } = req.params;
-  const { label, description, photo, price, type, quantity } = req.body;
+  const { label, description, photo, price, type } = req.body;
 
-  if (!label || !description || !photo || !price || !type || !quantity) {
+  if (!label || !description || !photo || !price || !type) {
     return res.status(400).json({ message: 'Missing required fields: label, description, photo, price, type' });
   }
 
@@ -21,8 +21,7 @@ exports.createItem = async (req, res) => {
       description,
       photo,
       price,
-      type,
-      quantity
+      type
     };
 
     restaurant.items.push(newItem);
@@ -97,7 +96,13 @@ exports.deleteItem = async (req, res) => {
       return res.status(404).json({ message: 'Restaurant not found' });
     }
 
-    restaurant.items.pull({ _id: itemId });
+    const item = restaurant.items.id(itemId);
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    restaurant.items.pull(item);
+
     await restaurant.save();
     res.status(200).json({ message: 'Item deleted successfully' });
   } catch (error) {

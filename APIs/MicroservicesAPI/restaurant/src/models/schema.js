@@ -13,6 +13,10 @@ const itemSchema = new mongoose.Schema({
   photo: { type: String, required: true },
   price: { type: Number, required: true },
   type: { type: String, enum: ['plat', 'boisson', 'sauce', 'accompagnement'], required: true },
+});
+
+const menuItemSchema = new mongoose.Schema({
+  item: itemSchema,
   quantity: { type: Number, required: true }
 });
 
@@ -21,7 +25,7 @@ const menuSchema = new mongoose.Schema({
   description: { type: String, required: true },
   photo:  { type: String, required: true },
   price:  { type: Number, required: true },
-  items: [itemSchema]
+  items: [menuItemSchema]
 });
 
 const restaurantSchema = new mongoose.Schema({
@@ -31,7 +35,7 @@ const restaurantSchema = new mongoose.Schema({
   schedule: { type: String, required: true },
   id_address: { type: String, required: true },
   category: { type: String, required: true },
-  mean_rate: { type: Number, required: true },
+  mean_rate: { type: Number, required: false },
   rates: [rateSchema],
   menus: [menuSchema],
   items: [itemSchema]
