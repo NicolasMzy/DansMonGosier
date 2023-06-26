@@ -4,7 +4,6 @@ const sequelize = require('./config/db');
 const express = require('express');
 const accountRoutes = require('./route');
 const cors = require('cors');
-const audit = require('express-requests-logger');
 
 const main = async () => {
   const delay = (ms) => {
@@ -40,7 +39,6 @@ const main = async () => {
     origin: '*',
   }));
   app.use(express.json());
-  app.use(audit());
 
   app.use('/', accountRoutes);
 

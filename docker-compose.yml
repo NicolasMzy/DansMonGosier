@@ -59,8 +59,30 @@ services:
       - traefik.http.services.account.loadbalancer.server.port=${MICROSERVICE_ACCOUNT_PORT}
     networks:
       - dmg-net
-    ports:
-      - ${MICROSERVICE_ACCOUNT_PORT}:${MICROSERVICE_ACCOUNT_PORT}
+  
+  # Sponsor microservice
+  sponsor:
+    container_name: ${MICROSERVICE_SPONSOR_HOST}
+    build: ./APIs/MicroservicesAPI/sponsor
+    image: sponsor:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_SPONSOR_PORT=${MICROSERVICE_SPONSOR_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sponsor.rule=PathPrefix(`/sponsor`)
+      - traefik.http.routers.sponsor.entrypoints=web
+      - traefik.http.services.sponsor.loadbalancer.server.port=${MICROSERVICE_SPONSOR_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_SPONSOR_PORT}
+    
 
 
 
