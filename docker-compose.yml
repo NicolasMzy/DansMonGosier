@@ -5,9 +5,9 @@ networks:
 
 services:
   # PostgreSQL database
-  postgresql:
-    container_name: postgre
-    image: 'bitnami/postgresql:15.3.0'
+  postgres:
+    container_name: ${POSTGRE_HOST}
+    image: bitnami/postgresql:15.3.0
     networks:
       - dmg-net
     environment:
@@ -15,23 +15,52 @@ services:
       - POSTGRESQL_USERNAME=${POSTGRE_USERNAME}
       - POSTGRESQL_PASSWORD=${POSTGRE_PASSWORD}
     ports:
-      - "5432:5432"
+      - 5432:5432
   # Reverse proxy and load balancing service with traefik
   traefik:
     container_name: traefik
-    image: 'traefik:v3.0'
+    image: traefik:v3.0
     command:
       - --api.insecure=true                       # Launch traefik on insecure mode implying that authentication is not needed to pass through
       - --providers.docker                        # Use docker as dynamic configuration provider
       - --providers.docker.exposedbydefault=false # Not automatically expose containers to traefik
       - --entrypoints.web.address=:80             # WEB entrypoint
-    labels:
-      - traefik.http.middlewares.access-control-jwt-authn.forwardauth.address=access-control                # Access control address
-      - traefik.http.middlewares.access-control-jwt-authn.forwardauth.authResponseHeaders=X-Forwarded-User  # En-tête contenant l'identifiant de l'utilisateur
+    # labels:
+    #   - traefik.http.middlewares.access-control-jwt-authn.forwardauth.address=access-control                # Access control address
+    #   - traefik.http.middlewares.access-control-jwt-authn.forwardauth.authResponseHeaders=X-Forwarded-User  # En-tête contenant l'identifiant de l'utilisateur
+    networks:
+      - dmg-net
     ports:
       - 80:80
       - 8080:8080
+    expose:
+      - 80
     volumes:
       - ${DOCKER_SOCKET_PATH_LINUX}:/var/run/docker.sock # Give traefik access to host's docker socket
   # Access control middleware
-  
+
+  # Account microservice
+  account:
+    container_name: account
+    build: ./APIs/MicroservicesAPI/account
+    image: account:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_ACCOUNT_PORT=${MICROSERVICE_ACCOUNT_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.account.rule=PathPrefix(`/account`)
+      - traefik.http.routers.account.entrypoints=web
+      - traefik.http.services.account.loadbalancer.server.port=${MICROSERVICE_ACCOUNT_PORT}
+    networks:
+      - dmg-net
+    ports:
+      - ${MICROSERVICE_ACCOUNT_PORT}:${MICROSERVICE_ACCOUNT_PORT}
+
+
+
