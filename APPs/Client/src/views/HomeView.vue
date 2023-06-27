@@ -13,24 +13,42 @@
     </div>
   </div>
   <div>
-    <button @click="showCard = !showCard">Toggle Card</button>
+  <transition name="fade">
+      <div class="popup" v-if="showPopup">
+        <p>{{ popupMessage }}</p>
+        <button @click="undoLastAction">Undo</button>
+        <button @click="showPopup = false">Close</button>
+      </div>
+    </transition>
+  </div>
+  <div>
     <transition name="ease">
       <div class="card" v-if="showCard">
         <button @click="showCard = false" class="close-button"></button>
-        <img class="image" :src="selectedRestaurant ? selectedRestaurant.image : ''">
-        <h1>{{ selectedRestaurant ? selectedRestaurant.restaurantName : '' }}</h1>
-        <div class="menu" v-for="(menu, i) in selectedRestaurant.menu" :key="i">
+        <img class="image" :src="selectedRestaurant?.photo">
+        <h1>{{ selectedRestaurant?.name }}</h1>
+        <h2>{{ selectedRestaurant?.address.line_1 }}, {{ selectedRestaurant?.address.city }}</h2>
+        <div class="menu" v-for="(menu, i) in selectedRestaurant?.menu" :key="i">
+          <h2>Menus : </h2>
           {{menu.label}}
           <button @click="addToBasket(menu)">Add to Basket</button>
           <button @click="incrementQuantity(menu)">Increase</button>
-          {{ menu.quantity }}
           <button @click="decrementQuantity(menu)">Decrease</button>
-          <button @click="removeFromBasket(menu.label)">Remove from basket</button>
+          <button @click="removeFromBasket(menu)">Remove from basket</button>
         </div>
-        <div class="items" v-for="(item, i) in selectedRestaurant.items" :key="i">
+        <div class="items" v-for="(item, i) in selectedRestaurant?.item" :key="i">
+          <h2>A l'unité : </h2>
           {{item.label}}
-          <!-- <button @click="addToBasket(item)">Add to Basket</button> -->
+          <button @click="addToBasket(item)">Add to Basket</button>
+          <button @click="incrementQuantity(item)">Increase</button>
+          <button @click="decrementQuantity(item)">Decrease</button>
+          <button @click="removeFromBasket(item)">Remove from basket</button>
         </div>
+      </div>
+    </transition>
+    <transition name="ease">
+      <div class="black-button" v-if="basket.length >= 1">
+        <button @click="navigateToRoute('/basket')">Voir panier</button>
       </div>
     </transition>
     <transition name="ease">
@@ -46,37 +64,39 @@
 
 <script lang="ts">
 import { onMounted, ref, computed } from 'vue'
+import { useRouter } from 'vue-router';
+import type { Ref } from 'vue'
 import axios from 'axios'
 import vSelect from 'vue-select';
 import ProximityResRow from '../components/ProximityResRow.vue'
 import DeliveryColumn from '../components/RestaurantsColumn.vue'
-import SpecialityRow from '../components/SpecialityRow.vue'
+// import SpecialityRow from '../components/SpecialityRow.vue'
 import BDD from '../BDDex'
 import type {Restaurant} from "../types/Restaurant"
+import type {Address} from "../types/Address"
 import type {Menu} from "../types/Menu"
 // import HeaderDMG from '../../components/Header.vue'
 // import FooterNavbar from '../../components/footerNavbar.vue'
 import { useStore } from 'vuex';  // If you're using Vuex
 import type { State, BasketItem } from '../types/Types';
 
-
-interface NavItem {
-  path: string;
-  logo: string;
-  name: string;
+interface Action {
+  action: 'add' | 'remove';
+  item: BasketItem;
 }
 
 export default {
     components: {
         ProximityResRow,
         DeliveryColumn,
-        SpecialityRow,
+        // SpecialityRow,
         // HeaderDMG,
         //Navbar,
         'vue-select': vSelect
     },
     data(){
       return {
+        
         selectedRestaurant: null,
         showCard: false,
         showCardAddress: false,
@@ -101,125 +121,95 @@ export default {
       this.showCard = true;
       },
     },
-    // setup() {
-    //       let data_proximity_row = ref<Restaurant[][]>([]);
-    //       let data_delivery_column = ref<Restaurant[]>([]);
-
-    //         const makeDataDelivery = async () => {
-    //           let restaurants: Restaurant[] = [];
-    //           let new_proxRestaurant: Restaurant;
-    //           // let new_popRestaurant: Restaurant;
-
-    //           try {
-
-    //               // const responseProx = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
-    //               // let proximityRestaurants = responseProx.data; // Assuming the data is an array of restaurants
-    //               // console.log(proximityRestaurants);
-
-    //               // for (let restaurant of proximityRestaurants) {
-    //               //     new_proxRestaurant = {
-    //               //         restaurantName: restaurant.name,
-    //               //         note: restaurant.mean_rate,
-    //               //         image: restaurant.photo,
-    //               //         drive_time: '',
-    //               //     };
-    //               // }
-    //               for (const delivery of BDD){
-    //                 new_proxRestaurant = {
-    //                         restaurantName: delivery.restaurantName,
-    //                         note: delivery.note,
-    //                         image: delivery.image,
-    //                         drive_time: delivery.drive_time,
-    //                         // price: delivery.price
-    //               }
-    //             }
-
-    //               // const responsePop = await axios.get('http://localhost:3013/restaurants/6491e3932704d2658d660cd1');
-    //               // let popularRestaurants = responsePop.data; // Assuming the data is an array of restaurants
-    //               // console.log(popularRestaurants);
-
-    //               for (const restaurant of BDD){
-    //                 let new_popRestaurant: Restaurant = {
-    //                         restaurantName: restaurant.restaurantName,
-    //                         note: restaurant.note,
-    //                         image: restaurant.image,
-    //                         drive_time: restaurant.drive_time,
-    //                         // price: delivery.price
-    //               }
-    //             }
-
-    //               //     for (let popRestaurant of popularRestaurants) {
-    //               //     new_popRestaurant = {
-    //               //         restaurantName: popRestaurant.name,
-    //               //         note: popRestaurant.mean_rate,
-    //               //         image: popRestaurant.photo,
-    //               //         drive_time: '',
-    //               //     };
-    //               // }
-
-    //               if (data_delivery_column.value.length < 2){
-    //                   data_delivery_column.value.push(new_popRestaurant);
-    //               }
-
-    //               if (restaurants.length === 9) {
-    //                   restaurants.push(new_proxRestaurant);
-    //                   data_proximity_row.value.push(restaurants);
-    //                   restaurants = [];
-    //               } else {
-    //                   restaurants.push(new_proxRestaurant);
-    //                   data_proximity_row.value.push(restaurants);
-    //               }
-    //               console.log(data_proximity_row)
-    //           } catch (error) {
-    //               console.error(error);
-    //           }
-
-    //           }
-
-    //     onMounted(makeDataDelivery);
-
-    //     return {
-    //       data_proximity_row,
-    //       data_delivery_column,
-    //     }
-    // }
     setup() {
+      const showPopup = ref(false);
+      const popupMessage = ref('');
 
+
+      const displayPopup = (message: string) => {
+      popupMessage.value = message;
+      showPopup.value = true;
+
+      setTimeout(() => {
+          showPopup.value = false;
+        }, 3000);  // The popup will disappear after 3 seconds
+      }
+      //Store for the basket
       const store = useStore();
+      const lastAction: Ref<Action | null> = ref(null);
+      const basket = computed(() => store.state.basket);
+      const items = computed(() => store.state.items);
+
       let data_proximity_row = ref<Restaurant[][]>([]);
       let data_delivery_column = ref<Restaurant[]>([]);
+      let addresses = ref<Address[]>([]);
 
-      const basket = computed(() => store.state.basket);
-      const items = computed(() => store.state.items); // Assuming you also have an 'items' state that holds all available items
+      const router = useRouter();
 
+      const navigateToRoute = (route: string) => {
+        router.push(route);
+      };
+
+      //Basket's managment functions
       function addToBasket(item: BasketItem) {
         store.commit('addToBasket', item);
+        lastAction.value = { action: 'add', item };
+        displayPopup(item.label + ' added to basket')
       }
 
-      const removeFromBasket = (label: string) => {
-        store.commit('removeFromBasket', label);
+      function removeFromBasket(item: BasketItem) {
+        store.commit('removeFromBasket', item);
+        lastAction.value = { action: 'remove', item };
+        displayPopup(item.label + ' removed from basket')
       };
 
       const incrementQuantity = (item: BasketItem) => {
         store.commit('incrementQuantity', item);
+        displayPopup(item.label + ' added one to basket')
       };
 
       const decrementQuantity = (item: BasketItem) => {
         store.commit('decrementQuantity', item);
+        displayPopup(item.label + 'removed one from basket');
       };
-    
+
+      const undoLastAction = () => {
+      if (lastAction.value) {
+        if (lastAction.value.action === 'add') {
+          store.commit('removeFromBasket', lastAction.value.item);
+        } else if (lastAction.value.action === 'remove') {
+          store.commit('addToBasket', lastAction.value.item);
+        }
+      }
+
+      showPopup.value = false;
+    };
+      
+    async function getAddress(id: string){
+      let addressResponse = await axios.get('http://localhost:3014/address/'+ id);
+      return addressResponse.data;
+    }
 
     const makeDataDelivery = async () => {
         let restaurants: Restaurant[] = [];
         try {
-            for (const item of BDD){
+          const response = await axios.get('http://localhost:3013/restaurants-top-rated');
+          let restaurantsTop = response.data; // Assuming the data is an array of restaurants
+
+            for (let item of restaurantsTop.restaurants){
+              let address = await getAddress(item.id_address);  
                 let new_restaurant: Restaurant = {
-                    restaurantName: item.restaurantName,
-                    note: item.note,
-                    image: item.image,
-                    drive_time: item.drive_time,
-                    price: '',
-                    menu: Array.isArray(item.menu) ? item.menu : [],
+                    id_credentials: item.id_credentials,
+                    schedule: item.schedule,
+                    id_address: item.id_address,
+                    category: item.category,
+                    mean_rate: item.mean_rate,
+                    name: item.name,
+                    rates: item.rates,
+                    photo: item.photo,
+                    menu: Array.isArray(item.menus) ? item.menus : [],
+                    item: Array.isArray(item.items) ? item.items : [],
+                    address: address,
                 }
 
                 if (data_delivery_column.value.length < 2){
@@ -239,7 +229,6 @@ export default {
                 data_proximity_row.value.push(restaurants);
             }
 
-            console.log(data_proximity_row)
         } catch (error) {
             console.error(error);
         }
@@ -248,6 +237,7 @@ export default {
     onMounted(makeDataDelivery);
 
     return {
+        addresses,
         data_proximity_row,
         data_delivery_column,
         basket,
@@ -256,6 +246,11 @@ export default {
         decrementQuantity,
         removeFromBasket,
         addToBasket,
+        showPopup,
+        popupMessage,
+        displayPopup,
+        undoLastAction,
+        navigateToRoute
     }
 }
 }
@@ -267,6 +262,7 @@ export default {
   margin-top: 50px;
 }
 .card {
+  z-index: 50;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -276,7 +272,6 @@ export default {
   border-radius: 25px 25px 0 0;
   box-sizing: border-box;
   padding: 20px;
-  z-index: 9999;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 .close-button {
@@ -322,5 +317,34 @@ export default {
   background-size: cover;
   background-position: center;
   border-radius: 25px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.black-button{
+  z-index: 100;
+  position: fixed;
+  bottom: 20px;
+  background: #444;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.popup {
+  z-index: 100;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #444;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  align-self: center;
 }
 </style>

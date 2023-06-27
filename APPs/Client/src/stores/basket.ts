@@ -20,10 +20,12 @@ export const store = createStore({
           state.basket.push({ ...item, quantity: 1 });
         }
       },
-      removeFromBasket(state: State, label: string) {
-        state.basket = state.basket.filter(item => item.label !== label);
+      removeFromBasket(state: State, label: BasketItem) {
+        state.basket = state.basket.filter(item => item.label !== label.label);
       },
-
+      clearBasket(state: State) {
+        state.basket = [];
+      },
       incrementQuantity(state: State, item: BasketItem) {
 
         const found = state.basket.find((product) => product.label === item.label);
