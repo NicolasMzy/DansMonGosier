@@ -82,7 +82,7 @@
             margin: 0px;
         }
         .delivery--image {
-            background-image: url('../assets/bk.jpeg');
+            background-image: url('../../assets/star.png');
             min-height: 65%;
             background-size: cover;
             background-position: center;

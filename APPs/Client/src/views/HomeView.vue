@@ -22,6 +22,15 @@
     </transition>
   </div>
   <div>
+  <transition name="fade">
+      <div class="popup" v-if="showPopup">
+        <p>{{ popupMessage }}</p>
+        <button @click="undoLastAction">Undo</button>
+        <button @click="showPopup = false">Close</button>
+      </div>
+    </transition>
+  </div>
+  <div>
     <transition name="ease">
       <div class="card" v-if="showCard">
         <button @click="showCard = false" class="close-button"></button>
@@ -211,7 +220,10 @@ export default {
                     item: Array.isArray(item.items) ? item.items : [],
                     address: address,
                 }
+                
+             
 
+                
                 if (data_delivery_column.value.length < 2){
                     data_delivery_column.value.push(new_restaurant);
                 }
@@ -222,7 +234,10 @@ export default {
                     data_proximity_row.value.push(restaurants);
                     restaurants = []; // Reset the restaurants array after pushing to data_proximity_row
                 }
+
             }
+
+
 
             // After the loop, check if there are any remaining restaurants not yet pushed to data_proximity_row
             if (restaurants.length > 0) {

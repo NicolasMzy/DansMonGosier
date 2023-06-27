@@ -7,6 +7,7 @@
           <p>Quantity: {{ item.quantity }}</p>
           <p>Price: ${{ item.price }}</p>
           <button @click="removeFromBasket(item)">Remove</button>
+          <button @click="removeFromBasket(item)">Remove</button>
           <button @click="incrementQuantity(item)">Increase</button>
           <button @click="decrementQuantity(item)">Decrease</button>
         </li>
@@ -20,7 +21,16 @@
         <button @click="showPopup = false">Close</button>
       </div>
     </transition>
+    <transition name="fade">
+      <div class="popup" v-if="showPopup">
+        <p>{{ popupMessage }}</p>
+        <button @click="undoLastAction">Undo</button>
+        <button @click="showPopup = false">Close</button>
+      </div>
+    </transition>
     <transition name="ease">
+      <div class="card" v-if="basket.length >= 1">
+        <button @click="submitBasket" class="payment-button">Valider et Payer</button>
       <div class="card" v-if="basket.length >= 1">
         <button @click="submitBasket" class="payment-button">Valider et Payer</button>
       </div>
@@ -69,6 +79,8 @@
 
         function addToBasket(item: BasketItem) {
             store.commit('addToBasket', item);
+            lastAction.value = { action: 'add', item };
+            displayPopup(item.label + ' added to basket')
             lastAction.value = { action: 'add', item };
             displayPopup(item.label + ' added to basket')
         }
@@ -173,6 +185,11 @@
         incrementQuantity,
         decrementQuantity,
         addToBasket,
+        showPopup,
+        popupMessage,
+        displayPopup,
+        undoLastAction,
+        submitBasket,
         showPopup,
         popupMessage,
         displayPopup,
