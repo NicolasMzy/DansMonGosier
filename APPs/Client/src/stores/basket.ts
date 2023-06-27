@@ -31,7 +31,7 @@ export const store = createStore({
             found.price += item.price/found.quantity;
             found.quantity += 1;
         } else if(!found) {
-            this.addToBasket(state,item)
+            state.basket.push({ ...item, quantity: 1 });
         }
       },
       decrementQuantity(state: State, item: BasketItem) {
@@ -39,6 +39,8 @@ export const store = createStore({
         if (found && found.quantity > 1) {
             found.price -= item.price/found.quantity;
             found.quantity -= 1;
+        } else if(found && found.quantity == 1) {
+            state.basket = state.basket.filter(basketItem => basketItem.label !== item.label);
         }
       },
     },
