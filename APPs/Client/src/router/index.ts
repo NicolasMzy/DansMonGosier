@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import SettingsVue from '@/views/settings/SettingsVue.vue';
 import ClientHome from '@/views/Client/ClientHome.vue';
-import ProfileInformation from '@/views/settings/ProfileInformation.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/authentificate',
+    },
+    {
+      path: '/authentificate',
+      name: 'Authentificate',
+      component: () => import('../views/AUthenticateView.vue'),
     },
     {
       path: '/home',

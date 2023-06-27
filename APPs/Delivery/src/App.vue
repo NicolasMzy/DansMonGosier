@@ -5,12 +5,10 @@
 </template>
 
 <script lang="ts">
-import HomeView from './views/Client/ClientHome.vue';
 
 export default {
   name :'App',
   components: {
-    HomeView,
   }
 }
 </script>

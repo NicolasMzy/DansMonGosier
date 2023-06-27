@@ -1,5 +1,6 @@
 <template>
   <div class="location">
+    <Header/>
     <h2 class="title">Location</h2>
     <div class="addresses">
       <div v-for="(address, index) in addresses" :key="index" class="address">
@@ -43,6 +44,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Header from '../../components/componentsGlobaux/Header.vue';
 
 interface Address {
   city: string;
@@ -53,6 +55,9 @@ interface Address {
 
 export default defineComponent({
   name: 'Location',
+  components :{
+    Header,
+  },
   data() {
     return {
       addresses: [
@@ -114,7 +119,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .location {
-  background-color: #f2f2f2;
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
 
@@ -129,7 +134,7 @@ export default defineComponent({
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #fff;
+      background-color:  #f2f2f2;
       padding: 10px;
       border-radius: 4px;
       margin-bottom: 10px;
@@ -159,7 +164,7 @@ export default defineComponent({
   }
 
   .add-address-form {
-    background-color: #fff;
+    background-color: #f2f2f2;
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;

@@ -1,5 +1,6 @@
 <template>
   <div class="profile-information">
+    <Header/>
     <h2 class="title">Profile Information</h2>
     <div class="info-section">
       <div class="info-row">
@@ -30,6 +31,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Header from '../../components/componentsGlobaux/Header.vue'
 
 interface Profile {
   name: string;
@@ -39,6 +41,9 @@ interface Profile {
 
 export default defineComponent({
   name: 'ProfileInformation',
+  components: {
+    Header,
+  },
   data() {
     return {
       profile: {

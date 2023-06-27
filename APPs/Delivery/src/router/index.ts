@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import SettingsVue from '@/views/settings/SettingsVue.vue';
-import ClientHome from '@/views/Client/ClientHome.vue';
-import ProfileInformation from '@/views/settings/ProfileInformation.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +10,7 @@ const router = createRouter({
     {
       path: '/home',
       name: 'ClientHome',
-      component: ClientHome,
+      component: () => import('../views/Delivery/DeliveryHome.vue'),
     },
     {
       path: '/settings',
