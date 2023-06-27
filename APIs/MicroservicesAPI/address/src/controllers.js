@@ -1,8 +1,28 @@
 const AddressModel = require('./schema'); 
+const axios = require('axios');
 
 exports.createAddress = async (req, res) => {
   try {
-    const { id_credentials,type,line_1,line_2,city,country,postcode } = req.body;
+    const { id_credentials, type, line_1, line_2, city, country, postcode } = req.body;
+
+    // Get the GPS coordinates from the Nominatim API
+    const response = await axios.get('https://nominatim.openstreetmap.org/search', {
+      params: {
+        street: line_1,
+        city,
+        country,
+        postalcode: postcode,
+        format: 'json'
+      }
+    });
+
+    // Check if the API returned a result
+    if (!response.data || response.data.length === 0) {
+      return res.status(400).json({ message: 'Could not find GPS coordinates for this address' });
+    }
+
+    // Get the first result
+    const coordinates = [parseFloat(response.data[0].lon), parseFloat(response.data[0].lat)];
 
     const newAddress = new AddressModel({
       id_credentials,
@@ -11,7 +31,8 @@ exports.createAddress = async (req, res) => {
       line_2,
       city,
       country,
-      postcode
+      postcode,
+      coordinates
     });
 
     const savedAddress = await newAddress.save();
@@ -22,6 +43,7 @@ exports.createAddress = async (req, res) => {
     res.status(500).json({ message: 'Error while creating a new address' });
   }
 };
+
 
 exports.getAddress = async (req, res) => {
   try {
