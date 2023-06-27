@@ -1,28 +1,26 @@
 <template>
-  <header>
-    <div id="app">
-      <DeliveryHome/>
-    </div>
-  </header>
+  <div class="app">
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import DeliveryHome from './views/DeliveryPageView.vue';
-import HeaderDMG from './components/Header.vue'
+<script lang="ts">
+import HomeView from './views/Client/ClientHome.vue';
+
 export default {
-  name: 'App',
+  name :'App',
   components: {
-    DeliveryHome,
-    HeaderDMG,
-  },
+    HomeView,
+  }
 }
 </script>
 
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Roboto:wght@300&display=swap');
+<style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('./style/reset.css');
-#app {
-  font-family: 'Roboto', sans-serif;
-}
+.app{
+    color : black;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 0px
+  }
 </style>
