@@ -1,5 +1,6 @@
 <template>
     <div class="change-password">
+      <Header/>
       <h2 class="title">Change Password</h2>
       <div v-if="!passwordVerified" class="password-verification">
         <label for="password">Enter Password:</label>
@@ -44,7 +45,8 @@
   
   <script lang="ts">
   import { defineComponent } from 'vue';
-  
+  import Header from '../../components/componentsGlobaux/Header.vue'
+
   interface Passwords {
     new: string;
     confirm: string;
@@ -52,6 +54,9 @@
   
   export default defineComponent({
     name: 'ChangePassword',
+    components :{
+      Header,
+    },
     data() {
       return {
         passwordVerified: false,

@@ -40,11 +40,6 @@ const router = createRouter({
           component: () => import('../views/settings/PaymentsMethods.vue'),
         },
         {
-          path: 'location',
-          name: 'Location',
-          component: () => import('../views/settings/Location.vue'),
-        },
-        {
           path: 'refertofriends',
           name: 'ReferTofriend',
           component: () => import('../views/settings/ReferToFriend.vue'),

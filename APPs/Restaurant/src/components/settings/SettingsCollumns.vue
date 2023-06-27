@@ -41,12 +41,6 @@
               },
               
               {
-                  name : 'Location',
-                  info : 'add or remove your locations',
-                  img : '/src/assets/settings/map-pin-bold.png'
-              },
-              
-              {
                   name : 'Refer to friends',
                   info : 'get a parain code',
                   img : '/src/assets/settings/users-bold.png'

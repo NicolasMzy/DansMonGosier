@@ -40,11 +40,6 @@
                   img : '/src/assets/settings/credit-card-bold.png'
               },
               
-              {
-                  name : 'Location',
-                  info : 'add or remove your locations',
-                  img : '/src/assets/settings/map-pin-bold.png'
-              },
               
               {
                   name : 'Refer to friends',
