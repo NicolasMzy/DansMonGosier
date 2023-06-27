@@ -40,6 +40,23 @@ exports.getAddress = async (req, res) => {
   }
 };
 
+exports.getAddressByIdCredentials = async (req, res) => {
+  try {
+    const { id_credentials } = req.params;
+    const address = await AddressModel.findOne({ id_credentials });
+
+    if (!address) {
+      return res.status(404).json({ message: 'Address not found' });
+    }
+
+    res.status(200).json(address);
+  } catch (error) {
+    console.error('Error while getting the address:', error);
+    res.status(500).json({ message: 'Error while getting the address' });
+  }
+};
+
+
 exports.updateAddress = async (req, res) => {
   try {
     const addressId = req.params.addressId;
