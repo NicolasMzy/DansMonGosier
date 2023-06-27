@@ -2,7 +2,7 @@ const OrderModel = require('./schema');
 
 exports.createOrder = async (req, res) => {
   try {
-    const { id_user,id_restaurant,price,number,payment,status,date,address,deliverer,menus,items } = req.body;
+    const { id_user,id_restaurant,price,number,payment,status,address,deliverer,menus,items } = req.body;
 
     const newOrder = new OrderModel({
       id_user,
@@ -11,7 +11,10 @@ exports.createOrder = async (req, res) => {
       number,
       payment,
       status,
-      date,
+      date: {
+        start: Date.now(),
+        end: null
+      },
       address,
       deliverer,
       menus,
@@ -79,3 +82,37 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
+exports.getDeliveredOrdersByUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    const orders = await OrderModel.find({ id_user: userId, status: 'delivered' });
+
+    if (!orders) {
+      return res.status(404).json({ message: 'No delivered orders found for this user' });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error while retrieving the orders:', error);
+    res.status(500).json({ message: 'Error while retrieving the orders' });
+  }
+};
+
+exports.getOrdersByStatusAndRestaurant = async (req, res) => {
+  try {
+    const restaurantId = req.params.restaurantId;
+    const status = req.params.status;
+
+    const orders = await OrderModel.find({ id_restaurant: restaurantId, status: status });
+
+    if (!orders) {
+      return res.status(404).json({ message: `No orders with status ${status} found for this restaurant` });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error while retrieving the orders:', error);
+    res.status(500).json({ message: 'Error while retrieving the orders' });
+  }
+};
