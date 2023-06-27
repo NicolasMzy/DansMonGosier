@@ -103,7 +103,7 @@
   
   <style lang="scss" scoped>
   .change-password {
-    background-color: #f2f2f2;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
   
@@ -116,6 +116,9 @@
     .password-verification {
       display: flex;
       align-items: center;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 4px;
   
       label {
         margin-right: 10px;
@@ -139,7 +142,7 @@
     }
   
     .password-section {
-      background-color: #fff;
+      background-color: #f2f2f2;
       padding: 10px;
       border-radius: 4px;
     }
@@ -150,6 +153,7 @@
       justify-content: space-between;
       margin-bottom: 10px;
       font-size: 16px;
+
   
       .label {
         color: #666;

@@ -1,5 +1,6 @@
 <template>
     <div class="refer-to-friend">
+      <Header/>
       <h2 class="title">Refer to a Friend</h2>
       <div class="image-section">
         <img class="refer-image" src="../../assets/settings/fireworks.png" alt="Refer a Friend" />
@@ -13,9 +14,13 @@
   
   <script lang="ts">
   import { defineComponent } from 'vue';
-  
+  import Header from '../../components/componentsGlobaux/Header.vue'
+
   export default defineComponent({
     name: 'ReferToFriend',
+    components: {
+      Header,
+    },
     data() {
       return {
         referralCode: 'ABCD1234',
@@ -26,7 +31,7 @@
   
   <style lang="scss" scoped>
   .refer-to-friend {
-    background-color: #f2f2f2;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
   
@@ -48,7 +53,7 @@
     }
   
     .code-section {
-      background-color: #fff;
+      background-color: #f2f2f2;
       padding: 10px;
       border-radius: 4px;
       display: flex;

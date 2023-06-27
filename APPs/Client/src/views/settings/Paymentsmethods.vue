@@ -1,6 +1,7 @@
 
 <template>
   <div class="payment-methods">
+    <Header/>
     <h2 class="title">Payment Methods</h2>
     <div v-if="!passwordVerified" class="password-verification">
       <label for="password">Enter Password:</label>
@@ -44,6 +45,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Header from '../../components/componentsGlobaux/Header.vue'
+
 
 interface Card {
   cardNumber: string;
@@ -53,6 +56,9 @@ interface Card {
 
 export default defineComponent({
   name: 'PaymentMethods',
+  components : {
+    Header,
+  },
   data() {
     return {
       passwordVerified: false,
@@ -128,6 +134,9 @@ export default defineComponent({
   .password-verification {
     display: flex;
     align-items: center;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 4px;
 
     label {
       margin-right: 10px;
@@ -155,7 +164,7 @@ export default defineComponent({
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #fff;
+      background-color: #f2f2f2;
       padding: 10px;
       border-radius: 4px;
       margin-bottom: 10px;
@@ -184,7 +193,7 @@ export default defineComponent({
     }
 
     .add-card-form {
-      background-color: #fff;
+      background-color: #f2f2f2;
       padding: 10px;
       border-radius: 4px;
       margin-top: 10px;
