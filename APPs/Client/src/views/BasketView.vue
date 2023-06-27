@@ -31,8 +31,6 @@
     <transition name="ease">
       <div class="card" v-if="basket.length >= 1">
         <button @click="submitBasket" class="payment-button">Valider et Payer</button>
-      <div class="card" v-if="basket.length >= 1">
-        <button @click="submitBasket" class="payment-button">Valider et Payer</button>
       </div>
     </transition>
   </template>
