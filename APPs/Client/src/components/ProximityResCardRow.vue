@@ -3,15 +3,15 @@
         <div :style="changeBackground" class="delivery--image"></div>
         <div class="delivery--information">
             <div class="top">
-                <p class="name">{{info_restaurant.restaurantName}}</p>
+                <p class="name">{{info_restaurant.name}}</p>
             </div>
             <div class="bottom">
                 <div class="note">
                     <img class="star" src="../assets/star.png"/>
-                    <p class="note-chiffre">{{info_restaurant.note}}</p>
+                    <p class="note-chiffre">{{info_restaurant.mean_rate}}</p>
                 </div>
                 <img class="point" src="../assets/point.png"/>
-                <p class="estimationtime">{{info_restaurant.drive_time}}</p>
+                <p class="estimationtime">{{info_restaurant.category}}</p>
                 <img class="point" src="../assets/point.png"/>
                 <!-- <p class="price">{{info_restaurant.price}}</p> -->
             </div>
@@ -36,7 +36,7 @@
     setup(props) {
       const changeBackground = computed(() => {
         return {
-          backgroundImage: `url(${props.info_restaurant.image})`,
+          backgroundImage: `url(${props.info_restaurant.photo})`,
         }
       });
   
@@ -82,7 +82,7 @@
             margin: 0px;
         }
         .delivery--image {
-            background-image: url('../assets/bk.jpeg');
+            background-image: url('../../assets/star.png');
             min-height: 65%;
             background-size: cover;
             background-position: center;

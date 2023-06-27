@@ -20,8 +20,8 @@ export const store = createStore({
           state.basket.push({ ...item, quantity: 1 });
         }
       },
-      removeFromBasket(state: State, label: string) {
-        state.basket = state.basket.filter(item => item.label !== label);
+      removeFromBasket(state: State, label: BasketItem) {
+        state.basket = state.basket.filter(item => item.label !== label.label);
       },
 
       incrementQuantity(state: State, item: BasketItem) {

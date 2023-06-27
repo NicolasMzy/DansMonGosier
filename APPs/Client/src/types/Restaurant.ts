@@ -1,11 +1,19 @@
 import type {Menu} from "./Menu"
+import type {Item} from "./Item"
+import type {Rate} from "./Rate"
+import type {Address} from "./Address"
 
 
 export interface Restaurant {
-        image: string;
-        restaurantName: string;
-        note: string;
-        drive_time: string;
-        menu: Menu[];
-        price: string;
-    }
+    id_credentials: string,
+    name: string,
+    photo: string,
+    schedule: string,
+    id_address: string,
+    category: string,
+    mean_rate: number,
+    rates: Rate[],
+    menu: Menu[],
+    item: Item[],
+    address: Address,
+}
