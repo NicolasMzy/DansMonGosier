@@ -42,8 +42,8 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 import { defineComponent } from 'vue';
-import axios from 'axios'
 
 interface Address {
   city: string;
@@ -55,28 +55,9 @@ interface Address {
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Location',
-  onmounted(){
-    async () => {
-      let response = await axios.get('http://localhost:3012/address/');
-      let address = response.data
-    }
-  },
   data() {
     return {
-      addresses: [
-        {
-          city: 'New York',
-          addressLine: '123 Main Street',
-          addressLine2: 'Apartment 4B',
-          postalCode: '10001',
-        },
-        {
-          city: 'Los Angeles',
-          addressLine: '456 Elm Street',
-          addressLine2: '',
-          postalCode: '90001',
-        },
-      ] as Address[],
+      addresses: [] as Address[],
       newAddress: {
         city: '',
         addressLine: '',
@@ -86,17 +67,36 @@ export default defineComponent({
       showAddAddress: false,
     };
   },
+  async created() {
+    let accountId = localStorage.getItem('accountId');
+    const response = await axios.get(`http://localhost:3014/addresses/${accountId}`);
+    this.addresses = response.data;
+  },
   methods: {
-    deleteAddress(index: number) {
+    async deleteAddress(index: number) {
+      const addressToDelete = this.addresses[index];
+      await axios.delete(`http://localhost:3014/addresses/${addressToDelete.id}`);
       this.addresses.splice(index, 1);
     },
     showAddAddressForm() {
       this.showAddAddress = true;
     },
-    saveAddress: async () => {
-        let accountId = localStorage.getItem('accountId');
-          await axios.post('http://localhost:3012/address/'+ accountId +'/menus', this.newAddress.value);
-          location.reload();
+    async saveAddress() {
+      if (
+        this.newAddress.city &&
+        this.newAddress.addressLine &&
+        this.newAddress.postalCode
+      ) {
+        const response = await axios.post('http://localhost:3014/addresses', this.newAddress);
+        this.addresses.push(response.data);  // assuming that the response includes the saved address
+        this.newAddress.city = '';
+        this.newAddress.addressLine = '';
+        this.newAddress.addressLine2 = '';
+        this.newAddress.postalCode = '';
+        this.showAddAddress = false;
+      } else {
+        alert('Please fill in all fields.');
+      }
     },
     cancelAddAddress() {
       this.newAddress.city = '';
@@ -107,6 +107,7 @@ export default defineComponent({
     },
   },
 });
+
 </script>
 
 <style lang="scss" scoped>
