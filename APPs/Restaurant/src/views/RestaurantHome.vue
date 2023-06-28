@@ -21,6 +21,9 @@ export default {
   const route = useRoute();
 
   onMounted(async () => {
+    // AnotherComponent.vue
+    let accountId = localStorage.getItem('accountId');
+    console.log(accountId)
       try {
         const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ route.params.orderId);
         orders.value = response.data;

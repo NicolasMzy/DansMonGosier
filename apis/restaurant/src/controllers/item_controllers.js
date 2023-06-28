@@ -6,6 +6,7 @@ exports.createItem = async (req, res) => {
   const { label, description, photo, price, type } = req.body;
 
   if (!label || !description || !photo || !price || !type) {
+    console.error('Missing required fields: label, description, photo, price, type');
     return res.status(400).json({ message: 'Missing required fields: label, description, photo, price, type' });
   }
 
@@ -13,6 +14,7 @@ exports.createItem = async (req, res) => {
     const restaurant = await Restaurant.findOne({ id_credentials: restaurantId });
 
     if (!restaurant) {
+      console.error('Restaurant not found');
       return res.status(404).json({ message: 'Restaurant not found' });
     }
 
@@ -30,6 +32,7 @@ exports.createItem = async (req, res) => {
 
     return res.status(200).json({ message: 'Item added successfully', restaurant });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -72,6 +75,7 @@ exports.updateItem = async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({ id_credentials: restaurantId });
     if (!restaurant) {
+      console.log()
       return res.status(404).json({ message: 'Restaurant not found' });
     }
     const item = restaurant.items.id(itemId);
@@ -83,6 +87,7 @@ exports.updateItem = async (req, res) => {
     await restaurant.save();
     res.status(200).json({ message: 'Item updated successfully', item });
   } catch (error) {
+    console.error(error)
     res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -93,11 +98,13 @@ exports.deleteItem = async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({ id_credentials: restaurantId });
     if (!restaurant) {
+      console.log('Restaurant not found')
       return res.status(404).json({ message: 'Restaurant not found' });
     }
 
     const item = restaurant.items.id(itemId);
     if (!item) {
+      console.log('Item not found')
       return res.status(404).json({ message: 'Item not found' });
     }
 

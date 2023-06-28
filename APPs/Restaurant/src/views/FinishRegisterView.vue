@@ -1,15 +1,11 @@
-<script setup lang="ts">
-import FormRegister from '../components/FormRegisterFinish.vue'
-
-
-</script>
-
 <template>
    <form @submit.prevent="registerForm">
-        <label for="name">Restaurant Name:</label><br>
-        <input type="text" id="name" name="name" placeholder="Name"><br>
-        <label for="schedule">Schedule:</label><br>
-        <input type="text" id="schedule" name="schedule" placeholder="Schedule" v-model="form.schedule"><br>
+        <label for="name">Restaurant Name :</label><br>
+        <input type="text" id="name" name="name" placeholder="Name" v-model="form.name"><br>
+        <label for="photo">Photo :</label><br>
+        <input type="text" id="photo" name="photo" placeholder="Photo" v-model="form.photo"><br>
+        <label for="category">Categorie :</label><br>
+        <input type="text" id="category" name="category" placeholder="category" v-model="form.category"><br>
         <h3>Adresse :</h3>
         <label for="line_1">Line 1:</label><br>
         <input type="text" id="line_1" name="line_1" placeholder="Line 1"  v-model="address.line_1"><br>
@@ -21,65 +17,65 @@ import FormRegister from '../components/FormRegisterFinish.vue'
         <label for="postcode">Code Postal:</label><br>
         <input type="text" id="postcode" name="postcode" placeholder="Code postal"  v-model="address.postcode"><br>
 
-        
-        <label for="select-type">What will you be?</label><br>
-        <select  v-model="form.user_type" id="select-type">
-            <option value="User">User</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Delivery Person">Delivery Person</option>
-        </select>
-
         <a href="#" class="forget">Forgot password?</a>
         <input type="submit" value="Submit">
         
     </form> 
   </template>
 
-<script>
+<script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
-let idAddress = ref(null);
+
+let idAddress;
+let credentialId = route.params.id;
 
 onMounted(async () => {
+  
 });
-
+console.log(route.params.id)
 const address = ref({
-  id_credentials: route.params.credId,
+  id_credentials: credentialId,
   type: 'restaurant',
   line_1: '',
   line_2: '',
   city: '',
-  country: '',
+  country: 'France',
   postcode: '',
-  coordinates: ''
 })
 
 const form = ref({
-  id_credentials: route.params.credId,
-  name: '',
-  photo: '',
-  schedule: '',
-  id_address: route.params.credId,
-  category: '',
+  id_credentials:credentialId,
+    name:'',
+    photo:'',
+    id_address: 'yesdaddy',
+    category: '',
+    mean_rate: 0,
+    rates: [],
+    menus: [],
+    items: []
 });
 
 const registerForm = async () => {
     try {
-       const responseAddress = await axios.post('http://localhost:3014/address', form.value, {
+      
+       const responseAddress = await axios.post('http://localhost:3014/address', address.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },
         });
+
         const response = await axios.post('http://localhost:3013/restaurants', form.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },
         });
-        let restId = response.data.restaurant_id
-        router.push({ name: 'home', params: { restId } });
+        console.log(response.data.restaurant._id)
+        let accountId = response.data.restaurant._id
+        router.push({ name: 'home', params: { accountId } });
     } catch (error) {
         console.log(error);
     }

@@ -48,8 +48,7 @@ const registerForm = async () => {
         // Add other headers as needed
       },
     });
-
-    const idCred = await axios.post('http://localhost:80/register', {
+    const idCred = await axios.post('http://localhost:80/login', {
       email: form.value.email,
       pwd: form.value.pwd
     }, {
@@ -58,8 +57,10 @@ const registerForm = async () => {
         // Add other headers as needed
       },
     });
-    let credId = (idCred.data.account_id).toString();
-    router.push({ name: 'registerFinish', params: { credId } });
+    console.log(idCred)
+    let id = (idCred.data.account_id).toString();
+    localStorage.setItem('accountId', idCred.data.account_id.toString());
+    router.push({ name: 'registerFinish', params: { id } });
   } catch (error) {
     console.log(error);
     // Handle the error here
