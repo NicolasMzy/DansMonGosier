@@ -1,16 +1,140 @@
+# Docker bridge network for our services
 networks:
-  app-tier:
+  dmg-net:
     driver: bridge
 
 services:
-  postgresql:
-    container_name: postgres
-    image: 'bitnami/postgresql:15.3.0'
+  # Reverse proxy and load balancing service with traefik
+  traefik:
+    container_name: traefik
+    image: traefik:v3.0
+    command:
+      - --api.insecure=true                       
+      - --providers.docker                       
+      - --providers.docker.exposedbydefault=false 
+      - --entrypoints.web.address=:80
     networks:
-      - app-tier
-    environment:
-      - POSTGRESQL_DATABASE=dmg
-      - POSTGRESQL_USERNAME=gosier
-      - POSTGRESQL_PASSWORD=gosier
+      - dmg-net
     ports:
-      - "5432:5432"
+      - 80:80
+      - 8080:8080
+    expose:
+      - 80
+    volumes:
+      - ${DOCKER_SOCKET_PATH_LINUX}:/var/run/docker.sock
+
+  # Access control middleware
+  access-control:
+    container_name: ${MIDDLEWARE_AUTH_HOST}
+    build: ./Middleware
+    image: access-control:1.0
+    environment:
+      - MIDDLEWARE_AUTH_PORT=${MIDDLEWARE_AUTH_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.access-control.forwardauth.address=http://${MIDDLEWARE_AUTH_HOST}:${MIDDLEWARE_AUTH_PORT}
+      - traefik.http.middlewares.access-control.forwardauth.authResponseHeaders=X-Forwarded-AccountID
+      - traefik.http.services.access-control.loadbalancer.server.port=${MIDDLEWARE_AUTH_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MIDDLEWARE_AUTH_PORT}
+
+  # Auth microservice
+  auth:
+    container_name: ${MICROSERVICE_AUTH_HOST}
+    build: ./APIs/MicroservicesAPI/auth
+    image: auth:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_AUTH_PORT=${MICROSERVICE_AUTH_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.auth.rule=PathPrefix(`/register`) || PathPrefix(`/login`)
+      - traefik.http.routers.auth.entrypoints=web
+      - traefik.http.services.auth.loadbalancer.server.port=${MICROSERVICE_AUTH_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_AUTH_PORT}
+
+  # Account microservice
+  account:
+    container_name: ${MICROSERVICE_ACCOUNT_HOST}
+    build: ./APIs/MicroservicesAPI/account
+    image: account:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_ACCOUNT_PORT=${MICROSERVICE_ACCOUNT_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.account.rule=PathPrefix(`/account`)
+      - traefik.http.routers.account.entrypoints=web
+      - traefik.http.routers.account.middlewares=access-control
+      - traefik.http.services.account.loadbalancer.server.port=${MICROSERVICE_ACCOUNT_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_ACCOUNT_PORT}
+  
+  # Sponsor microservice
+  sponsor:
+    container_name: ${MICROSERVICE_SPONSOR_HOST}
+    build: ./APIs/MicroservicesAPI/sponsor
+    image: sponsor:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_SPONSOR_PORT=${MICROSERVICE_SPONSOR_PORT}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRE_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sponsor.rule=PathPrefix(`/sponsor`)
+      - traefik.http.routers.sponsor.entrypoints=web
+      - traefik.http.routers.sponsor.middlewares=access-control
+      - traefik.http.services.sponsor.loadbalancer.server.port=${MICROSERVICE_SPONSOR_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_SPONSOR_PORT}
+      
+  # PostgreSQL database
+  postgres:
+    container_name: ${POSTGRE_HOST}
+    image: bitnami/postgresql:15.3.0
+    networks:
+      - dmg-net
+    environment:
+      - POSTGRESQL_DATABASE=${POSTGRE_DATABASE}
+      - POSTGRESQL_USERNAME=${POSTGRE_USERNAME}
+      - POSTGRESQL_PASSWORD=${POSTGRE_PASSWORD}
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    # volumes:
+    #   - ${POSTGRE_DATA}:/bitnami/postgresql
+    
+
+
+

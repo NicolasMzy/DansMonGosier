@@ -7,6 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+<<<<<<< HEAD
       name: 'auth',
       component: () => import('../views/AuthenticateView.vue'),
     },
@@ -14,6 +15,14 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: () => import('../views/RestaurantHome.vue'),
+=======
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      name: 'ClientHome',
+      component: () => import('../views/restaurant/RestaurantHome.vue'),
+>>>>>>> dev
     },
     {
       path: '/settings',
