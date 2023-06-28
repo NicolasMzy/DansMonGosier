@@ -3,7 +3,7 @@
             <label for="fname">Email:</label><br>
             <input type="text" id="fname" name="fname" v-model="form.email" placeholder="Email"><br>
             <label for="lname">Password:</label><br>
-            <input type="text" id="lname" name="lname" v-model="form.password" placeholder="Password"><br>
+            <input type="text" id="lname" name="lname" v-model="form.pwd" placeholder="Password"><br>
             <a href="#" class="forget">Forgot password?</a>
             <input type="submit" value="Submit">
         </form> 
@@ -18,20 +18,20 @@ const router = useRouter();
 
 const form = ref({
   email: '',
-  password: '',
+  pwd: '',
 });
 
 const loginForm = async () => {
   try {
-    const response = await axios.post('http://localhost:3000/api/login', form.value, {
+    const response = await axios.post('http://localhost:80/login', form.value, {
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
     });
     console.log(response.data);
-    document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()}; path=/about`;
+    document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()};`;
     console.log(document.cookie);
-    router.push('/client');
+    router.push('/home');
   } catch (error) {
     console.log(error);
   }

@@ -10,29 +10,13 @@
       
   </header>
 </template>
-
-<style scoped>
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Roboto', sans-serif;
-  font-weight: normal;
-  color:black;
-}
-
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
+<script>
 export default {
   name :'App',
   components: {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('./style/reset.css');

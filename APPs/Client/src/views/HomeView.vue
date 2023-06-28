@@ -22,14 +22,22 @@
       </transition>
     </div>
     <div>
-      <button @click="showCard = !showCard">Toggle Card</button>
+    <transition name="fade">
+        <div class="popup" v-if="showPopup">
+          <p>{{ popupMessage }}</p>
+          <button @click="undoLastAction">Undo</button>
+          <button @click="showPopup = false">Close</button>
+        </div>
+      </transition>
+    </div>
+    <div>
       <transition name="ease">
         <div class="card" v-if="showCard">
           <button @click="showCard = false" class="close-button"></button>
-          <img class="image" :src="selectedRestaurant ? selectedRestaurant.photo : ''">
-          <h1>{{ selectedRestaurant ? selectedRestaurant.name : '' }}</h1>
+          <img class="image" :src="selectedRestaurant?.photo">
+          <h1>{{ selectedRestaurant?.name }}</h1>
           <h2>{{ selectedRestaurant?.address.line_1 }}, {{ selectedRestaurant?.address.city }}</h2>
-          <div class="menu" v-for="(menu, i) in selectedRestaurant ? selectedRestaurant.menu : ''" :key="i">
+          <div class="menu" v-for="(menu, i) in selectedRestaurant?.menu" :key="i">
             <h2>Menus : </h2>
             {{menu.label}}
             <button @click="addToBasket(menu)">Add to Basket</button>
@@ -37,7 +45,7 @@
             <button @click="decrementQuantity(menu)">Decrease</button>
             <button @click="removeFromBasket(menu)">Remove from basket</button>
           </div>
-          <div class="items" v-for="(item, i) in selectedRestaurant ? selectedRestaurant.item : ''" :key="i">
+          <div class="items" v-for="(item, i) in selectedRestaurant?.item" :key="i">
             <h2>A l'unité : </h2>
             {{item.label}}
             <button @click="addToBasket(item)">Add to Basket</button>
@@ -47,7 +55,11 @@
           </div>
         </div>
       </transition>
-      
+      <transition name="ease">
+        <div class="black-button" v-if="basket.length >= 1">
+          <button @click="navigateToRoute('/basket')">Voir panier</button>
+        </div>
+      </transition>
       <transition name="ease">
         <div class="card" v-if="showCardAddress">
           <!-- Close button -->
@@ -61,12 +73,13 @@
   
   <script lang="ts">
   import { onMounted, ref, computed } from 'vue'
+  import { useRouter } from 'vue-router';
   import type { Ref } from 'vue'
   import axios from 'axios'
   import vSelect from 'vue-select';
   import ProximityResRow from '../components/ProximityResRow.vue'
   import DeliveryColumn from '../components/RestaurantsColumn.vue'
-  import SpecialityRow from '../components/SpecialityRow.vue'
+  // import SpecialityRow from '../components/SpecialityRow.vue'
   import BDD from '../BDDex'
   import type {Restaurant} from "../types/Restaurant"
   import type {Address} from "../types/Address"
@@ -85,7 +98,7 @@
       components: {
           ProximityResRow,
           DeliveryColumn,
-          SpecialityRow,
+          // SpecialityRow,
           // HeaderDMG,
           //Navbar,
           'vue-select': vSelect
@@ -140,6 +153,12 @@
         let data_delivery_column = ref<Restaurant[]>([]);
         let addresses = ref<Address[]>([]);
   
+        const router = useRouter();
+  
+        const navigateToRoute = (route: string) => {
+          router.push(route);
+        };
+  
         //Basket's managment functions
         function addToBasket(item: BasketItem) {
           store.commit('addToBasket', item);
@@ -155,10 +174,12 @@
   
         const incrementQuantity = (item: BasketItem) => {
           store.commit('incrementQuantity', item);
+          displayPopup(item.label + ' added one to basket')
         };
   
         const decrementQuantity = (item: BasketItem) => {
           store.commit('decrementQuantity', item);
+          displayPopup(item.label + 'removed one from basket');
         };
   
         const undoLastAction = () => {
@@ -173,12 +194,10 @@
         showPopup.value = false;
       };
         
-  
-        async function getAddress(id: string){
-          let addressResponse = await axios.get('http://localhost:3014/address/'+ id);
-          return addressResponse.data;
-        }
-      
+      async function getAddress(id: string){
+        let addressResponse = await axios.get('http://localhost:3014/address/'+ id);
+        return addressResponse.data;
+      }
   
       const makeDataDelivery = async () => {
           let restaurants: Restaurant[] = [];
@@ -246,6 +265,7 @@
           popupMessage,
           displayPopup,
           undoLastAction,
+          navigateToRoute
       }
   }
   }
@@ -320,6 +340,16 @@
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+  .black-button{
+    z-index: 100;
+    position: fixed;
+    bottom: 20px;
+    background: #444;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
   .popup {
     z-index: 100;
     position: fixed;
@@ -330,5 +360,6 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    align-self: center;
   }
   </style>
