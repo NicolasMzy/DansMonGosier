@@ -6,25 +6,26 @@
   
   <script  lang="ts">
   import { onMounted, ref, defineComponent } from 'vue'
-  //IMPORT
+  import { useRoute, useRouter } from 'vue-router';
   import axios from 'axios'
-  
+
   export default defineComponent({
     name : 'RestaurantHome',
     components: {
 
     },
     setup() {
-      let order = ref(null);
-      onMounted(async () => {
-          const orders = await axios.get('http://localhost:3012/orders');
-          order.value = orders.data;
-  
-        
-      });
+        const router = useRouter();
+        const route = useRoute();
+        let order = ref(null);
+
+        onMounted(async () => {
+            const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ route.params.orderId);
+            order.value = response.data;
+        });
+
       return{
-        
-  
+        order,
       }
     }
   });

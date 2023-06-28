@@ -28,10 +28,11 @@ const loginForm = async () => {
         'Access-Control-Allow-Origin': '*',
       },
     });
-    console.log(response.data);
-    document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()};`;
-    console.log(document.cookie);
-    router.push('/home');
+    console.log((response.data.account_id).toString());
+    // document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()};`;
+    // console.log(document.cookie);
+    let accountId = (response.data.account_id).toString();
+    router.push({ name: 'home', params: { accountId } });
   } catch (error) {
     console.log(error);
   }
