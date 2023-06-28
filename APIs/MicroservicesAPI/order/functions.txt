@@ -1,6 +1,0 @@
-create 
-delete
-pay
-read 
-update 
-validate 
