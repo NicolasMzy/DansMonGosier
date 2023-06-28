@@ -8,13 +8,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install
+RUN npm install --omit=dev
 
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port on which your Node.js application will run
-EXPOSE 3001
+# Set the working directory to app source
+WORKDIR /usr/src/app/src
 
 # Define the command to run your Node.js application
 CMD ["node", "app.js"]
