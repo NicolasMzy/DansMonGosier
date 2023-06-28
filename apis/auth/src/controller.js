@@ -20,11 +20,12 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const {email: email, pwd: password} = req.body;
-    const token = await microservice.login(email, password);
+    const {id, token} = await microservice.login(email, password);
 
     res.status(202).json({
       message: 'Login successful',
       authorization: token,
+      account_id: id,
     });
   } catch (error) {
     console.error(error);
