@@ -117,7 +117,99 @@ services:
       - dmg-net
     expose:
       - ${MICROSERVICE_SPONSOR_PORT}
-      
+  
+  # Address microservice
+  address:
+    container_name: ${MICROSERVICE_ADDRESS_HOST}
+    build: ./apis/address
+    image: address:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_ADDRESS_PORT=${MICROSERVICE_ADDRESS_PORT}
+      - MONGODB_URL=${MONGODB_URL}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.address.rule=PathPrefix(`/address`)
+      - traefik.http.routers.address.entrypoints=web
+      - traefik.http.routers.address.middlewares=access-control
+      - traefik.http.services.address.loadbalancer.server.port=${MICROSERVICE_ADDRESS_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_ADDRESS_PORT}
+    ports:
+      - ${MICROSERVICE_ADDRESS_PORT}:${MICROSERVICE_ADDRESS_PORT}
+
+  # Order microservice
+  order:
+    container_name: ${MICROSERVICE_ORDER_HOST}
+    build: ./apis/order
+    image: order:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_ORDER_PORT=${MICROSERVICE_ORDER_PORT}
+      - MONGODB_URL=${MONGODB_URL}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.order.rule=PathPrefix(`/order`)
+      - traefik.http.routers.order.entrypoints=web
+      - traefik.http.routers.order.middlewares=access-control
+      - traefik.http.services.order.loadbalancer.server.port=${MICROSERVICE_ORDER_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_ORDER_PORT}
+    ports:
+      - ${MICROSERVICE_ORDER_PORT}:${MICROSERVICE_ORDER_PORT}
+
+  # Restaurant microservice
+  restaurant:
+    container_name: ${MICROSERVICE_RESTAURANT_HOST}
+    build: ./apis/restaurant
+    image: restaurant:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_RESTAURANT_PORT=${MICROSERVICE_RESTAURANT_PORT}
+      - MONGODB_URL=${MONGODB_URL}      
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.restaurant.rule=PathPrefix(`/restaurant`)
+      - traefik.http.routers.restaurant.entrypoints=web
+      - traefik.http.routers.restaurant.middlewares=access-control
+      - traefik.http.services.restaurant.loadbalancer.server.port=${MICROSERVICE_RESTAURANT_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_RESTAURANT_PORT}
+    ports:
+      - ${MICROSERVICE_RESTAURANT_PORT}:${MICROSERVICE_RESTAURANT_PORT}
+
+  # Stats microservice
+  stats:
+    container_name: ${MICROSERVICE_STATS_HOST}
+    build: ./apis/stats
+    image: stats:1.0
+    depends_on:
+      - postgres
+    environment:
+      - MICROSERVICE_STATS_PORT=${MICROSERVICE_STATS_PORT}
+      - MONGODB_URL=${MONGODB_URL}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.stats.rule=PathPrefix(`/stats`)
+      - traefik.http.routers.stats.entrypoints=web
+      - traefik.http.routers.stats.middlewares=access-control
+      - traefik.http.services.stats.loadbalancer.server.port=${MICROSERVICE_STATS_PORT}
+    networks:
+      - dmg-net
+    expose:
+      - ${MICROSERVICE_STATS_PORT}
+    ports:
+      - ${MICROSERVICE_STATS_PORT}:${MICROSERVICE_STATS_PORT}
+
   # PostgreSQL database
   postgres:
     container_name: ${POSTGRE_HOST}
