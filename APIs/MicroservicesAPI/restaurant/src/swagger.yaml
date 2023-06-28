@@ -1,0 +1,427 @@
+swagger: '2.0'
+info:
+  title: DansMonGosier
+  description: API for managing restaurants
+  version: 1.0.0
+servers:
+  - url: http://localhost:3013
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  Rate:
+    type: object
+    properties:
+      id_user:
+        type: integer
+      rate:
+        type: integer
+      comment:
+        type: string
+      date:
+        type: string
+        format: date-time
+  Item:
+    type: object
+    properties:
+      label:
+        type: string
+      description:
+        type: string
+      photo:
+        type: string
+      price:
+        type: number
+      type:
+        type: string
+        enum: ['plat', 'boisson', 'sauce', 'accompagnement']
+  MenuItem:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/Item'
+      quantity:
+        type: integer
+  Menu:
+    type: object
+    properties:
+      label:
+        type: string
+      description:
+        type: string
+      photo:
+        type: string
+      price:
+        type: number
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/MenuItem'
+  Restaurant:
+    type: object
+    properties:
+      id_credentials:
+        type: string
+      name:
+        type: string
+      photo:
+        type: string
+      schedule:
+        type: string
+      id_address:
+        type: string
+      category:
+        type: string
+      mean_rate:
+        type: number
+      rates:
+        type: array
+        items:
+          $ref: '#/definitions/Rate'
+      menus:
+        type: array
+        items:
+          $ref: '#/definitions/Menu'
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Item'
+paths:
+  /restaurants:
+    post:
+      tags:
+        - Restaurants
+      summary: 'Create a new restaurant'
+      operationId: 'createRestaurant'
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Restaurant'
+      responses:
+        '201':
+          description: 'Restaurant created successfully'
+        '500':
+          description: 'Server error'
+    get:
+      tags:
+        - Restaurants
+      summary: 'Get a specific restaurant'
+      operationId: 'getRestaurant'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Restaurant'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+  /restaurants-categories:
+    get:
+      tags:
+        - Restaurants
+      summary: 'Get all restaurant categories'
+      operationId: 'getRestaurantCategories'
+      responses:
+        '200':
+          description: 'Successful operation'
+        '500':
+          description: 'Server error'
+  /restaurants-top-rated:
+    get:
+      tags:
+        - Restaurants
+      summary: 'Get top 10 rated restaurants'
+      operationId: 'getTopRatedRestaurants'
+      responses:
+        '200':
+          description: 'Successful operation'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/rates:
+    post:
+      tags:
+        - Rates
+      summary: 'Add a rate to a restaurant'
+      operationId: 'addRateToRestaurant'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Rate'
+      responses:
+        '200':
+          description: 'Rate added successfully'
+        '400':
+          description: 'Missing required fields: id_user, rate, comment'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/items:
+    post:
+      tags:
+        - Items
+      summary: 'Create a new item for a specific restaurant'
+      operationId: 'createItem'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        '200':
+          description: 'Item added successfully'
+        '400':
+          description: 'Missing required fields: label, description, photo, price, type'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+    get:
+      tags:
+        - Items
+      summary: 'Get all items for a specific restaurant'
+      operationId: 'getItems'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/items/{itemId}:
+    get:
+      tags:
+        - Items
+      summary: 'Get a specific item for a specific restaurant'
+      operationId: 'getItem'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: itemId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+        '404':
+          description: 'Item not found'
+        '500':
+          description: 'Server error'
+    put:
+      tags:
+        - Items
+      summary: 'Update a specific item for a specific restaurant'
+      operationId: 'updateItem'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: itemId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Item'
+      responses:
+        '200':
+          description: 'Item updated successfully'
+        '404':
+          description: 'Item not found'
+        '500':
+          description: 'Server error'
+    delete:
+      tags:
+        - Items
+      summary: 'Delete a specific item for a specific restaurant'
+      operationId: 'deleteItem'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: itemId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Item deleted successfully'
+        '404':
+          description: 'Item not found'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/menus:
+    post:
+      tags:
+        - Menus
+      summary: 'Create a new menu for a specific restaurant'
+      operationId: 'createMenu'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Menu'
+      responses:
+        '200':
+          description: 'Menu added successfully'
+        '400':
+          description: 'Missing required fields: label, description, photo, price'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+    get:
+      tags:
+        - Menus
+      summary: 'Get all menus for a specific restaurant'
+      operationId: 'getMenus'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+        '404':
+          description: 'Restaurant not found'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/menus/{menuId}:
+    get:
+      tags:
+        - Menus
+      summary: 'Get a specific menu for a specific restaurant'
+      operationId: 'getMenu'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: menuId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+        '404':
+          description: 'Menu not found'
+        '500':
+          description: 'Server error'
+    put:
+      tags:
+        - Menus
+      summary: 'Update a specific menu for a specific restaurant'
+      operationId: 'updateMenu'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: menuId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Menu'
+      responses:
+        '200':
+          description: 'Menu updated successfully'
+        '404':
+          description: 'Menu not found'
+        '500':
+          description: 'Server error'
+    delete:
+      tags:
+        - Menus
+      summary: 'Delete a specific menu for a specific restaurant'
+      operationId: 'deleteMenu'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: menuId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'Menu deleted successfully'
+        '404':
+          description: 'Menu not found'
+        '500':
+          description: 'Server error'
+  /restaurants/{restaurantId}/menus/{menuId}/items:
+    post:
+      tags:
+        - Menus
+      summary: 'Add an item to a specific menu for a specific restaurant'
+      operationId: 'addItemToMenu'
+      parameters:
+        - in: path
+          name: restaurantId
+          required: true
+          type: string
+        - in: path
+          name: menuId
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/MenuItem'
+      responses:
+        '200':
+          description: 'Item added successfully'
+        '400':
+          description: 'Missing required fields: label, description, photo, price, type, quantity'
+        '404':
+          description: 'Menu not found'
+        '500':
+          description: 'Server error'
