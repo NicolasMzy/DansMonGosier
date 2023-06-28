@@ -1,85 +1,50 @@
 <template>
-  <header>
-      <nav>
-        <RouterLink to="/home">Home</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/basket">Basket</RouterLink>
-        <RouterLink to="/settings">Settings</RouterLink>
-      </nav>
+  <div id="app">
       <RouterView />
-      
-  </header>
+      <Navbar class="navbar--home" :items="navbarItems"/>
+  </div>
 </template>
 
-<style scoped>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Navbar from './components/componentsGlobaux/navbar.vue';
+
+interface NavItem {
+  path: string;
+  logo: string;
+  name: string;
+}
+
+export default defineComponent({
+  name: 'HomeView',
+  components: {
+    Navbar,
+  },
+  data() {
+    return {
+      navbarItems: [
+        { path: '/home', logo: '/src/assets/navbar/home.png', name: ' ' },
+        { path: '/register', logo: '/src/assets/navbar/register.png', name: ' ' },
+        { path: '/basket', logo: '/src/assets/navbar/shopping-basket.png', name: ' ' },
+        { path: '/settings', logo: '/src/assets/navbar/setting.png', name: ' ' },
+      ] as NavItem[],
+    };
+  },
+});
+</script>
+
+<style>
+@import url('./style/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   color:black;
+  box-sizing: border-box;
+  padding-bottom: 100px;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>

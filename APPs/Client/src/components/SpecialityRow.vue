@@ -8,45 +8,10 @@
   </div>
 </template>
 
+
+
+
 <script lang="ts">
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-import SpecialityCard from './SpecialityCard.vue'
-
-interface Speciality {
-  name: string;
-  img: string;
-}
-
-export default {
-  name: 'SpecialityRow',
-  components: {
-    SpecialityCard,
-  },
-  setup() {
-    const speciality = ref<Speciality[]>([]);
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3013/restaurants');
-        speciality.value = response.data;
-      } catch (error) {
-        console.error('An error occurred while fetching the data:', error);
-      }
-    };
-      
-    onMounted(fetchData);
-      
-    //return
-    return{
-      speciality,   
-    }
-  }
-}
-</script>
-
-
-<!-- <script lang="ts">
 import SpecialityCard from './SpecialityCard.vue'
 
 export default {
@@ -89,7 +54,7 @@ export default {
         }
     }
 }
-</script> -->
+</script>
 
 <style lang="scss">
     

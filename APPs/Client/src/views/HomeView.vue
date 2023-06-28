@@ -32,26 +32,46 @@
   </div>
   <div>
     <transition name="ease">
-      <div class="card" v-if="showCard">
-        <button @click="showCard = false" class="close-button"></button>
-        <img class="image" :src="selectedRestaurant?.photo">
-        <h1>{{ selectedRestaurant?.name }}</h1>
-        <h2>{{ selectedRestaurant?.address.line_1 }}, {{ selectedRestaurant?.address.city }}</h2>
-        <div class="menu" v-for="(menu, i) in selectedRestaurant?.menu" :key="i">
-          <h2>Menus : </h2>
-          {{menu.label}}
-          <button @click="addToBasket(menu)">Add to Basket</button>
-          <button @click="incrementQuantity(menu)">Increase</button>
-          <button @click="decrementQuantity(menu)">Decrease</button>
-          <button @click="removeFromBasket(menu)">Remove from basket</button>
+      <div class="card-container">
+        <div class="card" v-if="showCard">
+          <button @click="showCard = false" class="close-button"></button>
+          <img class="image" :src="selectedRestaurant?.photo">
+          <p class="title">{{ selectedRestaurant?.name }}</p>
+          <p class="address">{{ selectedRestaurant?.address.line_1 }}, {{ selectedRestaurant?.address.city }}</p>
+          <div class="rate">
+            <img class="star" src="../assets/star.png"/>
+            <p class="rating">{{selectedRestaurant?.mean_rate}}</p>
+          </div>
+          <h2>Menus </h2>
+          <div class="menu" v-for="(menu, i) in selectedRestaurant?.menu" :key="i">
+            <img class="image-items" src="../assets/bigmac.png"/>
+            <div class="container">
+              {{menu.label}}
+              <p class="description">{{menu.description}}</p>
+            <div class="informations">
+              <p class="price"> 7,50€</p>
+              <div class="buttons">
+                <button class="button" @click="incrementQuantity(menu)">+</button>
+                <button class="button" @click="decrementQuantity(menu)">-</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="items" v-for="(item, i) in selectedRestaurant?.item" :key="i">
-          <h2>A l'unité : </h2>
-          {{item.label}}
-          <button @click="addToBasket(item)">Add to Basket</button>
-          <button @click="incrementQuantity(item)">Increase</button>
-          <button @click="decrementQuantity(item)">Decrease</button>
-          <button @click="removeFromBasket(item)">Remove from basket</button>
+        <h2>A l'unité</h2>
+          <div class="items" v-for="(item, i) in selectedRestaurant?.item" :key="i">
+            <img class="image-items" src="../assets/bigmac.png"/>
+            <div class="container">
+              {{item.label}}
+              <p class="description">{{item.description}}</p>
+            <div class="informations">
+              <p class="price"> 7,50€</p>
+              <div class="buttons">
+                <button class="button" @click="incrementQuantity(item)">+</button>
+                <button class="button" @click="decrementQuantity(item)">-</button>
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
     </transition>
@@ -272,50 +292,137 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+.home{
+  font-family: 'Roboto', sans-serif;
+}
+::-webkit-scrollbar{
+  display: none;
+}
 .addressSelect{
   margin-top: 50px;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .card {
   z-index: 50;
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 5%;
+  width: 90%;
   height: 95%;
   background: white;
   border-radius: 25px 25px 0 0;
   box-sizing: border-box;
-  padding: 20px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
+.menu, .items {
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.title{
+  font-size: 1.3em;
+  font-weight: 700;
+  margin:0;
+  margin-left: 10px;
+  margin-top: 10px
+}
+
+.address{
+  margin:0;
+  margin-top : 10px;
+  margin-left : 15px;
+}
+
+.informations {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description{
+  width: 180px;
+  font-size: 0.6em;
+  color: rgb(129, 129, 129);
+  font-weight: 500;
+}
+
+button{
+  margin-left:10px ;
+  border : none;
+}
+
+.star{
+  height: 10px;
+  margin-left: 5px;
+}
+
+.rate {
+  display: flex;
+  margin: 15px 10px;
+  align-items: center;
+  gap: 10px;
+  background-color: #900020;
+  border-radius: 5px;
+  width:50px ;
+  height: 20px;
+  color:#fff
+}
+
+.button {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  background-color: #900020;
+  color: #fff;
+}
+
+.image-items{
+  height: 20%;
+  width: 33%;
+}
+
 .close-button {
   position: absolute;
-  left: 10px;
-  top: 10px;
-  background: #f44336;
+  left: 2%;
+  top: 3.5%;
+  background: #900020; /* Bordeaux Red */
   color: white;
   font-size: 100%;
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  width: 5%;
-  height: 5%;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2%;
 }
-
 .close-button:before {
   content: "\00D7";  /* Unicode for 'X' */
   position: relative;
   top: -1px; /* Adjust as per your requirement */
 }
 .close-button:hover {
-  background: #f44336d9;
+  background: #721730; /* Darker Bordeaux Red */
 }
-
 .ease-enter-active, .ease-leave-active {
   transition: all .3s ease;
 }
@@ -327,11 +434,11 @@ export default {
   top: 0;
   left: 0;
   object-fit: cover;
+  display: block;
   height: 20%;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 .fade-enter-active, .fade-leave-active {

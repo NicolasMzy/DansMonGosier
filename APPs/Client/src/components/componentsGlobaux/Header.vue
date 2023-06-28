@@ -16,7 +16,7 @@
 import { useRouter } from 'vue-router'
 
 export default {
-    name: "HeaderDMG",
+    name: "Header",
     setup() {
         const router = useRouter()
 
@@ -61,7 +61,7 @@ export default {
             height: 30px;
             width: 30px;
             border-radius: 50%; 
-            margin-right: 5%;
+            margin-right: 15px;
         }
 
     }
