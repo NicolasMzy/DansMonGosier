@@ -1,36 +1,5 @@
 const mongoose = require('mongoose');
 
-const itemSchema = new mongoose.Schema({
-  label: { type: String, required: true },
-  description: { type: String, required: true },
-  photo: { type: String, required: true },
-  price: { type: Number, required: true },
-  type: { type: String, enum: ['plat', 'boisson', 'sauce', 'accompagnement'], required: true },
-});
-
-const menuItemSchema = new mongoose.Schema({
-  item: itemSchema,
-  quantity: { type: Number, required: true }
-});
-
-const menuSchema = new mongoose.Schema({
-  label: { type: String, required: true },
-  description: { type: String, required: true },
-  photo:  { type: String, required: true },
-  price:  { type: Number, required: true },
-  items: [menuItemSchema]
-});
-
-const orderedItemSchema = new mongoose.Schema({
-  item: itemSchema,
-  quantity: { type: Number, required: true }
-});
-
-const orderedMenuSchema = new mongoose.Schema({
-  menu: menuSchema,
-  quantity: { type: Number, required: true }
-});
-
 const orderSchema = new mongoose.Schema({
   id_user: { type: String, required: true },
   id_restaurant: { type: String, required: true },
@@ -44,8 +13,18 @@ const orderSchema = new mongoose.Schema({
   },
   address: { type: String, required: true },
   deliverer: { type: String, required: true },
-  menus: [orderedMenuSchema],
-  items: [orderedItemSchema]
+  menus: [
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      quantity: { type: Number, required: true },
+    }
+  ],
+  items: [
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, required: true },
+      quantity: { type: Number, required: true },
+    }
+  ],
 });
 
 const orderModel = mongoose.model('orders', orderSchema);
