@@ -7,7 +7,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      name: 'auth',
+      component: () => import('../views/AuthenticateView.vue'),
     },
     {
       path: '/home',
