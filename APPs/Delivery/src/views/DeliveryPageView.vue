@@ -1,32 +1,110 @@
 <template>
-  <div class="home">
-    <HeaderDMG/>
-    <div class="speciality">
-        <div class="speciality--title">
-            <p>
-                Choisissez votre catégorie !
-            </p>
-        </div>
-        <SpecialityRow/>
+    <div class="home">
+      <HeaderDMG/>
+      <div class="speciality">
+          <div class="speciality--title">
+              <p>
+                  Choisissez votre catégorie !
+              </p>
+          </div>
+          <SpecialityRow/>
+      </div>
+      <div class="proximity">
+          <DeliveryRow v-for="(data,i) in data_delivery_row" :key="i" :three_deliveries="data"/>
+      </div>
+      <div class="popular">
+          <div class="popular--navbar">
+              <p class="popular--text">Populaire</p>
+              <p class="popular--seeall">See All</p>
+          </div>
+          <DeliveryColumn :deliveries="data_delivery_column"/>
+      </div>
+      <FooterNavbar/>
     </div>
-    <div class="proximity">
-        <DeliveryRow v-for="(data,i) in data_delivery_row" :key="i" :three_deliveries="data"/>
-    </div>
-    <div class="popular">
-        <div class="popular--navbar">
-            <p class="popular--text">Populaire</p>
-            <p class="popular--seeall">See All</p>
-        </div>
-        <DeliveryColumn  :deliveries="data_delivery_column"/>
-    </div>
-    <FooterNavbar/>
-</div>
-</template>
+  </template>
+  
+  <script lang="ts">
+  import { onMounted, ref } from 'vue'
+  import BDD from '../BDDex'
+  import DeliveryRow from '../components/DeliveryRow.vue'
+  import DeliveryColumn from '../components/DeliveryColumn.vue'
+  import SpecialityRow from '../components/SpecialityRow.vue'
+  import HeaderDMG from '../components/Header.vue'
+  import FooterNavbar from '../components/footerNavbar.vue'
+  
+  interface Delivery {
+        restaurantName: string
+        note: string
+        image: string
+        drive_time: string
+        clientName: string
+        price: string
+  }
+  
+  export default {
+      components: {
+          DeliveryRow,
+          DeliveryColumn,
+          SpecialityRow,
+          HeaderDMG,
+          FooterNavbar,
+      },
+      setup() {
+          const data_delivery_row = ref<Delivery[][]>([]);
+          const data_delivery_column = ref<Delivery[]>([]);
+  
+          const makeDataDelivery = () => {
+              let three_deliveries: Delivery[] = [];
+  
+              for (const delivery of BDD){
+                  const new_delivery: Delivery = {
+                            restaurantName: delivery.restaurantName,
+                            note: delivery.note,
+                            image: delivery.image,
+                            drive_time: delivery.drive_time,
+                            clientName: delivery.clientName,
+                            price: delivery.price
+                  }
+                  
+                  if (data_delivery_column.value.length < 2){
+                      data_delivery_column.value.push(new_delivery);
+                  }
+  
+                  if (three_deliveries.length === 9){
+                      three_deliveries.push(new_delivery);
+                      data_delivery_row.value.push(three_deliveries);
+                      three_deliveries = [];
+                  } else {
+                      three_deliveries.push(new_delivery)
+                  }
+              }
+          }
+  
+          onMounted(makeDataDelivery);
+  
+          return {
+              data_delivery_row,
+              data_delivery_column,
+          }
+      },
+  }
+  </script>
+  
 
-<script>
+<!-- <script lang="ts">
 import { onMounted, ref } from 'vue'
 //IMPORT
-import BDD from '../BDDex'
+
+interface Delivery {
+  RestaurantName: string;
+  note: number;
+  image: string;
+  drive_time: number;
+  ClientName: string;
+  price: number;
+}
+
+import BDD from '../BDDex' as Delivery[];
 // COMPONENTS
 import DeliveryRow from '../components/DeliveryRow.vue';
 import DeliveryColumn from '../components/DeliveryColumn.vue'
@@ -89,7 +167,7 @@ export default {
     },
 
 }
-</script>
+</script> -->
 
 <style lang="scss">
     .home {

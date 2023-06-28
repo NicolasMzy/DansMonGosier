@@ -9,7 +9,35 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType } from 'vue'
+import DeliveryCardColumn from './DeliveryCardColumn.vue'
+
+interface Delivery {
+    restaurantName: string
+    note: string
+    image: string
+    drive_time: string
+    clientName: string
+    price: string
+}
+
+export default {
+  name: "DeliveryColumn",
+  components: {
+    DeliveryCardColumn,
+  },
+  props: {
+    deliveries: {
+      type: Array as PropType<Delivery[]>,
+      required: true,
+    }
+  }
+}
+</script>
+
+<!-- <script lang="ts">
+
 import DeliveryCardColumn from './DeliveryCardColumn.vue'
 export default {
     name: "DeliveryColumn",
@@ -20,7 +48,7 @@ export default {
         deliveries: Array
     }
 }
-</script>
+</script> -->
 
 <style lang="scss">
 

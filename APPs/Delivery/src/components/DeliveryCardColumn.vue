@@ -3,10 +3,10 @@
         <div :style="changeBackground" class="delivery--image-C"></div>
         <div class="delivery--information-C">
             <div class="top-C">
-                <p class="clientname-C">{{info_delivery.ClientName}}</p>     
+                <p class="clientname-C">{{info_delivery.clientName}}</p>     
             </div>
             <div class="middle-C">
-                <p class="name-C">{{info_delivery.RestaurantName}}</p>
+                <p class="name-C">{{info_delivery.restaurantName}}</p>
             </div>
             <div class="bottom-C">
                 <div class="note-C">
@@ -28,31 +28,42 @@
 </div>
   </template>
   
-
-  
-  <script>
+  <script lang="ts">
   //IMPORT
   import {computed} from 'vue'
+  import type {PropType} from 'vue'
+  
+  interface Delivery {
+    restaurantName: string
+    note: string
+    image: string
+    drive_time: string
+    clientName: string
+    price: string
+  }
+  
   export default {
-    name : "DeliveryCard",
+    name: "DeliveryCard",
     props:{
-        info_delivery: Object
+      info_delivery: {
+        type: Object as PropType<Delivery>,
+        required: true,
+      }
     },
-    setup(props){
-        const changeBackground = computed(() => {
-            return {
-                backgroundImage:  `url(${props.info_delivery.image})`,
-            }
-        })
-    //return
-    return {
+    setup(props) {
+      const changeBackground = computed(() => {
+        return {
+          backgroundImage: `url(${props.info_delivery.image})`,
+        }
+      });
+  
+      //return
+      return {
         changeBackground
-    }
-    
+      }
     }
   }
   </script>
-  
   
   <style lang="scss">
   
