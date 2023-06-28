@@ -82,6 +82,24 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
+exports.getAllOrdersByStatus = async (req, res) => {
+  try {
+    const status = req.params.status;
+
+    // Fetch all orders with the given status
+    const orders = await OrderModel.find({ status });
+
+    if (!orders) {
+      return res.status(404).json({ message: 'No orders found with the given status' });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error while retrieving the orders:', error);
+    res.status(500).json({ message: 'Error while retrieving the orders' });
+  }
+};
+
 exports.getDeliveredOrdersByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
