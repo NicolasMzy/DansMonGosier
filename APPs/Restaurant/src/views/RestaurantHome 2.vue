@@ -3,7 +3,7 @@
     <h1>Order List</h1>
     <ul>
       <li v-for="order in orders" :key="order.id_restaurant">
-        {{ order.status }}
+        {{ order.label }} - {{ order.price }}
       </li>
     </ul>
   </div>
@@ -11,19 +11,18 @@
 
 <script lang="ts">
 import axios from 'axios';
-import { useRoute } from 'vue-router';
-import { onMounted, ref } from 'vue'
+import type {Order} from '../types/Order'
+import { onMounted } from 'vue'
 
 export default {
   setup(){
 
-  let orders = ref(null);
-  const route = useRoute();
+  let orders: Order[] = [];
 
   onMounted(async () => {
       try {
-        const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ route.params.orderId);
-        orders.value = response.data;
+        const response = await axios.get('/api/orders');
+        orders = response.data;
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
