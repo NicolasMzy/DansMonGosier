@@ -43,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios'
 
 interface Address {
   city: string;
@@ -52,7 +53,14 @@ interface Address {
 }
 
 export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Location',
+  onmounted(){
+    async () => {
+      let response = await axios.get('http://localhost:3012/address/');
+      let address = response.data
+    }
+  },
   data() {
     return {
       addresses: [
@@ -85,21 +93,10 @@ export default defineComponent({
     showAddAddressForm() {
       this.showAddAddress = true;
     },
-    saveAddress() {
-      if (
-        this.newAddress.city &&
-        this.newAddress.addressLine &&
-        this.newAddress.postalCode
-      ) {
-        this.addresses.push({ ...this.newAddress });
-        this.newAddress.city = '';
-        this.newAddress.addressLine = '';
-        this.newAddress.addressLine2 = '';
-        this.newAddress.postalCode = '';
-        this.showAddAddress = false;
-      } else {
-        alert('Please fill in all fields.');
-      }
+    saveAddress: async () => {
+        let accountId = localStorage.getItem('accountId');
+          await axios.post('http://localhost:3012/address/'+ accountId +'/menus', this.newAddress.value);
+          location.reload();
     },
     cancelAddAddress() {
       this.newAddress.city = '';

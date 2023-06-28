@@ -26,9 +26,14 @@ const router = createRouter({
       component: () => import('../views/FinishRegisterView.vue'),
     },
     {
-      path: '/home/:accountId',
+      path: '/home',
       name: 'home',
       component: () => import('../views/RestaurantHome.vue'),
+    },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: () => import('../views/OrderHIstoryView.vue'),
     },
     {
       path: '/settings',
