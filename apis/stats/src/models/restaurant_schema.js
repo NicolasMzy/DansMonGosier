@@ -10,7 +10,7 @@ const restaurantSalesStatsSchema = new mongoose.Schema({
   monthlySales: [monthlySalesSchema]
 });
 
-module.exports = mongoose.model('stats', restaurantSalesStatsSchema);
+module.exports = mongoose.model('stats_restaurants', restaurantSalesStatsSchema);
 
 
 // le nombre de ventes (order) par jours/semaine/mois/année 

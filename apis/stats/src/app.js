@@ -21,7 +21,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connexion MongoDB Collection
 const connectToMongoDB = require('./mongodb_connection');
-connectToMongoDB(process.env.COLLECTION)
+connectToMongoDB(process.env.COLLECTION_RESTAURANT)
+connectToMongoDB(process.env.COLLECTION_COMMERCIAL)
 
 // Server Express set PORT 
 app.set('port', process.env.PORT);
