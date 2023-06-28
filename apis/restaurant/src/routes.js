@@ -9,9 +9,10 @@ const menuController = require('./controllers/menu_controllers');
 // Restaurant
 router.post('/restaurants', restaurantController.createRestaurant);
 router.get('/restaurants/:restaurantId', restaurantController.getRestaurant);
-router.get('/restaurants-categories', restaurantController.getRestaurantCategories);
+router.get('/restaurant/IDcredentials/:id_credentials', restaurantController.getRestaurantByIdCredentials);
 router.put('/restaurants/:restaurantId', restaurantController.updateRestaurant);
 router.delete('/restaurants/:restaurantId', restaurantController.deleteRestaurant);
+router.get('/restaurants-categories', restaurantController.getRestaurantCategories);
 router.get('/restaurants-top-rated/', restaurantController.getTopRatedRestaurants);
 
 // Rates

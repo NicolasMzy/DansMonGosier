@@ -9,6 +9,7 @@ router.get('/orders/:orderId', orderController.getOrder);
 router.put('/orders/:orderId', orderController.updateOrder);
 router.delete('/orders/:orderId', orderController.deleteOrder);
 
+router.get('/orders/status/:status/', orderController.getAllOrdersByStatus);
 router.get('/orders/delivered/user/:userId', orderController.getDeliveredOrdersByUser);
 router.get('/orders/status/:status/restaurant/:restaurantId', orderController.getOrdersByStatusAndRestaurant);
 
