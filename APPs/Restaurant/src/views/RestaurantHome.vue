@@ -46,11 +46,11 @@ export default {
     console.log(accountId)
       try {
         
-        const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ accountId);
+        const response = await axios.get('http://localhost:3005/order/status/ordering/restaurant/'+ accountId);
         console.log(response.data)
         orders.value = response.data;
 
-        const responseAccepted = await axios.get('http://localhost:3012/orders/status/accepted_order/restaurant/'+ accountId);
+        const responseAccepted = await axios.get('http://localhost:3005/order/status/accepted_order/restaurant/'+ accountId);
         ordersAccepted.value = responseAccepted.data;
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -60,7 +60,7 @@ export default {
   const accept = async (orderId: string) => {
     console.log(orderId)
     console.log(editOrderAccept.value)
-    const url = 'http://localhost:3012/orders/'+ orderId;
+    const url = 'http://localhost:3005/order/'+ orderId;
 
     const response = await axios.put(url, editOrderAccept.value, {
         headers: {
@@ -71,7 +71,7 @@ export default {
     // location.reload();
   }
   const refuse = async (orderId: string) => {
-    const response = await axios.put('http://localhost:3012/orders/'+ orderId, editOrderRefuse)
+    const response = await axios.put('http://localhost:3005/order/'+ orderId, editOrderRefuse)
     location.reload();
   }
 

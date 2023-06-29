@@ -230,7 +230,7 @@
             menuToEdit.value.items = menu.items
           }
 
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menu._id, menuToEdit.value);
+          await axios.put('http://localhost:3006/restaurant/'+ credId +'/menus/'+ menu._id, menuToEdit.value);
           menuToEdit.value = {
               label: '',
               description: '',
@@ -267,7 +267,7 @@
             itemToEdit.value.type = item.type
           }
           // Add the menu with `newMenu.value` and close the form
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/items/'+ item._id, itemToEdit.value);
+          await axios.put('http://localhost:3006/restaurant/'+ credId +'/items/'+ item._id, itemToEdit.value);
           itemToEdit.value = { label: '',
             description: '',
             photo: '',
@@ -280,7 +280,7 @@
         };
         const addToMenu = async (menuId: string) => {
           // Add the menu with `newMenu.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menuId +'/items', newItemToMenu.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/menus/'+ menuId +'/items', newItemToMenu.value);
           newItemToMenu.value = { label: '',
             description: '',
             photo: '',
@@ -294,7 +294,7 @@
         const addMenu = async (event) => {
           event.preventDefault();
           // Add the menu with `newMenu.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/menus', newMenu.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/menus', newMenu.value);
           newMenu.value = { label: '',
             description: '',
             photo: '',
@@ -309,7 +309,7 @@
           event.preventDefault();
           console.log(newItem.value)
           // Add the item with `newItem.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/items', newItem.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/items', newItem.value);
           newItem.value = { 
             label: '',
             description: '',
@@ -336,7 +336,7 @@
 
         const deleteMenu = async (menuId: string) => {
           try {
-            await axios.delete('http://localhost:3013/restaurants/'+ credId +'/menus/' + menuId);
+            await axios.delete('http://localhost:3006/restaurant/'+ credId +'/menus/' + menuId);
           } catch (error) {
             console.error(error);
           }
@@ -344,7 +344,7 @@
         };
         const deleteItem = async (itemId: string) => {
           try {
-            await axios.delete('http://localhost:3013/restaurants/'+ credId +'/items/' + itemId);
+            await axios.delete('http://localhost:3006/restaurant/'+ credId +'/items/' + itemId);
           } catch (error) {
             console.error(error);
           }
@@ -356,10 +356,10 @@
 
         onMounted(async () => {
           try {
-            const resIdResponse = await axios.get('http://localhost:3013/restaurant/IDcredentials/' + credId);
-            resId = resIdResponse.data._id;
-            const menusResponse = await axios.get('http://localhost:3013/restaurants/'+ credId +'/menus');
-            const itemsResponse = await axios.get('http://localhost:3013/restaurants/'+ credId +'/items');
+            // const resIdResponse = await axios.get('http://localhost:3013/restaurant/IDcredentials/' + credId);
+            // resId = resIdResponse.data._id;
+            const menusResponse = await axios.get('http://localhost:3006/restaurant/'+ credId +'/menus');
+            const itemsResponse = await axios.get('http://localhost:3006/restaurant/'+ credId +'/items');
 
             menus.value = menusResponse.data;
             items.value = itemsResponse.data;

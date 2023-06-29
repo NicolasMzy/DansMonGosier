@@ -22,7 +22,7 @@
       let accountId = localStorage.getItem('accountId');
       let orders = ref(null);
       onMounted(async () => {
-        const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ accountId);
+        const response = await axios.get('http://localhost:3005/order/status/ordering/restaurant/'+ accountId);
         console.log(response.data)
         orders.value = response.data;
   
