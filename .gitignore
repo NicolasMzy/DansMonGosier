@@ -1,11 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# Dependencies
+# Node modules
 **/node_modules
-
-# Typescript build directories
-**/build
-# See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # Typescript build directories
 **/build
@@ -48,3 +44,6 @@ MainWindow.g.cs
 
 # macOS specific
 .DS_Store
+
+# Postgres data
+/postgres/data/**
