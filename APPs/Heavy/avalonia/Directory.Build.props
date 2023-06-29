@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup>
-    <DotnetVersion>net6.0</DotnetVersion>
+    <DotnetVersion>net7.0</DotnetVersion>
   </PropertyGroup>
 
   <PropertyGroup>
