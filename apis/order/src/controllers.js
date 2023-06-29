@@ -134,3 +134,36 @@ exports.getOrdersByStatusAndRestaurant = async (req, res) => {
     res.status(500).json({ message: 'Error while retrieving the orders' });
   }
 };
+
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await OrderModel.find({});
+
+    if (!orders) {
+      return res.status(404).json({ message: 'No orders found' });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error while retrieving the orders:', error);
+    res.status(500).json({ message: 'Error while retrieving the orders' });
+  }
+};
+
+exports.getOrdersExcludeStatuses = async (req, res) => {
+  try {
+    const excludedStatuses = ['accepted_order', 'ordering'];
+
+    const orders = await OrderModel.find({ status: { $nin: excludedStatuses } });
+
+    if (!orders) {
+      return res.status(404).json({ message: 'No orders found excluding the given statuses' });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error while retrieving the orders:', error);
+    res.status(500).json({ message: 'Error while retrieving the orders' });
+  }
+};
+
