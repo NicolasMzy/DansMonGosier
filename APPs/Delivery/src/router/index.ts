@@ -6,7 +6,13 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      name: 'auth',
+      component: () => import('../views/AuthenticateView.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/RegisterView.vue'),
     },
     {
       path: '/home',
@@ -29,7 +35,7 @@ const router = createRouter({
           component: () => import('../views/settings/SettingsVue.vue'),
         },
         {
-          path: 'profileinformation',
+          path: 'informationduprofil',
           name: 'ProfileInformation',
           component: () => import('../views/settings/ProfileInformation.vue'),
         },
@@ -49,7 +55,7 @@ const router = createRouter({
           component: () => import('../views/settings/Location.vue'),
         },
         {
-          path: 'refertofriends',
+          path: 'sponsorisetonami',
           name: 'ReferTofriend',
           component: () => import('../views/settings/ReferToFriend.vue'),
         },
