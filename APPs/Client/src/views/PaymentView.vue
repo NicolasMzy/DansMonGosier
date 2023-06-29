@@ -26,7 +26,8 @@ components:{
         width: 100%;
         display:flex;
         flex-direction: column;
-
+        justify-content: center;
+        align-items: center;
     }
     
     .title{
@@ -38,5 +39,6 @@ components:{
     
     .img{
         height: 200px;
+        width: 240px;
     }
 </style>
