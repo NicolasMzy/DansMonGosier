@@ -62,13 +62,13 @@ const form = ref({
 const registerForm = async () => {
     try {
       
-       const responseAddress = await axios.post('http://localhost:3014/address', address.value, {
+       const responseAddress = await axios.post('http://localhost:3004/address', address.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },
         });
 
-        const response = await axios.post('http://localhost:3013/restaurants', form.value, {
+        const response = await axios.post('http://localhost:3006/restaurant', form.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },

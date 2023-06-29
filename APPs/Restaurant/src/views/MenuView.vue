@@ -1,145 +1,214 @@
 
 <template>
     <div class="home">
-      <h1>Menus <button @click="showAddMenu = !showAddMenu">Add Menu</button></h1>
       
-    <div class="card" v-if="showAddMenu">
-      <div class="card-body">
-        <h5 class="card-title">Add Menu</h5>
-        <form @submit.prevent="addMenu">
-          <div class="mb-3">
-            <label class="form-label">Label</label>
-            <input type="text" class="form-control" v-model="newMenu.label" required><br>
-            <label class="form-description">Description</label>
-            <input type="text" class="form-control" v-model="newMenu.description" required><br>
-            <label class="form-photo">Photo</label>
-            <input type="text" class="form-control" v-model="newMenu.photo" required><br>
-            <label class="form-price">Price</label>
-            <input type="text" class="form-control" v-model="newMenu.price" required><br>
-            <select v-model="newMenu.items">
-              <option disabled value="">Please select one</option>
-              <option v-for="(item, i) in items.items" :key="i" :value="item">
-                {{ item.label }}
-              </option>
-            </select>
-          </div>
-          <!-- Add more fields as necessary -->
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-    </div>
+      <nav>
+        <ul class="navbar">
+          <li @click="tab = 'menus'">Menus</li>
+          <li @click="tab = 'items'">Items</li>
+        </ul>
+      </nav>
 
-      <div v-for="(menu,i) in menus.menus" :key="i">
-        Label: {{ menu.label }}<br>
-        Description:  {{ menu.description }}<br>
-        URL Photo: {{ menu.photo }}<br>
-        Price: {{ menu.price }}<br>
-        <h2 v-if="menu.items">Items <button @click="showAddItemToMenu = menu._id">Add Item</button></h2>
+      <div v-if="tab === 'menus'">
 
-        <!-- Card to ad an item to the menu -->
-          <div class="card" v-if="showAddItemToMenu === menu._id">
-            <div class="card-body">
-              <h5 class="card-title">Add Item To Menu</h5>
-                <form @submit.prevent="addToMenu(menu._id)">
-                  <select v-model="newItemToMenu">
-                    <option disabled value="">Please select one</option>
-                    <option v-for="(item, i) in items.items" :key="i" :value="item">
-                      {{ item.label }}
-                    </option>
-                  </select>
-                  <label class="form-price">Quantity: </label>
-                  <input type="text" class="form-control" v-model="newItemToMenu.quantity" required><br>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-          </div>
-
-          <!-- Items from menu -->
-          <div v-for="(item,i) in menu.items" :key="i">
-            Label: {{ item.item.label }}<br>
-            Description: {{ item.item.description }}<br>
-            URL Photo: {{ item.item.photo }}<br>
-            Price: {{ item.item.price }}<br>
-            Type: {{ item.item.type }}<br>
-            Quantity: {{ item.quantity }}<br>
-            <button v-if="menu.items" @click="deleteItemFromMenu(item)">Delete Item from menu</button>
-          </div>
-          <button @click="deleteMenu(menu._id)">Delete Menu</button>
-          <button @click="showEditMenu = menu._id">Edit Menu</button>
-          <!-- Card -->
-        <div class="card" v-if="showEditMenu === menu._id">
-          <div class="card-body">
-            <h5 class="card-title">Add Menu</h5>
-            <form @submit.prevent="editMenu(menu)">
-              <div class="mb-3">
+        <h1>Menus <button @click="showAddMenu = !showAddMenu">Add Menu</button></h1>
+      
+      <div class="card" v-if="showAddMenu">
+        <div class="card-body">
+          <h5 class="card-title">Add Menu</h5>
+          <form @submit.prevent="addMenu">
+            <div class="mb-3">
+              <div class="container">
                 <label class="form-label">Label</label>
-                <input type="text" class="form-control" v-model="menuToEdit.label" > 
-                <label class="form-description">Description</label>
-                <input type="text" class="form-control" v-model="menuToEdit.description"><br>
-                <label class="form-photo">Photo</label>
-                <input type="text" class="form-control" v-model="menuToEdit.photo" ><br>
-                <label class="form-price">Price</label>
-                <input type="text" class="form-control" v-model="menuToEdit.price" ><br>
+                <input type="text" class="form-control" v-model="newMenu.label" required>
               </div>
+              <div class="container">
+                <label class="form-description">Description</label>
+                <input type="text" class="form-control" v-model="newMenu.description" required>
+              </div>
+              <div class="container">
+                <label class="form-photo">Photo</label>
+                <input type="text" class="form-control" v-model="newMenu.photo" required>
+              </div>
+              <div class="container">
+                <label class="form-price">Price</label>
+                <input type="text" class="form-control" v-model="newMenu.price" required>
+              </div>
+              <select v-model="newMenu.items">
+                <option disabled value="">Please select one</option>
+                <option v-for="(item, i) in items.items" :key="i" :value="item">
+                  {{ item.label }}
+                </option>
+              </select>
+            </div>
+            <div class="btn-container">
               <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
-        </div> 
       </div>
-      <div class="card" v-if="showAddItem">
-      <div class="card-body">
-        <h5 class="card-title">Add Item</h5>
-        <form @submit.prevent="addItem">
-          <div class="mb-3">
-            <label class="form-label">Label</label>
-            <input type="text" class="form-control" v-model="newItem.label" required>
-            <label class="form-description">Description</label>
-            <input type="text" class="form-control" v-model="newItem.description" required><br>
-            <label class="form-photo">Photo</label>
-            <input type="text" class="form-control" v-model="newItem.photo" required><br>
-            <label class="form-price">Price</label>
-            <input type="text" class="form-control" v-model="newItem.price" required><br>
-            <label class="form-type">Type</label>
-            <input type="text" class="form-control" v-model="newItem.type" required>
-          </div>
-          <!-- Add more fields as necessary -->
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-    </div>
-    <h1>Items <button @click="showAddItem = true">Add Item</button></h1>
-      <div v-for="(item,i) in items.items" :key="i">
-        Label : {{ item.label }}<br>
-        Description : {{ item.description }}<br>
-        URL de la photo : {{ item.photo }}<br>
-        Prix : {{ item.price }}<br>
-        Type : {{ item.type }}<br>
-        <button @click="deleteItem(item._id)">Delete Item</button>
-        <button @click="showEditItem = item._id">Edit Item</button>
 
-        <!-- Card -->
-        <div class="card" v-if="showEditItem === item._id">
+        <div v-for="(menu,i) in menus.menus" :key="i">
+          
+          <div class="container-show">
+            <img class="photo" :src="menu.photo " alt="item photo"/>
+            <div class="container-information">
+              <p>Label: {{ menu.label }}</p>
+              <p>Description:  {{ menu.description }}</p>
+              <p>Price: {{ menu.price }}</p>
+            </div>
+          </div>
+        
+          <h2 v-if="menu.items">Items composant le menu<button @click="showAddItemToMenu = menu._id">Add Item</button></h2>
+
+          <!-- Card to ad an item to the menu -->
+            <div class="card" v-if="showAddItemToMenu === menu._id">
+              <div class="card-body">
+                <h5 class="card-title">Add Item To Menu</h5>
+                  <form @submit.prevent="addToMenu(menu._id)">
+                    <select v-model="newItemToMenu">
+                      <option disabled value="">Please select one</option>
+                      <option v-for="(item, i) in items.items" :key="i" :value="item">
+                        {{ item.label }}
+                      </option>
+                    </select>
+                    <label class="form-price">Quantity: </label>
+                    <input type="text" class="form-control" v-model="newItemToMenu.quantity" required><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+            </div>
+
+            <!-- Items from menu -->
+            <div v-for="(item,i) in menu.items" :key="i">
+              <p>Label: {{ item.item.label }}</p>
+              <p>Description: {{ item.item.description }}</p>
+              <img class="photo" :src="item.item.photo" alt="item photo"/>
+              <p>Price: {{ item.item.price }}</p>
+              <p>Type: {{ item.item.type }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+              <button v-if="menu.items" @click="deleteItemFromMenu(item)">Delete Item from menu</button>
+            </div>
+            <button @click="deleteMenu(menu._id)">Delete Menu</button>
+            <button @click="showEditMenu = menu._id">Edit Menu</button>
+
+            <!-- Card -->
+          <div class="card" v-if="showEditMenu === menu._id">
+            <div class="card-body">
+              <h5 class="card-title">Add Menu</h5>
+              <form @submit.prevent="editMenu(menu)">
+                <div class="mb-3">
+                  <div class="container">
+                    <label class="form-label">Label</label>
+                    <input type="text" class="form-control" v-model="menuToEdit.label" > 
+                  </div>
+                  <div class="container">
+                    <label class="form-description">Description</label>
+                  <input type="text" class="form-control" v-model="menuToEdit.description">
+                  </div>
+                  <div class="container">
+                    <label class="form-photo">Photo</label>
+                    <input type="text" class="form-control" v-model="menuToEdit.photo" >
+                  </div>
+                  <div class="container">
+                    <label class="form-price">Price</label>
+                    <input type="text" class="form-control" v-model="menuToEdit.price" >
+                  </div>
+                </div>
+                <div class="btn-container">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          </div> 
+        </div>
+
+      </div>
+      
+
+      <div v-if="tab === 'items'">
+        <div class="card" v-if="showAddItem">
           <div class="card-body">
             <h5 class="card-title">Add Item</h5>
-            <form @submit.prevent="editItem(item)">
+            <form @submit.prevent="addItem">
               <div class="mb-3">
-                <label class="form-label">Label</label>
-                <input type="text" class="form-control" v-model="itemToEdit.label" > 
-                <label class="form-description">Description</label>
-                <input type="text" class="form-control" v-model="itemToEdit.description"><br>
-                <label class="form-photo">Photo</label>
-                <input type="text" class="form-control" v-model="itemToEdit.photo" ><br>
-                <label class="form-price">Price</label>
-                <input type="text" class="form-control" v-model="itemToEdit.price" ><br>
-                <label class="form-type">Type</label>
-                <input type="text" class="form-control" v-model="itemToEdit.type" >
+                <div class="container">
+                  <label class="form-label">Label</label>
+                  <input type="text" class="form-control" v-model="newItem.label" required>
+                </div>
+                <div class="container">
+                  <label class="form-description">Description</label>
+                  <input type="text" class="form-control" v-model="newItem.description" required>
+                </div>
+                <div class="container">
+                  <label class="form-photo">Photo</label>
+                  <input type="text" class="form-control" v-model="newItem.photo" required>
+                </div>
+                <div class="container">
+                  <label class="form-price">Price</label>
+                  <input type="text" class="form-control" v-model="newItem.price" required>
+                </div>
+                <div class="container">
+                  <label class="form-type">Type</label>
+                  <input type="text" class="form-control" v-model="newItem.type" required>
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <!-- Add more fields as necessary -->
+              <div class="btn-container">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
             </form>
           </div>
         </div>
+    
+        <h1>Items <button @click="showAddItem = true">Add Item</button></h1>
+          <div v-for="(item,i) in items.items" :key="i">
+            Label : {{ item.label }}<br>
+            Description : {{ item.description }}<br>
+            URL de la photo : {{ item.photo }}<br>
+            Prix : {{ item.price }}<br>
+            Type : {{ item.type }}<br>
+            <button @click="deleteItem(item._id)">Delete Item</button>
+            <button @click="showEditItem = item._id">Edit Item</button>
+    
+            <!-- Card -->
+            <div class="card" v-if="showEditItem === item._id">
+              <div class="card-body">
+                <h5 class="card-title">Add Item</h5>
+                <form @submit.prevent="editItem(item)">
+                  <div class="mb-3">
+                    <div class="container">
+                      <label class="form-label">Label</label>
+                      <input type="text" class="form-control" v-model="itemToEdit.label" > 
+                    </div>
+                    <div class="container">
+                      <label class="form-description">Description</label>
+                      <input type="text" class="form-control" v-model="itemToEdit.description"><br>
+                    </div>
+                    <div class="container">
+                      <label class="form-photo">Photo</label>
+                      <input type="text" class="form-control" v-model="itemToEdit.photo" ><br>
+                    </div>
+                    <div class="container">
+                      <label class="form-price">Price</label>
+                      <input type="text" class="form-control" v-model="itemToEdit.price" ><br>
+                    </div>
+                    <div class="container">
+                      <label class="form-type">Type</label>
+                      <input type="text" class="form-control" v-model="itemToEdit.type" >
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>             
+                </form>
+              </div>
+            </div>
+            
+          </div>
       </div>
+      
       
   </template>
   
@@ -152,6 +221,11 @@
     name : 'RestaurantHome',
     components: {
 
+    },
+    data(){
+      return {
+        tab: 'menus',
+      }
     },
     setup() {
       const menus = ref([]); // Assume this is the initial state
@@ -230,7 +304,7 @@
             menuToEdit.value.items = menu.items
           }
 
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menu._id, menuToEdit.value);
+          await axios.put('http://localhost:3006/restaurants/'+ credId +'/menus/'+ menu._id, menuToEdit.value);
           menuToEdit.value = {
               label: '',
               description: '',
@@ -267,7 +341,7 @@
             itemToEdit.value.type = item.type
           }
           // Add the menu with `newMenu.value` and close the form
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/items/'+ item._id, itemToEdit.value);
+          await axios.put('http://localhost:3006/restaurants/'+ credId +'/items/'+ item._id, itemToEdit.value);
           itemToEdit.value = { label: '',
             description: '',
             photo: '',
@@ -280,7 +354,7 @@
         };
         const addToMenu = async (menuId: string) => {
           // Add the menu with `newMenu.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menuId +'/items', newItemToMenu.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/menus/'+ menuId +'/items', newItemToMenu.value);
           newItemToMenu.value = { label: '',
             description: '',
             photo: '',
@@ -294,7 +368,7 @@
         const addMenu = async (event) => {
           event.preventDefault();
           // Add the menu with `newMenu.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/menus', newMenu.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/menus', newMenu.value);
           newMenu.value = { label: '',
             description: '',
             photo: '',
@@ -309,7 +383,7 @@
           event.preventDefault();
           console.log(newItem.value)
           // Add the item with `newItem.value` and close the form
-          await axios.post('http://localhost:3013/restaurants/'+ credId +'/items', newItem.value);
+          await axios.post('http://localhost:3006/restaurant/'+ credId +'/items', newItem.value);
           newItem.value = { 
             label: '',
             description: '',
@@ -336,7 +410,7 @@
 
         const deleteMenu = async (menuId: string) => {
           try {
-            await axios.delete('http://localhost:3013/restaurants/'+ credId +'/menus/' + menuId);
+            await axios.delete('http://localhost:3006/restaurant/'+ credId +'/menus/' + menuId);
           } catch (error) {
             console.error(error);
           }
@@ -344,7 +418,7 @@
         };
         const deleteItem = async (itemId: string) => {
           try {
-            await axios.delete('http://localhost:3013/restaurants/'+ credId +'/items/' + itemId);
+            await axios.delete('http://localhost:3006/restaurant/'+ credId +'/items/' + itemId);
           } catch (error) {
             console.error(error);
           }
@@ -353,13 +427,14 @@
 
         
 
-
+        
         onMounted(async () => {
+          console.log(credId)
           try {
-            const resIdResponse = await axios.get('http://localhost:3013/restaurant/IDcredentials/' + credId);
+            const resIdResponse = await axios.get('http://localhost:3006/restaurant/IDcredentials/' + credId);
             resId = resIdResponse.data._id;
-            const menusResponse = await axios.get('http://localhost:3013/restaurants/'+ credId +'/menus');
-            const itemsResponse = await axios.get('http://localhost:3013/restaurants/'+ credId +'/items');
+            const menusResponse = await axios.get('http://localhost:3006/restaurant/'+ credId.toString() +'/menus');
+            const itemsResponse = await axios.get('http://localhost:3006/restaurant/'+ credId.toString() +'/items');
 
             menus.value = menusResponse.data;
             items.value = itemsResponse.data;
@@ -399,5 +474,111 @@
   </script>
   
   <style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    max-width: calc(3000px * 2 + 60px);
+    margin: auto;
+    padding: 1em;
+  }
   
-  </style>
+  .navbar li {
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .navbar li:hover {
+    color: blue;
+  }
+
+  .photo{
+    height: 50px;
+  }
+
+  .home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  text-align: left;
+
+}
+
+input {
+  display: block;
+  margin-left: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.card-title {
+  font-size: 1.5em;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: right;
+}
+
+.btn {
+  background-color: brown;
+  color: #fff;
+  border: none;
+  padding: 0.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100px;
+  margin-right: 0;
+}
+
+.btn:hover {
+  background-color: #044d19;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
+</style>
