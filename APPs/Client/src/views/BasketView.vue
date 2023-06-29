@@ -183,7 +183,7 @@
             basketSend
           )
           console.log(orderId.data._id)
-          router.push('/confirmed');
+          router.push('/tracking');
           clearBasket();
         };
 

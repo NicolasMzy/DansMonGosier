@@ -3,7 +3,7 @@
     <div class="navbar-H">
         <div class="positionbox">
             <p class="tposition">Ta Position</p>
-            <p class="adresse">30 rue des bananiers</p>
+            <p class="adresse">{{ address }}</p>
         </div>
         <router-link to="/settings">
             <div class="settingsbox" @click="goToSettings"></div>
@@ -13,21 +13,35 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
-    name: "Header",
+    
     setup() {
+        let address = ref('');
+        let accountId = localStorage.getItem('accountId');
         const router = useRouter()
-
+        onMounted(async () => {
+            const response = await axios.get('http://localhost:3004/address-by-credentials/' + accountId);
+            console.log(response.data.city)
+            address.value = response.data.line_1.toString() + ", " + response.data.city.toString()
+            console.log(address)
+        });
+        
         const goToSettings = () => {
             router.push({ name: 'SettingsVue' }) // suppose que le nom de la route pour SettingsVue.vue est 'SettingsVue'
         }
 
         return {
-            goToSettings
+            goToSettings,
+            address
         }
-    }
+    },
+
+    
+
 }
 </script>
 

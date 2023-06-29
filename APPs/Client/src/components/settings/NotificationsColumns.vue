@@ -22,18 +22,13 @@
     setup() {
       const notifications: Notification[] = [
         {
-          name: 'SMS Notifications',
-          info: 'For daily update you will get',
-          img: '/src/assets/settings/users-bold.png',
-        },
-        {
-          name: 'Push Notifications',
-          info: 'For daily update you will get',
+          name: 'Notifications',
+          info: 'Pour des mises à jour quotidiennes',
           img: '/src/assets/settings/lock-key-bold.png',
         },
         {
-          name: 'Promotional Notifications',
-          info: 'For daily update you will get',
+          name: 'Notifications de Promotion',
+          info: 'Pour des mises à jour quotidiennes',
           img: '/src/assets/settings/users-bold.png',
         },
       ];

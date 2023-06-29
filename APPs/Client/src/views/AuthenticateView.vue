@@ -1,24 +1,27 @@
-<script setup lang="ts">
-import FormRegister from '../components/FormRegister.vue'
-
-
+<script lang="ts" setup>
+import FormAuth from '../components/FormAuth.vue'
+// import TierAuthView from '@/components/TierAuthView.vue'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
   <div class="item">
      <div class="details">
        <h2>
-         <slot name="heading">Let's sign you up, <br> your meal awaits</slot>
+         <slot name="heading">Just Sign in, <br> we'll do the cooking</slot>
        </h2>
        <p>
-         <slot>If you have an<br> account please <router-link to="/">Sign in here</router-link></slot>
+         <slot>If you don't have an<br> account please <router-link to="/register">Sign up here</router-link></slot>
        </p>
-         <FormRegister />
+        <FormAuth />
+        <!-- <TierAuthView /> -->
      </div>
    </div>
   </template>
   
+
 <style scoped>
+
   @media (min-width: 1024px) {
     .formAuth {
       min-height: 100vh;
@@ -27,7 +30,8 @@ import FormRegister from '../components/FormRegister.vue'
     }
   }
 
-  a.forget {
+
+a.forget {
     color: black;
     position: relative;
     align-self: right;

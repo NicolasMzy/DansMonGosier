@@ -11,13 +11,14 @@
           <div v-for="(stage, index) in stages" :key="index" class="progress-bar" :class="getProgressBarClass(index)" role="progressbar" :style="{ width: getProgressBarWidth() + '%' }" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     
-        <button @click="nextStage" class="btn btn-primary mt-3" :disabled="currentStage >= stages.length - 1">Prochaine étape</button>
+        <!-- <button @click="nextStage" class="btn btn-primary mt-3" :disabled="currentStage >= stages.length - 1">Prochaine étape</button> -->
       </div>
     </div>
   </template>
   
   <script lang="ts">
   import { defineComponent, ref } from "vue";
+  import axios from 'axios'
   import Header from '../components/componentsGlobaux/Header.vue'
   export default defineComponent({
     name: "OrderTracking",
@@ -25,6 +26,9 @@
       Header,
     },
     setup() {
+      let order: any;
+      
+
       const stages = ref([
         { name: "Passation de la commande", image: "src/assets/tracking/command_send.jpg" },
         { name: "Acceptation commande", image: "src/assets/tracking/command_accept.jpg" },
@@ -39,6 +43,24 @@
           currentStage.value++;
         }
       };
+
+      async function fetchData(){
+        let accountId = localStorage.getItem('accountId');
+        const response = await axios.get('http://localhost:3005/order/getAll/');
+        for(order of response.data){
+           if(order.account_id == accountId){
+            if(order.status == 'ordering'){
+              currentStage.value = 1;
+            } else if(order.status == 'accept_order'){
+              currentStage.value = 2;
+            } else if(order.status == 'delivering'){
+              currentStage.value = 3;
+            } else if(order.status == 'delivered'){
+              currentStage.value = 4;
+            }
+           }
+          }
+        }
   
       const getProgressBarClass = (index: number) => {
         if (currentStage.value > index) {

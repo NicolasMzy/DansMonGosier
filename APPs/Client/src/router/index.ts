@@ -9,6 +9,11 @@ const router = createRouter({
       component: () => import('@/views/HomeView.vue'),
     },
     {
+      path: '/',
+      name: 'auth',
+      component: () => import('@/views/AuthenticateView.vue')
+    },
+    {
       path: '/register',
       name: 'register',
       component: () => import('@/views/RegisterView.vue')
@@ -54,7 +59,7 @@ const router = createRouter({
           component: () => import('../views/settings/SettingsVue.vue'),
         },
         {
-          path: 'profileinformation',
+          path: 'informationduprofil',
           name: 'ProfileInformation',
           component: () => import('../views/settings/ProfileInformation.vue'),
         },
@@ -74,7 +79,7 @@ const router = createRouter({
           component: () => import('../views/settings/Location.vue'),
         },
         {
-          path: 'refertofriends',
+          path: 'sponsorisetonami',
           name: 'ReferTofriend',
           component: () => import('../views/settings/ReferToFriend.vue'),
         },
