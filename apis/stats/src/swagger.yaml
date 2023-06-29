@@ -1,14 +1,70 @@
 swagger: '2.0'
 info:
-  title: DansMonGosier
-  description: API for managing restaurants
+  title: Stats Microservice API
+  description: API for managing stats
   version: 1.0.0
 servers:
-  - url: http://localhost:3015
-basePath: /
+  - url: http://localhost:3007
+basePath: /api
 schemes:
   - http
 consumes:
   - application/json
 produces:
   - application/json
+paths:
+  /stats/restaurant/monthly-sales/{restaurantId}:
+    post:
+      summary: Post monthly sales stats for a restaurant
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          type: string
+          description: ID of the restaurant
+      responses:
+        201:
+          description: Successfully posted restaurant sales stats
+          schema:
+            $ref: '#/definitions/RestaurantSalesStats'
+        500:
+          description: Error while posting restaurant sales stats
+
+  /stats/commercial/monthly-global-sales:
+    post:
+      summary: Post monthly global sales stats for all restaurants
+      responses:
+        201:
+          description: Successfully posted commercial sales stats
+          schema:
+            $ref: '#/definitions/CommercialSalesStats'
+        500:
+          description: Error while posting commercial sales stats
+
+definitions:
+  MonthlySales:
+    type: object
+    properties:
+      month:
+        type: string
+        format: date
+      sales:
+        type: integer
+
+  RestaurantSalesStats:
+    type: object
+    properties:
+      id_restaurant:
+        type: string
+      monthlySales:
+        type: array
+        items:
+          $ref: '#/definitions/MonthlySales'
+
+  CommercialSalesStats:
+    type: object
+    properties:
+      monthlyOrders:
+        type: array
+        items:
+          $ref: '#/definitions/MonthlySales'

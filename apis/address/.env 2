@@ -1,3 +1,0 @@
-PORT=3014
-COLLECTION="addresses"
-MONGODB_URL='mongodb+srv://math4fpv:tGJRpkHkKSjPp2Bf@mongosier.zhj1puu.mongodb.net/'
