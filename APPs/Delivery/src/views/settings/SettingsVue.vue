@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Header/>
     <div class="settings--container">
       <p class="settings--title">Settings</p>
       <SettingsColumns/>
