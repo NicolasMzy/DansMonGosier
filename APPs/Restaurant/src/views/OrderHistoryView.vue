@@ -1,6 +1,10 @@
 <template>
     <div class="home">
-        <h1>ICI on affiche l'historique des orders</h1>
+      <h1>Orders</h1>
+    <div v-for="(order,i) in orders" :key="i">
+        {{ order.status }}
+        {{ order.date.start }}
+    </div>
     </div>
   </template>
   
@@ -15,15 +19,16 @@
 
     },
     setup() {
-      let order = ref(null);
+      let orders = ref(null);
       onMounted(async () => {
-          const orders = await axios.get('http://localhost:3012/orders');
-          order.value = orders.data;
+        const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ accountId);
+        console.log(response.data)
+        orders.value = response.data;
   
         
       });
       return{
-        
+        orders
   
       }
     }

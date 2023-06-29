@@ -37,7 +37,7 @@ const orderSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   number: { type: String, required: true },
   payment: { type: String, enum: ['paid','unpaid'], required: true },
-  status: { type: String, enum: ['ordering', 'accepted_order', 'accepted_delivery', 'delivered', 'refused_order', 'refused_delivery'], required: true },
+  status: { type: String, enum: ['ordering', 'accepted_order', 'accepted_delivery', 'delivering','delivered', 'refused_order', 'refused_delivery'], required: true },
   date: {
     start: { type: Date, required: true },
     end: { type: Date, required: false },

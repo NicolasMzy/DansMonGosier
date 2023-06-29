@@ -65,7 +65,27 @@
             <button v-if="menu.items" @click="deleteItemFromMenu(item)">Delete Item from menu</button>
           </div>
           <button @click="deleteMenu(menu._id)">Delete Menu</button>
-          <button @click="showEditMenu = true">Edit Menu</button>
+          <button @click="showEditMenu = menu._id">Edit Menu</button>
+          <!-- Card -->
+        <div class="card" v-if="showEditMenu === menu._id">
+          <div class="card-body">
+            <h5 class="card-title">Add Menu</h5>
+            <form @submit.prevent="editMenu(menu)">
+              <div class="mb-3">
+                <label class="form-label">Label</label>
+                <input type="text" class="form-control" v-model="menuToEdit.label" > 
+                <label class="form-description">Description</label>
+                <input type="text" class="form-control" v-model="menuToEdit.description"><br>
+                <label class="form-photo">Photo</label>
+                <input type="text" class="form-control" v-model="menuToEdit.photo" ><br>
+                <label class="form-price">Price</label>
+                <input type="text" class="form-control" v-model="menuToEdit.price" ><br>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+        </div> 
       </div>
       <div class="card" v-if="showAddItem">
       <div class="card-body">
@@ -119,8 +139,6 @@
             </form>
           </div>
         </div>
-        </div> 
-    
       </div>
       
   </template>
@@ -189,9 +207,30 @@
           items: []
         });
         
-        const editMenu = async (menuId: string) => {
-          // Add the menu with `newMenu.value` and close the form
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menuId, menuToEdit.value);
+        const editMenu = async (menu) => {
+          
+          if(menuToEdit.value.label == ''){
+            console.log('c vide')
+            menuToEdit.value.label = menu.label
+          }
+          if(menuToEdit.value.photo == ''){
+            console.log('c vide')
+            menuToEdit.value.photo = menu.photo
+          }
+          if(menuToEdit.value.description == ''){
+            console.log('c vide')
+            menuToEdit.value.description = menu.description
+          }
+          if(menuToEdit.value.price == 0){
+            console.log('c vide')
+            menuToEdit.value.price = menu.price
+          }
+          if(menuToEdit.value.items.length == 0){
+            console.log('c vide')
+            menuToEdit.value.items = menu.items
+          }
+
+          await axios.put('http://localhost:3013/restaurants/'+ credId +'/menus/'+ menu._id, menuToEdit.value);
           menuToEdit.value = {
               label: '',
               description: '',
@@ -202,9 +241,33 @@
           showAddMenu.value = false;  // hide form
           location.reload();
         };
-        const editItem = async (itemId) => {
+        const editItem = async (item) => {
+          if(itemToEdit.value.label == ''){
+            console.log('c vide')
+            itemToEdit.value.label = item.label
+          }
+          if(itemToEdit.value.photo == ''){
+            console.log('c vide')
+            itemToEdit.value.photo = item.photo
+          }
+          if(itemToEdit.value.description == ''){
+            console.log('c vide')
+            itemToEdit.value.description = item.description
+          }
+          if(itemToEdit.value.price == 0){
+            console.log('c vide')
+            itemToEdit.value.price = item.price
+          }
+          if(itemToEdit.value.quantity == 0){
+            console.log('c vide')
+            itemToEdit.value.quantity = item.quantity
+          }
+          if(itemToEdit.value.type == ''){
+            console.log('c vide')
+            itemToEdit.value.type = item.type
+          }
           // Add the menu with `newMenu.value` and close the form
-          await axios.put('http://localhost:3013/restaurants/'+ credId +'/items/'+ itemId._id, itemToEdit.value);
+          await axios.put('http://localhost:3013/restaurants/'+ credId +'/items/'+ item._id, itemToEdit.value);
           itemToEdit.value = { label: '',
             description: '',
             photo: '',

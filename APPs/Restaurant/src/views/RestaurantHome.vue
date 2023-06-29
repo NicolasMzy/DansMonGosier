@@ -31,19 +31,11 @@ export default {
   let ordersAccepted = ref(null);
   const route = useRoute();
   const editOrderAccept = ref({
-    id_user: '',
-    id_restaurant: '',
-    price: '',
-    number: '',
     payment: 'paid',
-    status: 'accepted_order'
+    status: 'accepted_order',
   });
 
   const editOrderRefuse = ref({
-    id_user: '',
-    id_restaurant: '',
-    price: '',
-    number: '',
     payment: 'paid',
     status: 'refused_order'
   });
@@ -53,7 +45,9 @@ export default {
     let accountId = localStorage.getItem('accountId');
     console.log(accountId)
       try {
+        
         const response = await axios.get('http://localhost:3012/orders/status/ordering/restaurant/'+ accountId);
+        console.log(response.data)
         orders.value = response.data;
 
         const responseAccepted = await axios.get('http://localhost:3012/orders/status/accepted_order/restaurant/'+ accountId);
@@ -64,8 +58,17 @@ export default {
   });
 
   const accept = async (orderId: string) => {
-    const response = await axios.put('http://localhost:3012/orders/'+ orderId, editOrderAccept)
-    location.reload();
+    console.log(orderId)
+    console.log(editOrderAccept.value)
+    const url = 'http://localhost:3012/orders/'+ orderId;
+
+    const response = await axios.put(url, editOrderAccept.value, {
+        headers: {
+          'Access-Control-Allow-Origin ': '*'
+        }
+      })
+    console.log(response.data)
+    // location.reload();
   }
   const refuse = async (orderId: string) => {
     const response = await axios.put('http://localhost:3012/orders/'+ orderId, editOrderRefuse)
