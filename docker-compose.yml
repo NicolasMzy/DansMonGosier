@@ -93,6 +93,8 @@ services:
       - dmg-net
     expose:
       - ${MICROSERVICE_ACCOUNT_PORT}
+    ports:
+      - ${MICROSERVICE_ACCOUNT_PORT}:${MICROSERVICE_ACCOUNT_PORT}
   
   # Sponsor microservice
   sponsor:

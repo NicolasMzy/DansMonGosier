@@ -56,7 +56,8 @@ export default defineComponent({
     };
   },
   async created() {
-    const response = await axios.get('https://your-api.com/profile');
+    let accountId = localStorage.getItem('accountId');
+    const response = await axios.get('https://localhost:3002/account/' + accountId);
     this.profile = response.data;
   },
   methods: {
