@@ -85,7 +85,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [ordering, accepted_order, accepted_delivery, delivered, refused_order, refused_delivery]
+            enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
       responses:
         '200':
           description: Orders found successfully
@@ -126,7 +126,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [ordering, accepted_order, accepted_delivery, delivered, refused_order, refused_delivery]
+            enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
         - in: path
           name: restaurantId
           required: true
@@ -184,7 +184,7 @@ components:
           type: string
         status:
           type: string
-          enum: [ordering, accepted_order, accepted_delivery, delivered, refused_order, refused_delivery]
+          enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
         food:
           type: array
           items:
