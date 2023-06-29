@@ -12,6 +12,9 @@ router.delete('/order/:orderId', orderController.deleteOrder);
 router.get('/order/status/:status/', orderController.getAllOrdersByStatus);
 router.get('/order/delivered/user/:userId', orderController.getDeliveredOrdersByUser);
 router.get('/order/status/:status/restaurant/:restaurantId', orderController.getOrdersByStatusAndRestaurant);
+router.get('/ordersAll/', orderController.getAllOrders);
+router.get('/orderExclude/', orderController.getOrdersExcludeStatuses);
+
 
 
 module.exports = router;
