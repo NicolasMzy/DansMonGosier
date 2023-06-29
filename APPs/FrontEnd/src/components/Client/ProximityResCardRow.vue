@@ -23,14 +23,7 @@
   //IMPORT
   import {computed} from 'vue'
   import type {PropType} from 'vue'
-  
-  interface Restaurant {
-    image: string;
-    restaurantName: string;
-    note: string;
-    drive_time: string;
-    //price: string;
-  }
+  import type {Restaurant} from '../../types/Restaurant'
   
   export default {
     name: "ProximityResCard",

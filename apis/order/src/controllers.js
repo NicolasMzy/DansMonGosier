@@ -40,6 +40,7 @@ exports.getOrder = async (req, res) => {
       return res.status(404).json({ message: 'Order not found' });
     }
 
+    console.log(order)
     res.status(200).json(order);
   } catch (error) {
     console.error('Error while retrieving the order:', error);

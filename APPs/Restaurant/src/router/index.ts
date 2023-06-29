@@ -7,12 +7,38 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      name: 'auth',
+      component: () => import('../views/AuthenticateView.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/RegisterView.vue'),
+    },
+    {
+      path: '/menu',
+      name: 'menu',
+      component: () => import('../views/MenuView.vue'),
+    },
+    {
+      path: '/register/:id',
+      name: 'registerFinish',
+      component: () => import('../views/FinishRegisterView.vue'),
     },
     {
       path: '/home',
-      name: 'ClientHome',
-      component: () => import('../views/restaurant/RestaurantHome.vue'),
+      name: 'home',
+      component: () => import('../views/RestaurantHome.vue'),
+    },
+    {
+      path: '/stats',
+      name: 'stats',
+      component: () => import('../views/StatsView.vue'),
+    },
+    {
+      path: '/orders',
+      name: 'orders',
+      component: () => import('../views/OrderHIstoryView.vue'),
     },
     {
       path: '/settings',
