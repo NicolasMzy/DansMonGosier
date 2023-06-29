@@ -3,9 +3,16 @@ const router = express.Router();
 
 const controller = require('./controller');
 
+// Credential
 router.get('/account', controller.getAllAccounts);
 router.get('/account/:id', controller.getUserById);
 router.put('/account/:id', controller.updateAccount);
 router.delete('/account/:id', controller.deleteAccount);
+
+// Identity
+router.get('/identity/:id_credentials', controller.getIdentityByCredentialsId);
+router.post('/identity', controller.createIdentity);
+router.put('/identity/:id_credentials', controller.updateIdentity);
+router.delete('/identity/:id_credentials', controller.deleteIdentity);
 
 module.exports = router;

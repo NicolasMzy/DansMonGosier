@@ -48,7 +48,7 @@ services:
   # Auth microservice
   auth:
     container_name: ${MICROSERVICE_AUTH_HOST}
-    build: ./apis/auth
+    build: ./APIs/auth
     image: auth:1.0
     depends_on:
       - postgres
@@ -72,7 +72,7 @@ services:
   # Account microservice
   account:
     container_name: ${MICROSERVICE_ACCOUNT_HOST}
-    build: ./apis/account
+    build: ./APIs/account
     image: account:1.0
     depends_on:
       - postgres
@@ -93,11 +93,13 @@ services:
       - dmg-net
     expose:
       - ${MICROSERVICE_ACCOUNT_PORT}
+    ports:
+      - ${MICROSERVICE_ACCOUNT_PORT}:${MICROSERVICE_ACCOUNT_PORT}
   
   # Sponsor microservice
   sponsor:
     container_name: ${MICROSERVICE_SPONSOR_HOST}
-    build: ./apis/sponsor
+    build: ./APIs/sponsor
     image: sponsor:1.0
     depends_on:
       - postgres
@@ -224,8 +226,8 @@ services:
       - 5432
     ports:
       - 5432:5432
-    # volumes:
-    #   - ${POSTGRE_DATA}:/bitnami/postgresql
+    volumes:
+      - ${POSTGRE_DATA}:/bitnami/postgresql
     
 
 

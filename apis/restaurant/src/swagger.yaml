@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
-  title: DansMonGosier
-  description: API for managing restaurants
   version: 1.0.0
+  title: Restaurants micro-service API Doc
+  description: API for managing restaurants
 servers:
-  - url: http://localhost:3013
+  - url: http://localhost:3006
 basePath: /
 schemes:
   - http

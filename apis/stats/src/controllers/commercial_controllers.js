@@ -4,7 +4,11 @@ const CommercialStatsModel = require('../models/commercial_schema');
 
 exports.postCommercialMonthlyAllSalesStats = async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:3012/orders/status/delivered`);
+    const response = await axios.get('http://order:3005/order/status/delivered',{
+      headers: {
+        'Access-Control-Allow-Origin ': '*'
+      }
+    });
     const orders = response.data;
 
     let monthlyOrders = {};

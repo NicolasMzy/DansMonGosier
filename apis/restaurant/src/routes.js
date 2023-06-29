@@ -31,8 +31,8 @@ router.get('/restaurant/:restaurantId/menus', menuController.getMenus);
 router.get('/restaurant/:restaurantId/menus/:menuId', menuController.getMenu);
 router.put('/restaurant/:restaurantId/menus/:menuId', menuController.updateMenu);
 router.delete('/restaurant/:restaurantId/menus/:menuId', menuController.deleteMenu);
-// Add an item to a specific menu for a specific restaurant
+// Items management into Menu
 router.post('/restaurant/:restaurantId/menus/:menuId/items', menuController.addItemToMenu);
-
+router.put('/restaurant/:restaurantId/menus/:menuId/menuItem/:menuItemId', menuController.updateMenuItem);
 
 module.exports = router;

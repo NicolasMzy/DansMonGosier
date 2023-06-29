@@ -29,6 +29,7 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 import { defineComponent } from 'vue';
 
 interface Profile {
@@ -42,9 +43,9 @@ export default defineComponent({
   data() {
     return {
       profile: {
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        phone: '123-456-7890',
+        name: '',
+        email: '',
+        phone: '',
       } as Profile,
       editedProfile: {
         name: '',
@@ -54,22 +55,30 @@ export default defineComponent({
       isEditing: false,
     };
   },
+  async created() {
+    const response = await axios.get('https://your-api.com/profile');
+    this.profile = response.data;
+  },
   methods: {
     startEditing() {
-      // Copy the original profile to the edited profile
       this.editedProfile = { ...this.profile };
       this.isEditing = true;
     },
     cancelEditing() {
       this.isEditing = false;
     },
-    applyChanges() {
-      // Update the profile with the edited profile data
-      this.profile = { ...this.editedProfile };
-      this.isEditing = false;
+    async applyChanges() {
+      try {
+        const response = await axios.put('https://your-api.com/profile', this.editedProfile);
+        this.profile = response.data;  // assuming that the response includes the updated profile
+        this.isEditing = false;
+      } catch (error) {
+        console.error("Error updating profile", error);
+      }
     },
   },
 });
+
 </script>
 
 <style lang="scss" scoped>

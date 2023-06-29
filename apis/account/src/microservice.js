@@ -42,3 +42,50 @@ exports.delete = async (accountId) => {
 
   return account;
 };
+
+exports.getIdentityByCredentialsId = async (idCredentials) => {
+  const identity = await models.Identity.findAll({
+    where: {
+      id_credentials: idCredentials,
+    },
+  });
+
+  return identity;
+};
+
+exports.createIdentity = async ({firstName, lastName, idCredentials}) => {
+  const identity = await models.Identity.create({
+    first_name: firstName,
+    last_name: lastName,
+    id_credentials: idCredentials,
+  });
+
+  return identity;
+};
+
+exports.updateIdentity = async (idCredentials, {firstName, lastName}) => {
+  const identity = await models.Identity.update(
+      {
+        first_name: firstName,
+        last_name: lastName,
+      },
+      {
+        where: {
+          id_credentials: idCredentials,
+        },
+      },
+  );
+
+  return identity;
+};
+
+exports.deleteIdentity = async (idCredentials) => {
+  const identity = await models.Identity.destroy({
+    where: {
+      id_credentials: idCredentials,
+    },
+  });
+
+  return identity;
+};
+

@@ -4,9 +4,9 @@ info:
   description: API for managing orders
   version: 1.0.0
 servers:
-  - url: http://localhost:3012
+  - url: http://localhost:3005
 paths:
-  /orders:
+  /order:
     post:
       summary: Create a new order
       requestBody:
@@ -22,6 +22,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+  /order/{orderId}:
     get:
       summary: Get an order by ID
       parameters:
@@ -75,107 +76,137 @@ paths:
           description: Order deleted successfully
         '404':
           description: Order not found
+  /order/status/{status}:
+    get:
+      summary: Get all orders by status
+      parameters:
+        - in: path
+          name: status
+          required: true
+          schema:
+            type: string
+            enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
+      responses:
+        '200':
+          description: Orders found successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '404':
+          description: No orders found
+  /order/delivered/user/{userId}:
+    get:
+      summary: Get delivered orders by user
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Orders found successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '404':
+          description: No orders found
+  /order/status/{status}/restaurant/{restaurantId}:
+    get:
+      summary: Get orders by status and restaurant
+      parameters:
+        - in: path
+          name: status
+          required: true
+          schema:
+            type: string
+            enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
+        - in: path
+          name: restaurantId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Orders found successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '404':
+          description: No orders found
+  /ordersAll:
+    get:
+      summary: Get all orders
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '404':
+          description: No orders found
+  /orderExclude:
+    get:
+      summary: Get all orders excluding certain statuses
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '404':
+          description: No orders found
 components:
   schemas:
     Order:
       type: object
       properties:
-        _id:
+        id:
           type: string
-        id_user:
+        userId:
           type: string
-        id_restaurant:
+        restaurantId:
           type: string
-        price:
-          type: number
-        number:
-          type: string
-        payment:
-          type: string
-          enum: [paid, unpaid]
         status:
           type: string
-          enum: [ordering, accepted_order, accepted_delivery, delivered, refused_order, refused_delivery]
-        date:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date-time
-            end:
-              type: string
-              format: date-time
-          required:
-            - start
-        address:
-          type: string
-        deliverer:
-          type: string
-        menus:
+          enum: [ordering, accepted_order, accepted_delivery, delivering, delivered, refused_order, refused_delivery]
+        food:
           type: array
           items:
             type: object
             properties:
-              _id:
+              foodId:
                 type: string
               quantity:
-                type: number
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              _id:
-                type: string
-              quantity:
-                type: number
+                type: integer
     OrderInput:
       type: object
       properties:
-        id_user:
+        userId:
           type: string
-        id_restaurant:
+        restaurantId:
           type: string
-        price:
-          type: number
-        number:
-          type: string
-        payment:
-          type: string
-          enum: [paid, unpaid]
-        status:
-          type: string
-          enum: [ordering, accepted_order, accepted_delivery, delivered, refused_order, refused_delivery]
-        date:
-          type: object
-          properties:
-            start:
-              type: string
-              format: date-time
-            end:
-              type: string
-              format: date-time
-          required:
-            - start
-        address:
-          type: string
-        deliverer:
-          type: string
-        menus:
+        food:
           type: array
           items:
             type: object
             properties:
-              _id:
+              foodId:
                 type: string
               quantity:
-                type: number
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              _id:
-                type: string
-              quantity:
-                type: number
+                type: integer

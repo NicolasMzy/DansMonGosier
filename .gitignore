@@ -1,7 +1,49 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# Dependencies
+# Node modules
 **/node_modules
 
 # Typescript build directories
 **/build
+
+# Avalonia build artifacts
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Visual Studio Code files
+.vscode/
+
+# NuGet packages
+packages/
+
+# Avalonia generated files
+Application.g.cs
+MainWindow.g.cs
+
+# Build outputs
+*.exe
+*.dll
+*.pdb
+*.dll.config
+*.exe.config
+*.exe.manifest
+*.xap
+*.apk
+*.ipa
+*.appx
+
+# macOS specific
+.DS_Store
+
+# PostgreSQL data
+/postgres/data/**
