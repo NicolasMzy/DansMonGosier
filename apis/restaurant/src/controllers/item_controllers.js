@@ -1,4 +1,6 @@
 const Restaurant = require('../models/schema');
+// const dotenv = require('dotenv');
+// dotenv.config();
 
  // Create a new item for a specific restaurant
 exports.createItem = async (req, res) => {
