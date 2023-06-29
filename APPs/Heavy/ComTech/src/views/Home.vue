@@ -19,15 +19,8 @@
     </v-tabs>
 
     <v-window v-model="tab">
-      <v-window-item
-        v-for="i in 2"
-        :key="i"
-        :value="'tab-' + i"
-      >
-        <v-table
-            fixed-header
-            height="100%"
-        >
+      <v-window-item :value="'tab-1'">
+        <v-table fixed-header height="100%">
             <thead>
             <tr>
                 <th class="text-left">
@@ -62,55 +55,59 @@
             </tbody>
         </v-table>
       </v-window-item>
+
+      <v-window-item :value="'tab-2'">
+        <iframe :src="source"></iframe>
+      </v-window-item>
+
+      <v-dialog
+        :model-value="overlay"
+        class="align-center justify-center"
+        >
+        <v-card>
+            <div v-if="selectedAccount">
+                <header>
+                    <h2>Account Details</h2>
+                    <v-btn @click="this.overlay = false">
+                        <v-icon>mdi-close-box</v-icon>
+                    </v-btn>
+                </header>
+                <v-form validate-on="submit lazy" @submit.prevent="submit">
+                    <v-container>
+                        <v-col cols="12" md="4">
+                        <v-text-field
+                            v-model="email"
+                            label="E-mail"
+                        ></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12" md="4">
+                        <v-text-field
+                            v-model="phoneNumber"
+                            :counter="10"
+                            label="Phone number"
+                        ></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12" md="4">
+                        <v-text-field
+                            v-model="password"
+                            label="Password"
+                        ></v-text-field>
+                        </v-col>
+
+                        <v-btn
+                            :loading="loading"
+                            type="submit"
+                            block
+                            text="Submit"
+                        ></v-btn>
+                    </v-container>
+                </v-form>
+            </div>
+          </v-card>
+        </v-dialog>
     </v-window>
-
-    <v-dialog
-      :model-value="overlay"
-      class="align-center justify-center"
-    >
-      <v-card>
-        <div v-if="selectedAccount">
-            <header>
-                <h2>Account Details</h2>
-                <v-btn @click="this.overlay = false">
-                    <v-icon>mdi-close-box</v-icon>
-                </v-btn>
-            </header>
-            <v-form validate-on="submit lazy" @submit.prevent="submit">
-                <v-container>
-                    <v-col cols="12" md="4">
-                    <v-text-field
-                        v-model="email"
-                        label="E-mail"
-                    ></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12" md="4">
-                    <v-text-field
-                        v-model="phoneNumber"
-                        :counter="10"
-                        label="Phone number"
-                    ></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12" md="4">
-                    <v-text-field
-                        v-model="password"
-                        label="Password"
-                    ></v-text-field>
-                    </v-col>
-
-                    <v-btn
-                        :loading="loading"
-                        type="submit"
-                        block
-                        text="Submit"
-                    ></v-btn>
-                </v-container>
-            </v-form>
-        </div>
-      </v-card>
-    </v-dialog>
 </template>
 
 
@@ -128,6 +125,7 @@
         email: '',
         phoneNumber: '',
         password: '',
+        source: 'http://localhost:8080/'
       }
     },
     created() {
@@ -175,5 +173,12 @@
         display: flex;
         flex-direction: row;
         gap: 10px;
+    }
+    iframe {
+        height: 100vw;
+        width: 100%;
+        border: none;
+        box-sizing: border-box;
+        overflow-y: visible;
     }
 </style>
