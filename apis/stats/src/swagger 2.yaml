@@ -1,0 +1,14 @@
+swagger: '2.0'
+info:
+  title: DansMonGosier
+  description: API for managing restaurants
+  version: 1.0.0
+servers:
+  - url: http://localhost:3015
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json

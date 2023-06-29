@@ -62,7 +62,7 @@
 </template>
   
 <script lang="ts">
-import { onBeforeMount, ref, computed } from 'vue'
+import { onBeforeMount, ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import type { Ref } from 'vue'
 
@@ -85,7 +85,7 @@ export default {
   },
   setup(){
     const route = useRoute()
-    const restaurant = ref(null)
+    const restaurant = ref()
     const address = ref(null)
     const plusPopup = ref(false);
     const minusPopup = ref(false);
@@ -108,7 +108,7 @@ export default {
     };
 
     
-    onBeforeMount(async () => {
+    async function fetchData(){
   
       const id = route.params.id;
       const resIdResponse = await axios.get('http://localhost:3006/restaurant/IDcredentials/' + id,{
@@ -125,6 +125,10 @@ export default {
       });
       address.value = resIdResponse2.data;
       
+    }
+
+    onBeforeMount( async () =>{
+      fetchData();
     })
 
     return {
