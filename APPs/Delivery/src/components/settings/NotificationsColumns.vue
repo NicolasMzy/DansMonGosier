@@ -22,7 +22,7 @@
     setup() {
       const notifications: Notification[] = [
         {
-          name: 'Email Notifications',
+          name: 'SMS Notifications',
           info: 'For daily update you will get',
           img: '/src/assets/settings/users-bold.png',
         },

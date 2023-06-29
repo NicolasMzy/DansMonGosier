@@ -5,29 +5,14 @@
             <p class="tposition">Ta Position</p>
             <p class="adresse">30 rue des bananiers</p>
         </div>
-        <router-link to="/settings">
-            <div class="settingsbox" @click="goToSettings"></div>
-        </router-link>
+        <div class="settingsbox"></div>
     
     </div>
 </template>
 
-<script lang="ts">
-import { useRouter } from 'vue-router'
-
+<script>
 export default {
     name: "HeaderDMG",
-    setup() {
-        const router = useRouter()
-
-        const goToSettings = () => {
-            router.push({ name: 'SettingsVue' }) // suppose que le nom de la route pour SettingsVue.vue est 'SettingsVue'
-        }
-
-        return {
-            goToSettings
-        }
-    }
 }
 </script>
 
@@ -55,7 +40,7 @@ export default {
             
             display: flex;
             justify-content: center;
-            background-image: url('../../assets/settings.png');
+            background-image: url('../assets/settings.png');
             background-size: cover;
             background-position: center;
             height: 30px;
