@@ -5,11 +5,8 @@ const RestaurantSalesStatsModel = require('../models/restaurant_schema');
 exports.postRestaurantMonthlySalesStats = async (req, res) => {
     try {
       const restaurantId = req.params.restaurantId;
-      const response = await axios.get(`http://order:3005/order/status/delivered/restaurant/${restaurantId}`,{
-        headers: {
-          'Access-Control-Allow-Origin ': '*'
-        }
-      });
+      const response = await axios.get(`http://localhost:3012/orders/status/delivered/restaurant/${restaurantId}`);
+  
       const orders = response.data;
   
       let monthlySales = {};

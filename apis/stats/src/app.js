@@ -16,16 +16,16 @@ const YAML = require('yamljs');
 const routes = require('./routes');
 
 // Load Swagger YAML document
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load('./src/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connexion MongoDB Collection
 const connectToMongoDB = require('./mongodb_connection');
-connectToMongoDB()
-
+connectToMongoDB(process.env.COLLECTION_RESTAURANT)
+connectToMongoDB(process.env.COLLECTION_COMMERCIAL)
 
 // Server Express set PORT 
-app.set('port', process.env.MICROSERVICE_STATS_PORT);
+app.set('port', process.env.PORT);
 const server = http.createServer(app);
 
 // Middleware for handling JSON requests
@@ -73,6 +73,6 @@ mongoose.connection.on('disconnected', function() {
   console.log("Database is disconnected");
 });
 
-server.listen(process.env.MICROSERVICE_STATS_PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${app.get('port')}`);
 });
