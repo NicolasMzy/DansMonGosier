@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Order List</h1>
+    <h1>Accepted Order List</h1>
       <div v-for="(item, i) in toShow" :key="i">
         {{ item.restaurant.name }} <br>
         {{ item.order.id_user }} <br>
@@ -89,16 +89,41 @@ export default {
   });
   
   let order: any;
-  onMounted(async () => {
-    // AnotherComponent.vue
-    
-    console.log(accountId)
-      try {
+
+  async function showNotification() {
+  try {
+    // Request permission to display notifications
+    const permission = await Notification.requestPermission();
+  
+    if (permission === 'granted') {
+      // Create a new notification
+      const notification = new Notification('Nouvelle commande à livrer', {
+        body: 'Bien joué, vous allez livrer un nouvelle commande',
+        icon: 'path/to/notification-icon.png'
+      });
+  
+      // Handle click event on the notification
+      notification.onclick = function () {
+        console.log('Notification clicked');
+        // Perform action when the notification is clicked
+      };
+  
+      // Handle close event on the notification
+      notification.onclose = function () {
+        console.log('Notification closed');
+        // Perform action when the notification is closed
+      };
+    }
+  } catch (error) {
+    console.error('Error displaying notification:', error);
+  }
+}
+async function fetchData(){
         toShow.value.shift();
         const response = await axios.get('http://localhost:3005/order/status/delivering/');
-
         for(order of response.data){
-          console.log(order.id_restaurant);
+           if(order.deliverer == accountId){
+            showNotification()
           const response = await axios.get('http://localhost:3005/order/' + order._id);
           if(order.id_restaurant == ''){
             toShow.value.push({
@@ -138,12 +163,15 @@ export default {
             });
             toShow.value = toShow.value.slice(0);
           }
-          
+         }
         }
+
         console.log(toShow.value)
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
+
+}
+  onMounted(async () => {
+    fetchData();
+    let intervalId = setInterval(fetchData, 20000000);  
   });
 
 
@@ -158,10 +186,6 @@ export default {
         }
       })
     console.log(response.data)
-    // location.reload();
-  }
-  const refuse = async (orderId: string) => {
-    const response = await axios.put('http://localhost:3005/order/'+ orderId, editOrderRefuse)
     location.reload();
   }
 

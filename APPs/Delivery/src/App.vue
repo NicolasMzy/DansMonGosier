@@ -22,7 +22,6 @@ export default {
       navbarItems: [
         { path: '/home', logo: '/src/assets/navbar/home.png', name: ' ' },
         { path: '/orders', logo: '/src/assets/navbar/shopping-basket.png', name: ' ' },
-        { path: '/stats', logo: '/src/assets/navbar/setting.png', name: ' ' },
         { path: '/settings', logo: '/src/assets/navbar/setting.png', name: ' ' },
       ] as NavItem[],
     };

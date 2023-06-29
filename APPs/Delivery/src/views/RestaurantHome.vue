@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Order List</h1>
+    <h1>Available Order List</h1>
       <div v-for="(item, i) in toShow" :key="i">
         {{ item.restaurant.name }} <br>
         {{ item.order.id_user }} <br>
@@ -38,6 +38,8 @@
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { onMounted, ref } from 'vue'
+import router from '@/router';
+let route = useRoute();
 
 export default {
   setup(){
@@ -86,7 +88,7 @@ export default {
   }])
   const route = useRoute();
   const editOrderAccept = ref({
-    deleverer: accountId,
+    deliverer: accountId,
     status: 'delivering',
   });
 
@@ -95,18 +97,25 @@ export default {
   });
   
   let order: any;
-  onMounted(async () => {
-    // AnotherComponent.vue
+  const ordersTab = ref([]);
+  async function fetchData(){
     
-    console.log(accountId)
+console.log(accountId)
       try {
         toShow.value.shift();
         const response = await axios.get('http://localhost:3005/order/status/accepted_order/');
-
+        const addedOrders = response.data.filter((newOrder) => {
+              return !ordersTab.value.some((order) => order._id === newOrder.id);
+        });
+        ordersTab.value.push(...addedOrders);
+        addedOrders.forEach((order) => {
+          showNotification(order);
+        });
         for(order of response.data){
-          console.log(order.id_restaurant);
           const response = await axios.get('http://localhost:3005/order/' + order._id);
           if(order.id_restaurant == ''){
+
+            
             toShow.value.push({
               order: response.data,
               restaurant : {
@@ -150,8 +159,33 @@ export default {
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
-  });
+  }
 
+  
+
+
+  onMounted(async () => {
+    fetchData();
+    let intervalId = setInterval(fetchData, 20000000);
+  });
+  function showNotification(order) {
+      const notification = new Notification('New Order Received', {
+        body: `Order ID: ${order.id}`,
+        icon: 'path/to/notification-icon.png'
+      });
+
+      // Handle click event on the notification
+      notification.onclick = function () {
+        console.log('Notification clicked');
+        // Perform action when the notification is clicked
+      };
+
+      // Handle close event on the notification
+      notification.onclose = function () {
+        console.log('Notification closed');
+        // Perform action when the notification is closed
+      };
+    }
 
   const accept = async (orderId: string) => {
     console.log(orderId)

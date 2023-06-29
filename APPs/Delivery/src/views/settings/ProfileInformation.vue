@@ -3,19 +3,19 @@
     <h2 class="title">Profile Information</h2>
     <div class="info-section">
       <div class="info-row">
-        <span class="label">Name:</span>
-        <span v-if="!isEditing" class="value">{{ profile.name }}</span>
-        <input v-else class="value" v-model="editedProfile.name" />
-      </div>
-      <div class="info-row">
         <span class="label">Email:</span>
         <span v-if="!isEditing" class="value">{{ profile.email }}</span>
         <input v-else class="value" v-model="editedProfile.email" />
       </div>
       <div class="info-row">
         <span class="label">Phone:</span>
-        <span v-if="!isEditing" class="value">{{ profile.phone }}</span>
-        <input v-else class="value" v-model="editedProfile.phone" />
+        <span v-if="!isEditing" class="value">{{ profile.phone_nb }}</span>
+        <input v-else class="value" v-model="editedProfile.phone_nb" />
+      </div>
+      <div class="info-row">
+        <span class="label">Password:</span>
+        <span v-if="!isEditing" class="value">{{ profile.pwd }}</span>
+        <input v-else class="value" v-model="editedProfile.pwd" />
       </div>
       <div class="button-row">
         <button v-if="!isEditing" class="modify-button" @click="startEditing">Modify</button>
@@ -33,9 +33,9 @@ import axios from 'axios';
 import { defineComponent } from 'vue';
 
 interface Profile {
-  name: string;
   email: string;
-  phone: string;
+  phone_nb: string;
+  pwd: string;
 }
 
 export default defineComponent({
@@ -43,22 +43,23 @@ export default defineComponent({
   data() {
     return {
       profile: {
-        name: '',
         email: '',
-        phone: '',
+        phone_nb: '',
+        pwd: ''
       } as Profile,
       editedProfile: {
-        name: '',
         email: '',
-        phone: '',
+        phone_nb: '',
+        pwd: ''
       } as Profile,
       isEditing: false,
     };
   },
   async created() {
     let accountId = localStorage.getItem('accountId');
-    const response = await axios.get('https://localhost:3002/account/' + accountId);
-    this.profile = response.data;
+    const response = await axios.get('http://localhost:3002/account/' + accountId);
+    this.profile = response.data[0];
+    console.log(this.profile.email)
   },
   methods: {
     startEditing() {
@@ -70,9 +71,12 @@ export default defineComponent({
     },
     async applyChanges() {
       try {
-        const response = await axios.put('https://your-api.com/profile', this.editedProfile);
-        this.profile = response.data;  // assuming that the response includes the updated profile
+        let accountId = localStorage.getItem('accountId');
+        const response = await axios.put('http://localhost:3002/account/' + accountId, this.editedProfile);
+        this.profile = response.data;
+        console.log(this.profile)
         this.isEditing = false;
+        location.reload()
       } catch (error) {
         console.error("Error updating profile", error);
       }

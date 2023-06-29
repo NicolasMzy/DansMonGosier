@@ -31,9 +31,11 @@ const loginForm = async () => {
     console.log(response.data)
     console.log((response.data.account_id).toString());
     let accountId = (response.data.account_id).toString();
+    // let token = response.data
 
+    localStorage.setItem('token', response.data.authorization.toString());
     localStorage.setItem('accountId', response.data.account_id.toString());
-    router.push({ name: 'home', params: { accountId } });
+    router.push('/home');
   } catch (error) {
     console.log(error);
   }

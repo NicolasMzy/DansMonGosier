@@ -60,7 +60,7 @@ const registerForm = async () => {
     console.log(idCred)
     let id = (idCred.data.account_id).toString();
     localStorage.setItem('accountId', idCred.data.account_id.toString());
-    router.push({ name: 'registerFinish', params: { id } });
+    router.push('/home');
   } catch (error) {
     console.log(error);
     // Handle the error here
