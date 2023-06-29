@@ -1,0 +1,379 @@
+[0629/173012.657:VERBOSE1:pref_proxy_config_tracker_impl.cc(187)] 000006F00000D200: set chrome proxy config service to 000006F0000BCE00
+[0629/173012.673:VERBOSE1:webrtc_internals.cc(120)] Could not get the download directory.
+[0629/173012.673:VERBOSE1:media_stream_manager.cc(1065)] MSM::InitializeMaybeAsync([this=000006F000035B00])
+[0629/173012.673:VERBOSE1:media_stream_manager.cc(1065)] MDM::MediaDevicesManager()
+[0629/173012.673:VERBOSE1:media_stream_manager.cc(1065)] MSM::MediaStreamManager([this=000006F000035B00]))
+[0629/173012.694:VERBOSE1:first_party_sets_handler_impl.cc(432)] Empty path. Failed loading serialized First-Party Sets file.
+[0629/173012.694:VERBOSE1:component_installer.cc(285)] StartRegistration for Widevine Content Decryption Module
+[0629/173012.708:VERBOSE1:component_installer.cc(441)] FinishRegistration for Widevine Content Decryption Module
+[0629/173012.708:VERBOSE1:component_updater_service.cc(131)] CrxUpdateService starting up. First update attempt will take place in 60 seconds. Next update attempt will take place in 18000 seconds. 
+[0629/173012.708:VERBOSE1:component_installer.cc(478)] Component ready, version 4.10.2557.0 in C:\Users\cormi\AppData\Local\CEF\User Data\WidevineCdm\4.10.2557.0
+[0629/173012.710:VERBOSE1:widevine_cdm_component_installer.cc(122)] Register Widevine CDM with Chrome
+[0629/173013.438:VERBOSE1:pref_proxy_config_tracker_impl.cc(187)] 000006F000012600: set chrome proxy config service to 000006F0002A1C00
+[0629/173013.446:VERBOSE1:simple_index_file.cc(600)] Simple Cache Index is being restored from disk.
+[0629/173013.446:VERBOSE1:simple_index_file.cc(600)] Simple Cache Index is being restored from disk.
+[0629/173014.341:INFO:cpu_info.cc(53)] Available number of cores: 12
+[0629/173014.344:INFO:cpu_info.cc(53)] Available number of cores: 12
+[0629/173014.405:VERBOSE1:configured_proxy_resolution_service.cc(1095)] Failed configuring with PAC script, falling-back to manual proxy servers.
+[0629/173014.405:VERBOSE1:configured_proxy_resolution_service.cc(1095)] Failed configuring with PAC script, falling-back to manual proxy servers.
+[0629/173014.412:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/
+[0629/173014.553:VERBOSE1:frame_impl.cc(503)] frame 21474836481 [5,1] connection request (reason=RENDER_FRAME_CREATED)
+[0629/173014.553:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=5, frame_id=1]
+[0629/173014.553:VERBOSE1:frame_host_impl.cc(626)] frame 21474836481 [5,1] (main) connected
+[0629/173014.747:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=5, frame_id=1]
+[0629/173014.776:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  000004530020CDF0
+  URL:                    
+  context_type:           WEB_PAGE
+  effective extension id: (none)
+  effective context type: WEB_PAGE
+[0629/173014.778:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  0000000000000000
+  URL:                    
+  context_type:           UNSPECIFIED
+  effective extension id: (none)
+  effective context type: UNSPECIFIED
+[0629/173014.780:VERBOSE1:dispatcher.cc(452)] Num tracked contexts: 1
+[0629/173014.785:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@vite/client
+[0629/173014.796:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/main.ts
+[0629/173014.804:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/App.vue
+[0629/173014.804:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue.js?v=6be144fa
+[0629/173014.805:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/plugins/index.ts
+[0629/173014.808:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/vite/dist/client/env.mjs
+[0629/173014.816:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vue:export-helper
+[0629/173014.819:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-G4DFXOZZ.js?v=6be144fa
+[0629/173014.819:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-RSJERJUL.js?v=6be144fa
+[0629/173014.819:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/plugins/webfontloader.ts
+[0629/173014.820:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/plugins/vuetify.ts
+[0629/173014.820:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/store/index.ts
+[0629/173014.821:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/router/index.ts
+[0629/173014.829:INFO:CONSOLE(206)] "[vite] connecting...", source: http://localhost:3000/@vite/client (206)
+[0629/173014.834:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: ws://localhost:3000/
+[0629/173014.846:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/@mdi/font/css/materialdesignicons.css
+[0629/173014.847:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:styles/main.sass
+[0629/173014.847:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify.js?v=6be144fa
+[0629/173014.851:INFO:CONSOLE(286)] "[vite] connected.", source: http://localhost:3000/@vite/client (286)
+[0629/173014.853:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/pinia.js?v=6be144fa
+[0629/173014.855:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue-router.js?v=6be144fa
+[0629/173014.881:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-73W2Z5JN.js?v=6be144fa
+[0629/173014.882:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B23UNQM6.js?v=6be144fa
+[0629/173014.883:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JAR235QT.js?v=6be144fa
+[0629/173014.884:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XLNWJLHU.js?v=6be144fa
+[0629/173014.885:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-MIGEHMLQ.js?v=6be144fa
+[0629/173014.887:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XNM2T45B.js?v=6be144fa
+[0629/173014.888:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-TJV7V2ME.js?v=6be144fa
+[0629/173014.888:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-57AYUIYM.js?v=6be144fa
+[0629/173014.889:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-GVN37XH4.js?v=6be144fa
+[0629/173014.898:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5OBJFL24.js?v=6be144fa
+[0629/173015.014:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/webfontloader.js?v=6be144fa
+[0629/173015.036:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/layouts/default/Default.vue
+[0629/173015.036:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/views/Home.vue
+[0629/173015.067:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap
+[0629/173015.071:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/layouts/default/AppBar.vue
+[0629/173015.074:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/layouts/default/View.vue
+[0629/173015.075:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VApp_index__mjs.js?v=6be144fa
+[0629/173015.077:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/axios.js?v=6be144fa
+[0629/173015.077:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/src/views/Home.vue?vue&type=style&index=0&lang.css
+[0629/173015.083:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VBtn_index__mjs.js?v=6be144fa
+[0629/173015.083:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VCard_index__mjs.js?v=6be144fa
+[0629/173015.084:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VDialog_index__mjs.js?v=6be144fa
+[0629/173015.085:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VForm_index__mjs.js?v=6be144fa
+[0629/173015.086:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VGrid_index__mjs.js?v=6be144fa
+[0629/173015.086:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VIcon_index__mjs.js?v=6be144fa
+[0629/173015.087:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTable_index__mjs.js?v=6be144fa
+[0629/173015.089:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTabs_index__mjs.js?v=6be144fa
+[0629/173015.090:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTextField_index__mjs.js?v=6be144fa
+[0629/173015.091:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VWindow_index__mjs.js?v=6be144fa
+[0629/173015.111:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VAppBar_index__mjs.js?v=6be144fa
+[0629/173015.118:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VApp/VApp.sass
+[0629/173015.126:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VMain_index__mjs.js?v=6be144fa
+[0629/173015.134:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-2PSEIA2V.js?v=6be144fa
+[0629/173015.135:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KRDJF64Z.js?v=6be144fa
+[0629/173015.141:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B4BCJS43.js?v=6be144fa
+[0629/173015.142:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5IF2CBVW.js?v=6be144fa
+[0629/173015.144:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KKBOOL6I.js?v=6be144fa
+[0629/173015.145:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-IUFJQ2QY.js?v=6be144fa
+[0629/173015.146:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-7ZBCTLNY.js?v=6be144fa
+[0629/173015.149:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-ZMLSPQW4.js?v=6be144fa
+[0629/173015.150:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XKCB5BF3.js?v=6be144fa
+[0629/173015.160:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-SAH2QHZX.js?v=6be144fa
+[0629/173015.161:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-UKOGH2Y2.js?v=6be144fa
+[0629/173015.161:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Q3HIXIPV.js?v=6be144fa
+[0629/173015.162:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VCard/VCard.sass
+[0629/173015.162:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VAvatar/VAvatar.sass
+[0629/173015.163:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Y32EN7IH.js?v=6be144fa
+[0629/173015.163:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-U46KYG2I.js?v=6be144fa
+[0629/173015.164:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VGrid/VGrid.sass
+[0629/173015.165:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JPZW2G6P.js?v=6be144fa
+[0629/173015.166:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-26LWYBHM.js?v=6be144fa
+[0629/173015.166:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VDialog/VDialog.sass
+[0629/173015.167:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VOverlay/VOverlay.sass
+[0629/173015.184:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VTable/VTable.sass
+[0629/173015.185:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VTabs/VTabs.sass
+[0629/173015.186:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VTabs/VTab.sass
+[0629/173015.187:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VSlideGroup/VSlideGroup.sass
+[0629/173015.188:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-LGEPIJ32.js?v=6be144fa
+[0629/173015.188:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VWindow/VWindow.sass
+[0629/173015.189:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VAppBar/VAppBar.sass
+[0629/173015.189:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VToolbar/VToolbar.sass
+[0629/173015.190:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VTextField/VTextField.sass
+[0629/173015.190:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VCounter/VCounter.sass
+[0629/173015.190:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VField/VField.sass
+[0629/173015.191:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VLabel/VLabel.sass
+[0629/173015.191:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VInput/VInput.sass
+[0629/173015.192:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VMessages/VMessages.sass
+[0629/173015.206:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VMain/VMain.sass
+[0629/173015.206:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VBtn/VBtn.sass
+[0629/173015.207:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VBtnToggle/VBtnToggle.sass
+[0629/173015.207:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VBtnGroup/VBtnGroup.sass
+[0629/173015.207:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VProgressCircular/VProgressCircular.sass
+[0629/173015.218:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:directives/ripple/VRipple.sass
+[0629/173015.221:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VProgressLinear/VProgressLinear.sass
+[0629/173015.223:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VIcon/VIcon.sass
+[0629/173015.229:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VImg/VImg.sass
+[0629/173015.230:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/@id/__x00__plugin-vuetify:components/VResponsive/VResponsive.sass
+[0629/173015.338:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3002/account
+[0629/173015.396:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2?v=7.0.96
+[0629/173015.396:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2
+[0629/173015.397:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2
+[0629/173015.470:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxIIzI.woff2
+[0629/173015.470:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2
+[0629/173015.471:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2
+[0629/173015.480:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2?v=7.0.96
+[0629/173015.483:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2
+[0629/173015.483:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2
+[0629/173015.552:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxIIzI.woff2
+[0629/173015.553:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2
+[0629/173015.557:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc4.woff2
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(353)] in "http://localhost:3000/", 0000045300122678:LayoutNGBlockFlow ::before moved from 19.3281,15.4531 23.3438x33 to 16,16.3594 30x31 (visible from 19,17 24x30 to 16,17 30x30)
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(362)]  (starting point from 19.3281,17.4531 to 16,17.3594)
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(353)] in "http://localhost:3000/", 0000045300122D48:LayoutNGGrid (relative positioned) BUTTON class='v-btn v-slide-group-item--active v-tab--selected v-btn--stacked v-theme--light v-btn--density-default v-btn--size-default v-btn--variant-text v-tab' moved from 580.297,64 121.812x72 to 584.797,64 116.078x72 (visible from 580,64 122x72 to 585,64 116x72)
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(353)] in "http://localhost:3000/", 0000045300123688:LayoutNGBlockFlow (positioned) DIV class='v-tab__slider' moved from 580.297,134 121.812x2 to 584.797,134 116.078x2 (visible from 580,134 122x2 to 585,134 116x2)
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(353)] in "http://localhost:3000/", 0000045300123FD8:LayoutNGBlockFlow ::before moved from 755.047,78.25 18.6719x26 to 749.531,79.25 24x24 (visible from 755,78 19x26 to 750,79 24x24)
+[0629/173015.887:VERBOSE1:layout_shift_tracker.cc(362)]  (starting point from 755.047,79.25 to 749.531,79.25)
+[0629/173015.888:VERBOSE1:layout_shift_tracker.cc(545)] in "http://localhost:3000/", viewport was 1.07793% impacted with distance fraction 0.00392013 and subframe weighting factor 1
+[0629/173015.888:VERBOSE1:layout_shift_tracker.cc(627)] in "http://localhost:3000/", layout shift of 4.22561e-05 reported; cumulative score is 4.22561e-05
+[0629/173019.585:VERBOSE1:frame_impl.cc(503)] frame 25769803777 [6,1] connection request (reason=RENDER_FRAME_CREATED)
+[0629/173019.599:VERBOSE1:frame_host_impl.cc(626)] frame 25769803777 [6,1] (main) connected
+[0629/173019.599:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=6, frame_id=1]
+[0629/173019.604:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=6, frame_id=1]
+[0629/173019.631:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  000003070020CDF0
+  URL:                    
+  context_type:           WEB_PAGE
+  effective extension id: (none)
+  effective context type: WEB_PAGE
+[0629/173019.633:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  0000000000000000
+  URL:                    
+  context_type:           UNSPECIFIED
+  effective extension id: (none)
+  effective context type: UNSPECIFIED
+[0629/173019.634:VERBOSE1:dispatcher.cc(452)] Num tracked contexts: 1
+[0629/173019.814:INFO:cpu_info.cc(53)] Available number of cores: 12
+[0629/173020.125:VERBOSE1:CONSOLE(1)] "Main._createAppUI: 36.1669921875 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173020.257:VERBOSE1:CONSOLE(1)] "Main._showAppUI: 129.58984375 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173020.302:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/
+[0629/173020.308:VERBOSE1:CONSOLE(1)] "Main._initializeTarget: 15.163330078125 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173020.462:VERBOSE1:CONSOLE(1)] "Main._lateInitialization: 0.2529296875 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173020.477:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue.js.map
+[0629/173020.484:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-RSJERJUL.js.map
+[0629/173020.490:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-G4DFXOZZ.js.map
+[0629/173020.492:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify.js.map
+[0629/173020.493:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/pinia.js.map
+[0629/173020.495:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue-router.js.map
+[0629/173020.497:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-73W2Z5JN.js.map
+[0629/173020.498:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JAR235QT.js.map
+[0629/173020.498:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B23UNQM6.js.map
+[0629/173020.502:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XLNWJLHU.js.map
+[0629/173020.502:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-MIGEHMLQ.js.map
+[0629/173020.503:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XNM2T45B.js.map
+[0629/173020.503:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-TJV7V2ME.js.map
+[0629/173020.504:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-57AYUIYM.js.map
+[0629/173020.504:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-GVN37XH4.js.map
+[0629/173020.507:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5OBJFL24.js.map
+[0629/173020.508:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/webfontloader.js.map
+[0629/173020.509:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VApp_index__mjs.js.map
+[0629/173020.510:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/axios.js.map
+[0629/173020.511:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VBtn_index__mjs.js.map
+[0629/173020.514:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VCard_index__mjs.js.map
+[0629/173020.515:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VForm_index__mjs.js.map
+[0629/173020.516:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VIcon_index__mjs.js.map
+[0629/173020.516:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VGrid_index__mjs.js.map
+[0629/173020.517:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VDialog_index__mjs.js.map
+[0629/173020.519:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTable_index__mjs.js.map
+[0629/173020.520:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTabs_index__mjs.js.map
+[0629/173020.527:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VWindow_index__mjs.js.map
+[0629/173020.527:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VAppBar_index__mjs.js.map
+[0629/173020.529:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTextField_index__mjs.js.map
+[0629/173020.530:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-2PSEIA2V.js.map
+[0629/173020.530:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VMain_index__mjs.js.map
+[0629/173020.530:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KRDJF64Z.js.map
+[0629/173020.532:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B4BCJS43.js.map
+[0629/173020.532:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5IF2CBVW.js.map
+[0629/173020.533:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KKBOOL6I.js.map
+[0629/173020.534:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-IUFJQ2QY.js.map
+[0629/173020.535:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-7ZBCTLNY.js.map
+[0629/173020.541:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-ZMLSPQW4.js.map
+[0629/173020.543:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XKCB5BF3.js.map
+[0629/173020.543:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-UKOGH2Y2.js.map
+[0629/173020.544:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Q3HIXIPV.js.map
+[0629/173020.544:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-SAH2QHZX.js.map
+[0629/173020.545:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Y32EN7IH.js.map
+[0629/173020.552:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-U46KYG2I.js.map
+[0629/173020.560:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JPZW2G6P.js.map
+[0629/173020.563:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-26LWYBHM.js.map
+[0629/173020.564:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-LGEPIJ32.js.map
+[0629/173051.099:VERBOSE1:frame_host_impl.cc(459)] frame 25769803777 [6,1] (main) detached (reason=NEW_MAIN_FRAME, is_connected=1)
+[0629/173055.372:INFO:CONSOLE(9134)] "Modified main element.", source: http://localhost:3000/node_modules/.vite/deps/chunk-G4DFXOZZ.js?v=6be144fa (9134)
+[0629/173105.775:VERBOSE1:frame_impl.cc(503)] frame 30064771073 [7,1] connection request (reason=RENDER_FRAME_CREATED)
+[0629/173105.777:VERBOSE1:frame_host_impl.cc(626)] frame 30064771073 [7,1] (main) connected
+[0629/173105.778:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=7, frame_id=1]
+[0629/173105.787:VERBOSE1:media_stream_manager.cc(1065)] RFAOSF::Core() [process_id=7, frame_id=1]
+[0629/173105.808:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  000000FF00141F90
+  URL:                    
+  context_type:           WEB_PAGE
+  effective extension id: (none)
+  effective context type: WEB_PAGE
+[0629/173105.810:VERBOSE1:script_context.cc(205)] Created context:
+  extension id:           (none)
+  frame:                  0000000000000000
+  URL:                    
+  context_type:           UNSPECIFIED
+  effective extension id: (none)
+  effective context type: UNSPECIFIED
+[0629/173105.811:VERBOSE1:dispatcher.cc(452)] Num tracked contexts: 1
+[0629/173106.028:INFO:cpu_info.cc(53)] Available number of cores: 12
+[0629/173106.308:VERBOSE1:CONSOLE(1)] "Main._createAppUI: 33.35498046875 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173106.464:VERBOSE1:CONSOLE(1)] "Main._showAppUI: 154.044189453125 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173106.492:VERBOSE1:CONSOLE(1)] "Main._initializeTarget: 13.328125 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173106.611:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue.js.map
+[0629/173106.613:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-RSJERJUL.js.map
+[0629/173106.620:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-G4DFXOZZ.js.map
+[0629/173106.620:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify.js.map
+[0629/173106.622:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/pinia.js.map
+[0629/173106.622:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vue-router.js.map
+[0629/173106.623:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-73W2Z5JN.js.map
+[0629/173106.626:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JAR235QT.js.map
+[0629/173106.628:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B23UNQM6.js.map
+[0629/173106.630:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XLNWJLHU.js.map
+[0629/173106.630:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-MIGEHMLQ.js.map
+[0629/173106.631:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XNM2T45B.js.map
+[0629/173106.631:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-TJV7V2ME.js.map
+[0629/173106.632:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-57AYUIYM.js.map
+[0629/173106.632:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-GVN37XH4.js.map
+[0629/173106.633:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5OBJFL24.js.map
+[0629/173106.634:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/webfontloader.js.map
+[0629/173106.636:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VApp_index__mjs.js.map
+[0629/173106.637:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/axios.js.map
+[0629/173106.639:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VBtn_index__mjs.js.map
+[0629/173106.640:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VCard_index__mjs.js.map
+[0629/173106.640:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VForm_index__mjs.js.map
+[0629/173106.640:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VIcon_index__mjs.js.map
+[0629/173106.642:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VGrid_index__mjs.js.map
+[0629/173106.643:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VDialog_index__mjs.js.map
+[0629/173106.647:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTable_index__mjs.js.map
+[0629/173106.650:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTabs_index__mjs.js.map
+[0629/173106.650:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VWindow_index__mjs.js.map
+[0629/173106.651:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VAppBar_index__mjs.js.map
+[0629/173106.651:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VTextField_index__mjs.js.map
+[0629/173106.652:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-2PSEIA2V.js.map
+[0629/173106.653:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/vuetify_lib_components_VMain_index__mjs.js.map
+[0629/173106.653:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KRDJF64Z.js.map
+[0629/173106.654:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-B4BCJS43.js.map
+[0629/173106.654:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-5IF2CBVW.js.map
+[0629/173106.655:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-KKBOOL6I.js.map
+[0629/173106.655:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-IUFJQ2QY.js.map
+[0629/173106.660:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-7ZBCTLNY.js.map
+[0629/173106.662:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-ZMLSPQW4.js.map
+[0629/173106.662:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-XKCB5BF3.js.map
+[0629/173106.663:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-UKOGH2Y2.js.map
+[0629/173106.664:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Q3HIXIPV.js.map
+[0629/173106.665:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-SAH2QHZX.js.map
+[0629/173106.665:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-Y32EN7IH.js.map
+[0629/173106.666:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-U46KYG2I.js.map
+[0629/173106.667:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-JPZW2G6P.js.map
+[0629/173106.668:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-26LWYBHM.js.map
+[0629/173106.680:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: http://localhost:3000/node_modules/.vite/deps/chunk-LGEPIJ32.js.map
+[0629/173106.811:VERBOSE1:CONSOLE(1)] "Main._lateInitialization: 0.16015625 ms", source: devtools://devtools/entrypoints/main/main.js (1)
+[0629/173111.156:VERBOSE1:frame_host_impl.cc(459)] frame 30064771073 [7,1] (main) detached (reason=NEW_MAIN_FRAME, is_connected=1)
+[0629/173112.759:VERBOSE1:network_delegate.cc(34)] NetworkDelegate::NotifyBeforeURLRequest: https://update.googleapis.com/service/update2/json?cup2key=12:pIlscPzSYKyiVJ17EgyRVW0PTo5rsDjfL83fCQT-qLw&cup2hreq=2eeb7de2dbb187ac891c8be84ea99dba08ad949c38d8db11356dc694ba41f94f
+[0629/173112.922:VERBOSE1:request_sender.cc(181)] Request completed from url: https://update.googleapis.com/service/update2/json?cup2key=12:pIlscPzSYKyiVJ17EgyRVW0PTo5rsDjfL83fCQT-qLw&cup2hreq=2eeb7de2dbb187ac891c8be84ea99dba08ad949c38d8db11356dc694ba41f94f
+[0629/173112.925:VERBOSE1:component_updater_service.cc(429)] Update completed with error 0
+[0629/173213.123:ERROR:gpu_init.cc(521)] Passthrough is not supported, GL is disabled, ANGLE is 
+[0629/173345.838:VERBOSE1:frame_impl.cc(612)] frame 21474836481 [5,1] disconnected (reason=BROWSER_FRAME_DISCONNECT, current_state=CONNECTION_ACKED)
+[0629/173345.838:VERBOSE1:frame_impl.cc(625)] frame 21474836481 [5,1] connection retry scheduled
+[0629/173345.839:VERBOSE1:statistics_recorder.cc(452)] Collections of all histograms
+Histogram: ChildProcess.FieldTrials.CreateFromShmemSuccess recorded 1 samples, mean = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: LevelDBEnv.DeleteTableBackupFile recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: LevelDBWrapper.CommitDelay recorded 1 samples, mean = 5000.0 (flags = 0x1)
+0     ... 
+4516  -O                                                                        (1 = 100.0%) {0.0%}
+6118  ... 
+
+Histogram: LocalStorageContext.ShutDown.MaybeDroppedChanges recorded 2 samples, mean = 0.0
+0  --O                                                                       (2 = 100.0%)
+1  ... 
+
+Histogram: Memory.PartitionAlloc.MemoryReclaim recorded 52 samples, mean = 9.9 (flags = 0x1)
+0   ... 
+3   ----O                                                                     (4 = 7.7%) {0.0%}
+4   -------------------O                                                      (19 = 36.5%) {7.7%}
+5   ----------------O                                                         (16 = 30.8%) {44.2%}
+7   -----O                                                                    (5 = 9.6%) {75.0%}
+9   O                                                                         (0 = 0.0%) {84.6%}
+12  -O                                                                        (1 = 1.9%) {84.6%}
+16  O                                                                         (0 = 0.0%) {86.5%}
+21  -O                                                                        (1 = 1.9%) {86.5%}
+28  --O                                                                       (2 = 3.8%) {88.5%}
+37  --O                                                                       (2 = 3.8%) {92.3%}
+49  --O                                                                       (2 = 3.8%) {96.2%}
+65  ... 
+
+Histogram: Memory.PartitionAlloc.PeriodicPurge recorded 7 samples, mean = 17.1 (flags = 0x1)
+0   ... 
+5   -O                                                                        (1 = 14.3%) {0.0%}
+7   -O                                                                        (1 = 14.3%) {14.3%}
+9   -O                                                                        (1 = 14.3%) {28.6%}
+12  O                                                                         (0 = 0.0%) {42.9%}
+16  -O                                                                        (1 = 14.3%) {42.9%}
+21  --O                                                                       (2 = 28.6%) {57.1%}
+28  -O                                                                        (1 = 14.3%) {85.7%}
+37  ... 
+
+Histogram: SessionStorageContext.CommitResult recorded 4 samples, mean = 0.0 (flags = 0x1)
+0  ----O                                                                     (4 = 100.0%)
+1  ... 
+
+Histogram: SessionStorageContext.ShutDown.MaybeDroppedChanges recorded 1 samples, mean = 0.0
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SharedMemory.MapBlockedForSecurity recorded 1 samples, mean = 0.0 (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: ThreadPool.NumTasksBeforeDetach.ContentChild.Background recorded 0 samples (flags = 0x1)
+0 ... 
+
+Histogram: ThreadPool.NumTasksBeforeDetach.ContentChild.Foreground recorded 1 samples, mean = 0.0 (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: V8.Initializer.OpenV8File.Result recorded 1 samples, mean = 0.0 (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+

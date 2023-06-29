@@ -45,5 +45,5 @@ MainWindow.g.cs
 # macOS specific
 .DS_Store
 
-# Postgres data
+# PostgreSQL data
 /postgres/data/**
