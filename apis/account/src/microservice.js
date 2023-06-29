@@ -62,3 +62,30 @@ exports.createIdentity = async ({firstName, lastName, idCredentials}) => {
 
   return identity;
 };
+
+exports.updateIdentity = async (idCredentials, {firstName, lastName}) => {
+  const identity = await models.Identity.update(
+      {
+        first_name: firstName,
+        last_name: lastName,
+      },
+      {
+        where: {
+          id_credentials: idCredentials,
+        },
+      },
+  );
+
+  return identity;
+};
+
+exports.deleteIdentity = async (idCredentials) => {
+  const identity = await models.Identity.destroy({
+    where: {
+      id_credentials: idCredentials,
+    },
+  });
+
+  return identity;
+};
+

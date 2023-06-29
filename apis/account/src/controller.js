@@ -99,3 +99,41 @@ exports.createIdentity = async (req, res) => {
     res.status(500).json({error: 'Server Error'});
   }
 };
+
+exports.updateIdentity = async (req, res) => {
+  try {
+    const {id_credentials} = req.params;
+    const {
+      first_name: firstName,
+      last_name: lastName,
+    } = req.body;
+
+    const identity = await microservice.updateIdentity(id_credentials, {firstName, lastName});
+
+    if (identity[0] === 0) {
+      return res.status(404).json({error: 'Identity not found'});
+    }
+
+    res.status(200).json({message: 'Identity updated successfully'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Server Error'});
+  }
+};
+
+exports.deleteIdentity = async (req, res) => {
+  try {
+    const {id_credentials} = req.params;
+
+    const identity = await microservice.deleteIdentity(id_credentials);
+
+    if (identity === 0) {
+      return res.status(404).json({error: 'Identity not found'});
+    }
+
+    res.status(204).end({message: 'Identity deleted successfully'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Server Error'});
+  }
+};
