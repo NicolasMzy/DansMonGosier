@@ -7,13 +7,13 @@ const itemController = require('./controllers/item_controllers');
 const menuController = require('./controllers/menu_controllers'); 
 
 // Restaurant
+router.get('/restaurant-topRated/', restaurantController.getTopRatedRestaurants);
 router.post('/restaurant', restaurantController.createRestaurant);
 router.get('/restaurant/:restaurantId', restaurantController.getRestaurant);
 router.get('/restaurant/IDcredentials/:id_credentials', restaurantController.getRestaurantByIdCredentials);
 router.put('/restaurant/:restaurantId', restaurantController.updateRestaurant);
 router.delete('/restaurant/:restaurantId', restaurantController.deleteRestaurant);
 router.get('/restaurant-categories', restaurantController.getRestaurantCategories);
-router.get('/restaurant/topRated/', restaurantController.getTopRatedRestaurants);
 
 // Rates
 router.post('/restaurant/:restaurantId/rates', rateController.addRateToRestaurant);

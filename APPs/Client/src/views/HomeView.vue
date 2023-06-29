@@ -215,16 +215,16 @@ export default {
     };
       
     async function getAddress(id: string){
-      let addressResponse = await axios.get('http://localhost:3014/address/'+ id);
+      let addressResponse = await axios.get('http://localhost:3004/address/'+ id);
       return addressResponse.data;
     }
 
     const makeDataDelivery = async () => {
         let restaurants: Restaurant[] = [];
         try {
-          const response = await axios.get('http://localhost:3013/restaurants-top-rated');
+          const response = await axios.get('http://localhost:3006/restaurants-top-rated');
           let restaurantsTop = response.data; // Assuming the data is an array of restaurants
-
+          console.log(restaurantsTop)
             for (let item of restaurantsTop.restaurants){
               let address = await getAddress(item.id_address);  
                 let new_restaurant: Restaurant = {

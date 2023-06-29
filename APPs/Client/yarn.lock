@@ -2042,6 +2042,11 @@ vite@^4.0.0, vite@^4.3.9:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vt-toast@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/vt-toast/-/vt-toast-1.2.1.tgz"
+  integrity sha512-2BbGlGMT4Xs2L1uPgPkR1bDchvgdls4Ncya+6PDN8G09DIT0S+60bHiMLftAqioaH+lv6SPfgd8Jq3c6HZTwWg==
+
 vue-demi@>=0.14.5:
   version "0.14.5"
   resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.5.tgz"

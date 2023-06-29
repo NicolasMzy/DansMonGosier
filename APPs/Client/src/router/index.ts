@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('@/views/BasketView.vue')
     },
     {
+      path: '/confirmed',
+      name: 'Confirmed',
+      component: () => import('@/views/PaymentView.vue')
+    },
+    {
       path: '/restaurant/:id',
       name: 'RestaurantView',
       component: () => import('@/views/RestaurantView.vue'),

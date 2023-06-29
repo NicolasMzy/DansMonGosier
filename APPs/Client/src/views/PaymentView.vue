@@ -1,64 +1,42 @@
 <template>
-    <h1>Votre Commande</h1>
-    <h3>Date de la commande : {{ order?.date.start.split('T')[0]}}</h3>
-    <h3>Restaurant : {{ order?.id_restaurant }}</h3>
-    <div v-if="order?.items.length >= 1">
-        <h3>Items : {{ order?.items }}</h3>
+  <div class="home">
+    <img class="img" src="../assets/confirmed.png"/>
+    <div class="title">
+        <p>Livraison confirmé !</p>
     </div>
-    <div v-if="order?.menus.length >= 1">
-        <h3>Menus : {{ order?.menus }}</h3>
+    <div class="info">
+        <p>La livraison arrive bientôt...</p>
     </div>
-    <h3>Prix : {{ order?.price }} </h3>
-    <p>{{ order }}</p>
-    <h2>Select Payment Method:</h2>
-    <select v-model="selectedPaymentMethod">
-        <option v-for="(method, index) in paymentMethods" :key="index" :value="method">{{ method }}</option>
-    </select><br>
-    <button @click="confirmPayment">Confirm Payment</button>
+  </div>
 </template>
 
 <script lang="ts">
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 
 export default {
-    
-    name: 'PaymentView',
+name:'ConfirmedView.vue',
+components:{
 
-    setup(){
-        const route = useRoute();
-        const router = useRouter();
-        let order = ref(null);
-        let selectedPaymentMethod = ref("");
-        let paymentMethods = ref([]);
-
-        onMounted(async () => {
-            const response = await axios.get('http://localhost:3012/orders/'+ route.params.orderId);
-            order.value = response.data;
-            //AFAIRE ON A PAS LES PAYMENTS ENCORE
-            const paymentResponse = await axios.get('http://localhost:3012/paymentMethods');
-            paymentMethods.value = paymentResponse.data;
-        });
-
-        const confirmPayment = async () => {
-            // Assuming the API endpoint to update order takes the order ID as path parameter and the new status as request body
-            await axios.put('http://localhost:3012/orders/' + order.value?._id, { payment: 'paid' });
-            router.push('/home')
-        };
-
-        return{
-            order,
-            paymentMethods,
-            selectedPaymentMethod,
-            confirmPayment,
-        }
-    }
 }
-
-
+}
 </script>
 
-<style>
+<style scoped>
+    .home{
+        height: 100vh;
+        width: 100%;
+        display:flex;
+        flex-direction: column;
 
+    }
+    
+    .title{
+        display: flex;
+        justify-content: center;
+        font-size: 1.6em;
+        font-weight: 700;
+    }
+    
+    .img{
+        height: 200px;
+    }
 </style>

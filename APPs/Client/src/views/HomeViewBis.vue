@@ -36,7 +36,7 @@ setup() {
     let addresses = ref<Address[]>([]);
     
     async function getAddress(id: string){
-        let addressResponse = await axios.get('http://localhost:3014/address/'+ id);
+        let addressResponse = await axios.get('http://localhost:3004/address-by-credentials/'+ id);
         return addressResponse.data;
     }
     
@@ -44,12 +44,13 @@ setup() {
         
         let restaurants: Restaurant[] = [];
         try {
-            const response = await axios.get('http://localhost:3013/restaurants-top-rated');
-            let restaurantsTop = response.data; // Assuming the data is an array of restaurants
+            const response = await axios.get('http://localhost:3006/restaurant-topRated/');
 
+            let restaurantsTop = response.data; // Assuming the data is an array of restaurants
+            console.log(restaurantsTop)
             for (let item of restaurantsTop.restaurants){
                 
-                let address = await getAddress(item.id_address);  
+                let address = await getAddress(item.id_credentials);  
                 let new_restaurant: Restaurant = {
                     id_credentials: item.id_credentials,
                     schedule: item.schedule,
