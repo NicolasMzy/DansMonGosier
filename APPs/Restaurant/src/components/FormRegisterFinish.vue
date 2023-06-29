@@ -28,73 +28,70 @@
 
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router';
-const router = useRouter();
+  import { ref } from 'vue'
+  import axios from 'axios'
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
 
-const form = ref({
-email: '',
-phone_nb:'',
-pwd: '',
-user_type:''
-});
+  const form = ref({
+    email: '',
+    phone_nb:'',
+    pwd: '',
+    user_type:''
+  });
 
-const registerForm = async () => {
-try {
-const response = await axios.post('http://localhost:80/register', form.value, {
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    // Add other headers as needed
-  },
-});
+  const registerForm = async () => {
+    try {
+      const response = await axios.post('http://localhost:80/register', form.value, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
 
-const idCred = await axios.post('http://localhost:80/register', {
-  email: form.value.email,
-  pwd: form.value.pwd
-}, {
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    // Add other headers as needed
-  },
-});
-console.log(response.data);
-router.push('/');
-} catch (error) {
-console.log(error);
-// Handle the error here
-}
-};
+      const idCred = await axios.post('http://localhost:80/register', {
+        email: form.value.email,
+        pwd: form.value.pwd
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+      console.log(response.data);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 </script>
 
 <style scoped>
 input[type=text] {
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-display: inline-block;
-border: 1px solid #ccc;
-border-radius: 4px;
-color: #ccc;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ccc;
 }
 select {
-appearance: none;
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-display: inline-block;
-border: 1px solid #ccc;
-border-radius: 4px;
-color: #ccc;
+  appearance: none;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #ccc;
 }
 
 input[type=submit] {
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-border: 1px solid #ff5757;
-border-radius: 4px;
-color: white;
-background-color: #ff5757;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ff5757;
+  border-radius: 4px;
+  color: white;
+  background-color: #ff5757;
 }
 </style>

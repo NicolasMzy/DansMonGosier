@@ -30,7 +30,6 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-let idAddress;
 let credentialId = route.params.id;
 
 onMounted(async () => {
@@ -48,10 +47,10 @@ const address = ref({
 })
 
 const form = ref({
-  id_credentials:credentialId,
+    id_credentials: credentialId,
     name:'',
     photo:'',
-    id_address: 'yesdaddy',
+    id_address: credentialId,
     category: '',
     mean_rate: 0,
     rates: [],
@@ -62,20 +61,17 @@ const form = ref({
 const registerForm = async () => {
     try {
       
-       const responseAddress = await axios.post('http://localhost:3014/address', address.value, {
+        await axios.post('http://localhost:3004/address', address.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },
         });
-
-        const response = await axios.post('http://localhost:3013/restaurants', form.value, {
+        await axios.post('http://localhost:3006/restaurant', form.value, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             },
         });
-        console.log(response.data.restaurant._id)
-        let accountId = response.data.restaurant._id
-        router.push({ name: 'home', params: { accountId } });
+        router.push('/');
     } catch (error) {
         console.log(error);
     }

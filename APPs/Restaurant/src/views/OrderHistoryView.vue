@@ -10,14 +10,13 @@
   
   <script  lang="ts">
   import { onMounted, ref, defineComponent } from 'vue'
-  //IMPORT
   import axios from 'axios'
   
   export default defineComponent({
     name : 'RestaurantHome',
     components: {
-
     },
+
     setup() {
       let accountId = localStorage.getItem('accountId');
       let orders = ref(null);
@@ -26,7 +25,6 @@
         console.log(response.data)
         orders.value = response.data;
   
-        
       });
       return{
         orders

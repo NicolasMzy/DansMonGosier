@@ -1,7 +1,9 @@
 <template>
     <div class="home">
         <h1>ICI on affiche les vilaines stats</h1>
-        <p>{{ stats }}</p>
+        <div v-for="(data,i) in stats" :key="i">
+          <p>{{ data.month }} -> {{ data.sales }}</p>
+        </div>
     </div>
   </template>
   
@@ -19,8 +21,9 @@
       let stats = ref(null);
       onMounted(async () => {
         let accountId = localStorage.getItem('accountId');
+        console.log(accountId)
           const statsResponse = await axios.post('http://localhost:3007/stats/restaurant/monthly-sales/' + accountId);
-          stats.value = statsResponse.data;
+          stats.value = statsResponse.data.monthlySales;
       });
       return{
         stats

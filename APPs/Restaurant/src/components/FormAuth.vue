@@ -30,14 +30,8 @@ const loginForm = async () => {
     });
     console.log(response.data)
     console.log((response.data.account_id).toString());
-    // document.cookie = `token=${response.data}; expires=${new Date(Date.now() + 1 * 60 * 1000).toUTCString()};`;
-    // console.log(document.cookie);
     let accountId = (response.data.account_id).toString();
 
-    // const responseAccount = await axios.get('http://localhost:3012/restaurant/IDcredentials/'+ credId)
-    // console.log(responseAccount)
-    // let accountId = responseAccount.data.restaurant_id;
-    // MyComponent.vue
     localStorage.setItem('accountId', response.data.account_id.toString());
     router.push({ name: 'home', params: { accountId } });
   } catch (error) {
