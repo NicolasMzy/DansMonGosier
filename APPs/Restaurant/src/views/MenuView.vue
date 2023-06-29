@@ -11,8 +11,11 @@
 
       <div v-if="tab === 'menus'">
 
-        <h1>Menus <button @click="showAddMenu = !showAddMenu">Add Menu</button></h1>
-      
+        <div class="container-plusminus">
+          <p class="title">Menus</p>
+          <button class="button-plus" @click="showAddMenu = !showAddMenu">+</button>
+        </div>
+
       <div class="card" v-if="showAddMenu">
         <div class="card-body">
           <h5 class="card-title">Add Menu</h5>
@@ -49,13 +52,13 @@
       </div>
 
         <div v-for="(menu,i) in menus.menus" :key="i">
-          
+
           <div class="container-show">
             <img class="photo" :src="menu.photo " alt="item photo"/>
             <div class="container-information">
-              <p>Label: {{ menu.label }}</p>
-              <p>Description:  {{ menu.description }}</p>
-              <p>Price: {{ menu.price }}</p>
+              <p class="subtitle">{{ menu.label }}</p>
+              <p>{{ menu.description }}</p>
+              <p>{{ menu.price }} €</p>
             </div>
           </div>
         
@@ -494,7 +497,8 @@
   }
 
   .photo{
-    height: 50px;
+    height: 120px;
+    width: 120px;
   }
 
   .home {
@@ -502,6 +506,47 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 150px;
+}
+
+.title{
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.subtitle{
+  font-size: 1.4em;
+}
+
+.container-plusminus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-plus{
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: brown;
+  border: none;
+}
+
+.container-show{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: ;
+}
+
+.container-information{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 280px;
 }
 
 h1 {
