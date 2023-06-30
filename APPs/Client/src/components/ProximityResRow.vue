@@ -28,6 +28,9 @@ export default {
       type: Array as PropType<Restaurant[]>,
       required: true,
     },
+  },
+  setup() {
+    
   }
 }
 </script>

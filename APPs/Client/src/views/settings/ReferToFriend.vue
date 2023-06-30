@@ -7,21 +7,48 @@
       <div class="code-section">
         <p>Your Referral Code:</p>
         <div class="referral-code">{{ referralCode }}</div>
+        <p>Code de votre Parrain</p>
+        <input type="text" v-model="parrain.id_sponsor"/>
+        <button @click="parraining" >Se faire sponsoriser</button>
       </div>
+
     </div>
   </template>
   
   <script lang="ts">
-  import { defineComponent } from 'vue';
+  import axios from 'axios';
+import { defineComponent, ref } from 'vue';
   
   export default defineComponent({
     name: 'ReferToFriend',
     data() {
+      let accountId = localStorage.getItem('accountId');
+
       return {
-        referralCode: 'ABCD1234',
+        referralCode: accountId,
       };
     },
+    setup(){
+      let accountId = localStorage.getItem('accountId');
+
+      let parrain = ref({
+        id_sponsored: accountId,
+        id_sponsor: '',
+        bonnus: 'MMMMMHHHH'
+      });
+
+      async function parraining(){
+        const response = await axios.post('http://localhost:80/sponsor/', parrain)
+      }
+
+      return{
+        parraining,
+        parrain
+      }
+    }
   });
+
+  
   </script>
   
   <style lang="scss" scoped>

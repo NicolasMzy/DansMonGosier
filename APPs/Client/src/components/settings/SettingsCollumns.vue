@@ -23,32 +23,14 @@
           const settings: Setting[] = [
               
               {
-                  name: 'Profile information',
-                  info: 'Change your account information',
+                  name: 'Information du profil',
+                  info: 'Changez vos informations',
                   img: '/src/assets/settings/user-bold.png',
               },
-  
-              {
-                  name : 'Change Password',
-                  info : 'Change your password',
-                  img : '/src/assets/settings/lock-key-bold.png'
-              },
               
               {
-                  name : 'Payment methods',
-                  info : 'Add your credit and debit cards',
-                  img : '/src/assets/settings/credit-card-bold.png'
-              },
-              
-              {
-                  name : 'Location',
-                  info : 'add or remove your locations',
-                  img : '/src/assets/settings/map-pin-bold.png'
-              },
-              
-              {
-                  name : 'Refer to friends',
-                  info : 'get a parain code',
+                  name : 'Sponsorise ton ami',
+                  info : 'Fais toi parrainer aussi',
                   img : '/src/assets/settings/users-bold.png'
               }
   

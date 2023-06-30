@@ -1,28 +1,50 @@
 <template>
-  <header>
-      <nav>
-        <RouterLink to="/home">Home</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/basket">Basket</RouterLink>
-        <RouterLink to="/settings">Settings</RouterLink>
-      </nav>
+  <div id="app">
       <RouterView />
-      
-  </header>
+      <Navbar class="navbar--home" :items="navbarItems"/>
+  </div>
 </template>
-<script>
-export default {
-  name :'App',
-  components: {
-  }
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Navbar from './components/componentsGlobaux/navbar.vue';
+
+interface NavItem {
+  path: string;
+  logo: string;
+  name: string;
 }
+
+export default defineComponent({
+  name: 'HomeView',
+  components: {
+    Navbar,
+  },
+  data() {
+    return {
+      navbarItems: [
+        { path: '/bis', logo: '/src/assets/navbar/home.png', name: ' ' },
+        { path: '/basket', logo: '/src/assets/navbar/shopping-basket.png', name: ' ' },
+        { path: '/tracking', logo: '/src/assets/navbar/register.png', name: ' ' },
+        { path: '/settings', logo: '/src/assets/navbar/setting.png', name: ' ' },
+      ] as NavItem[],
+    };
+  },
+});
 </script>
-<style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+<style>
 @import url('./style/reset.css');
-.app{
-    color : black;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 0px
-  }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+#app {
+  margin: 0;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  color:black;
+  box-sizing: border-box;
+  padding-bottom: 100px;
+}
+
 </style>

@@ -1,35 +1,51 @@
 <template>
     <div class="basket">
-      <h2>Your Basket</h2>
+      <p class="title">Your Basket</p>
       <ul>
-        <li v-for="(item, index) in basket" :key="index">
-          <h3>{{ item.label }}</h3>
-          <p>Quantity: {{ item.quantity }}</p>
-          <p>Price: ${{ item.price }}</p>
-          <button @click="removeFromBasket(item)">Remove</button>
-          <button @click="incrementQuantity(item)">Increase</button>
-          <button @click="decrementQuantity(item)">Decrease</button>
-        </li>
+        <div v-for="(item, index) in basket" :key="index">
+          <div class="item-container">
+            <img class="img-items" :src="item.photo" alt="item photo"/>
+            <div class="item-informations">
+              <h3>{{ item.label }}</h3>
+              <p>Price: ${{ item.price }}</p>
+              <div class="buttons-container">
+                <button class="button-minus" @click="incrementQuantity(item)">+</button>
+                <p>{{ item.quantity }}</p>
+                <button class="button-plus" @click="decrementQuantity(item)">-</button>
+                <button class="bin" @click="removeFromBasket(item)"><img src="../assets/basket/bin.png" class="bin-img" alt="Remove"></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </ul>
-      <h3>Total: ${{ }}</h3>
     </div>
     <transition name="fade">
       <div class="popup" v-if="showPopup">
         <p>{{ popupMessage }}</p>
-        <button @click="undoLastAction">Undo</button>
-        <button @click="showPopup = false">Close</button>
+        <button class="popup-button" @click="undoLastAction"><img class="popup-imgf" src="../assets/popup/checked.png" alt="checked" /></button>
+        <button class="popup-button" @click="showPopup = false"><img class="popup-img" src="../assets/popup/nochecked.png" alt="checked" /></button>
       </div>
     </transition>
     <transition name="fade">
       <div class="popup" v-if="showPopup">
         <p>{{ popupMessage }}</p>
-        <button @click="undoLastAction">Undo</button>
-        <button @click="showPopup = false">Close</button>
+        <div class="buttons">
+          <button class="popup-button" @click="undoLastAction"><img class="popup-imgf" src="../assets/popup/checked.png" alt="checked" /></button>
+          <button class="popup-button" @click="showPopup = false"><img class="popup-img" src="../assets/popup/nochecked.png" alt="checked" /></button>
+        </div>
       </div>
     </transition>
     <transition name="ease">
       <div class="card" v-if="basket.length >= 1">
-        <button @click="submitBasket" class="payment-button">Valider et Payer</button>
+        <div class="payment">
+          <p>Total: {{ }}€</p>
+        </div>
+        <button @click="submitBasket" class="payment-button">Dans mon Gosier !</button>
+      </div>
+    </transition>
+    <transition name="ease">
+      <div class="card" v-if="basket.length === 0">
+        <p>Vous n'avez rien commandé pour le moment !</p>
       </div>
     </transition>
   </template>
@@ -56,10 +72,6 @@
       const showPopup = ref(false);
       let popupMessage = ref('');
       const router = useRouter();
-
-      const navigateToPayment = (orderId: any) => {
-        router.push({ name: 'payment', params: { orderId } });
-      };
 
       let displayPopup = (message: string) => {
       popupMessage.value = message;
@@ -167,11 +179,11 @@
           console.log(basketSend)
 
           const orderId = await axios.post(
-            'http://localhost:3012/orders',
+            'http://localhost:3005/order',
             basketSend
           )
           console.log(orderId.data._id)
-          navigateToPayment(orderId.data._id);
+          router.push('/tracking');
           clearBasket();
         };
 
@@ -193,6 +205,8 @@
   </script>
   
   <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
   #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -200,6 +214,12 @@
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   color:black;
+}
+
+.title{
+  margin-left: 20px;
+  font-size: 1.5em;
+  font-weight: 800;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
@@ -218,4 +238,96 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-  </style>
+
+.item-container{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.item-informations{
+  display: flex;
+  flex-direction: column;
+}
+
+.img-items{
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap:10px
+}
+.button-minus{
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 1em;
+  cursor: pointer;
+  color: #fff;
+  background-color: brown;
+}
+.button-plus{
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 1em;
+  cursor: pointer;
+}
+.bin{
+  border: none;
+  background-color: rgba(0,0,0,0);
+}
+.bin-img{
+  border: none;
+  background-color: rgba(0,0,0,0);
+  height: 25px;
+}
+.card{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-button{
+  border: none;
+  height: 40px;
+  width: 170px;
+  background-color: brown;
+  color: #fff;
+  border-radius:20px
+}
+
+.payment{
+  display: flex;
+  justify-content: center;
+}
+.popup-img{
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+.popup-imgf{
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+.buttons{
+  align-items: center;
+  display: flex;
+}
+
+.popup-button{
+  background-color: rgba(0,0,0,0);
+  border:none;
+}
+
+</style>

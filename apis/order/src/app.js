@@ -15,9 +15,9 @@ const YAML = require('yamljs');
 // Import routes
 const routes = require('./routes');
 
-// Load Swagger YAML document
-const swaggerDocument = YAML.load('./swagger.yaml');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// // Load Swagger YAML document
+// const swaggerDocument = YAML.load('./swagger.yaml');
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Connexion MongoDB Collection
 const connectToMongoDB = require('./mongodb_connection');

@@ -4,13 +4,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      redirect: '/home',
-    },
-    {
       path: '/home',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/',
+      name: 'auth',
+      component: () => import('@/views/AuthenticateView.vue')
     },
     {
       path: '/register',
@@ -21,6 +22,26 @@ const router = createRouter({
       path: '/basket',
       name: 'basket',
       component: () => import('@/views/BasketView.vue')
+    },
+    {
+      path: '/confirmed',
+      name: 'Confirmed',
+      component: () => import('@/views/PaymentView.vue')
+    },
+    {
+      path: '/restaurant/:id',
+      name: 'RestaurantView',
+      component: () => import('@/views/RestaurantView.vue'),
+    },
+    {
+      path: '/bis',
+      name: 'HomeV',
+      component: () => import('@/views/HomeViewBis.vue')
+    },
+    {
+      path: '/tracking',
+      name: 'Tracking',
+      component: () => import('@/views/OrderTracking.vue')
     },
     {
       path: '/payment/:orderId',
@@ -38,7 +59,7 @@ const router = createRouter({
           component: () => import('../views/settings/SettingsVue.vue'),
         },
         {
-          path: 'profileinformation',
+          path: 'informationduprofil',
           name: 'ProfileInformation',
           component: () => import('../views/settings/ProfileInformation.vue'),
         },
@@ -58,7 +79,7 @@ const router = createRouter({
           component: () => import('../views/settings/Location.vue'),
         },
         {
-          path: 'refertofriends',
+          path: 'sponsorisetonami',
           name: 'ReferTofriend',
           component: () => import('../views/settings/ReferToFriend.vue'),
         },
