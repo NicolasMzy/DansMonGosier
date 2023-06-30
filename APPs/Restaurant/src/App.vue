@@ -37,6 +37,7 @@ export default {
 .app{
     color : black;
     font-family: 'Roboto', sans-serif;
-    margin-top: 0px
+    margin-top: 0px;
+    margin-bottom:120px;
   }
 </style>
