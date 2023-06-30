@@ -154,7 +154,7 @@ async function fetchData(){
             })
           }else {
             const responseRestId = await axios.get('http://localhost:3006/restaurant/IDcredentials/' + order.id_restaurant);
-            const responseAddress = await axios.get('http://localhost:3004/address/' + responseRestId.data.id_address);
+            const responseAddress = await axios.get('http://localhost:3004/address-by-credentials/' + responseRestId.data.id_address);
 
             toShow.value.push({
               order: response.data,

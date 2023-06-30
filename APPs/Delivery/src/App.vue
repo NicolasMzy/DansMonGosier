@@ -26,8 +26,7 @@ export default {
     return {
       navbarItems: [
         { path: '/home', logo: '/src/assets/navbar/home.png', name: ' ' },
-        { path: '/register', logo: '/src/assets/navbar/register.png', name: ' ' },
-        { path: '/tracking', logo: '/src/assets/navbar/tracking.png', name: ' ' },
+        { path: '/order', logo: '/src/assets/navbar/tracking.png', name: ' ' },
         { path: '/settings', logo: '/src/assets/navbar/setting.png', name: ' ' },
       ] as NavItem[],
     };

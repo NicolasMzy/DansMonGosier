@@ -20,9 +20,9 @@ const router = createRouter({
       component: () => import('../views/RestaurantHome.vue'),
     },
     {
-      path: '/tracking',
-      name: 'DeliverytTracking',
-      component: () => import('../views/Delivery/OrderTracking.vue'),
+      path: '/order',
+      name: 'order',
+      component: () => import('../views/OrderHistoryView.vue'),
     },
     {
       path: '/settings',
