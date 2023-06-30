@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <h1>ICI on affiche les vilaines stats</h1>
+        <p>{{stat}}</p>
     </div>
   </template>
   
@@ -15,15 +16,14 @@
 
     },
     setup() {
-      let order = ref(null);
+      let stat = ref(null);
+      let credId = localStorage.getItem('accountId');
       onMounted(async () => {
-          const orders = await axios.get('http://localhost:3012/orders');
-          order.value = orders.data;
-  
-        
+          const stats = await axios.get('http://localhost:3007/stats/restaurant/monthly-sales/' + credId);
+          stat.value = stats.data;
       });
       return{
-        
+        stat,
       }
     }
   });

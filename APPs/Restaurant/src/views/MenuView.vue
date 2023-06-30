@@ -15,7 +15,6 @@
           <p class="title">Menus</p>
           <button class="button-plus" @click="showAddMenu = !showAddMenu">+</button>
         </div>
-
       <div class="card" v-if="showAddMenu">
         <div class="card-body">
           <h5 class="card-title">Add Menu</h5>
@@ -50,9 +49,10 @@
           </form>
         </div>
       </div>
-
         <div v-for="(menu,i) in menus.menus" :key="i">
-
+          <div class="container-plusminus">
+            <p class="title">Menu {{i+1}}</p>
+          </div>
           <div class="container-show">
             <img class="photo" :src="menu.photo " alt="item photo"/>
             <div class="container-information">
@@ -60,9 +60,16 @@
               <p>{{ menu.description }}</p>
               <p>{{ menu.price }} €</p>
             </div>
+            <div class="inner-button">
+              <button class="button-img" @click="deleteMenu(menu._id)"><img class="logo" src="../assets/button/bin.png" /></button>
+              <button class="button-img" @click="showEditMenu = menu._id "><img class="logo" src="../assets/button/pencil.png" /></button>
+            </div>
           </div>
         
-          <h2 v-if="menu.items">Items composant le menu<button @click="showAddItemToMenu = menu._id">Add Item</button></h2>
+          <div class="container-plusminus" v-if="menu.items">
+            <p class="title">Items composant le menu</p>
+            <button class="button-plus" @click="showAddItemToMenu = menu._id">+</button>
+          </div>
 
           <!-- Card to ad an item to the menu -->
             <div class="card" v-if="showAddItemToMenu === menu._id">
@@ -84,16 +91,19 @@
 
             <!-- Items from menu -->
             <div v-for="(item,i) in menu.items" :key="i">
-              <p>Label: {{ item.item.label }}</p>
-              <p>Description: {{ item.item.description }}</p>
-              <img class="photo" :src="item.item.photo" alt="item photo"/>
-              <p>Price: {{ item.item.price }}</p>
-              <p>Type: {{ item.item.type }}</p>
-              <p>Quantity: {{ item.quantity }}</p>
-              <button v-if="menu.items" @click="deleteItemFromMenu(item)">Delete Item from menu</button>
+              <div class="container-show">
+                <img class="photo" :src="item.item.photo" alt="item photo"/>
+                <div class="container-information">
+                  <p class="subtitle">{{ item.item.label }}</p>
+                  <p>{{ item.item.description }}</p>
+                  <p>{{ item.item.price }} €</p>
+                  <p>quantity : {{ item.quantity }}</p>
+                  <div class="inner-button">
+                    <button  class="button-img" v-if="menu.items" @click="deleteItemFromMenu(item)"><img class="logo" src="../assets/button/bin.png" /></button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button @click="deleteMenu(menu._id)">Delete Menu</button>
-            <button @click="showEditMenu = menu._id">Edit Menu</button>
 
             <!-- Card -->
           <div class="card" v-if="showEditMenu === menu._id">
@@ -131,6 +141,10 @@
       
 
       <div v-if="tab === 'items'">
+        <div class="container-plusminus">
+          <p class="title">Items</p>
+          <button class="button-plus" @click="showAddItem = true">+</button>
+        </div>
         <div class="card" v-if="showAddItem">
           <div class="card-body">
             <h5 class="card-title">Add Item</h5>
@@ -165,15 +179,20 @@
           </div>
         </div>
     
-        <h1>Items <button @click="showAddItem = true">Add Item</button></h1>
           <div v-for="(item,i) in items.items" :key="i">
-            Label : {{ item.label }}<br>
-            Description : {{ item.description }}<br>
-            URL de la photo : {{ item.photo }}<br>
-            Prix : {{ item.price }}<br>
-            Type : {{ item.type }}<br>
-            <button @click="deleteItem(item._id)">Delete Item</button>
-            <button @click="showEditItem = item._id">Edit Item</button>
+            <div class="container-show">
+              <img class="photo" :src="item.photo"  />
+              <div class="container-information">
+                <p class="title">{{ item.label }}</p>
+                <p>{{ item.description }}</p>
+                <p>Prix : {{ item.price }} €</p>
+                <p>Type : {{ item.type }}</p>
+              </div>
+              <div class="inner-button">
+                <button class="button-img" @click="deleteItem(item._id)"><img class="logo" src="../assets/button/bin.png" /></button>
+                <button class="button-img" @click="showEditItem = item._id"><img class="logo" src="../assets/button/pencil.png" /></button>
+              </div>
+            </div>
     
             <!-- Card -->
             <div class="card" v-if="showEditItem === item._id">
@@ -412,6 +431,7 @@
         };
 
         const deleteMenu = async (menuId: string) => {
+          console.log('dvdvdfv')
           try {
             await axios.delete('http://localhost:3006/restaurant/'+ credId +'/menus/' + menuId);
           } catch (error) {
@@ -483,29 +503,45 @@
     list-style: none;
     max-width: calc(3000px * 2 + 60px);
     margin: auto;
+    font-size: 1.2em;
     padding: 1em;
+    gap: 10vh;
   }
   
   .navbar li {
     cursor: pointer;
     flex: 1;
     text-align: center;
+    height: 30px;
+    border-bottom: 1.5mm ridge brown
   }
   
   .navbar li:hover {
-    color: blue;
+    color: brown;
   }
+
+  .inner-button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
 
   .photo{
     height: 120px;
     width: 120px;
   }
 
+  .logo {
+    height: 20px;
+  }
+
   .home {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 150px;
 }
 
 .title{
@@ -522,6 +558,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .button-plus{
@@ -533,12 +570,17 @@
   border: none;
 }
 
+.button-img{
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .container-show{
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .container-information{
@@ -562,8 +604,7 @@ h1 {
 
 label {
   display: block;
-  text-align: left;
-
+  text-align: center;
 }
 
 input {
@@ -574,13 +615,16 @@ input {
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #f2f2f2;
   border-radius: 8px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
   padding: 1em;
   width: 100%;
-  max-width: 600px;
+  max-width: 300px;
   margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card-body {
