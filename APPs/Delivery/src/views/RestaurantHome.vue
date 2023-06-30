@@ -86,6 +86,7 @@ export default {
     restaurant: restaurants,
     address: addresses
   }])
+
   const route = useRoute();
   const editOrderAccept = ref({
     deliverer: accountId,
@@ -95,7 +96,7 @@ export default {
   const editOrderRefuse = ref({
     status: 'refused_order'
   });
-  
+  let ordersHist = ref(0);
   let order: any;
   const ordersTab = ref([]);
   async function fetchData(){
@@ -104,13 +105,7 @@ console.log(accountId)
       try {
         toShow.value.shift();
         const response = await axios.get('http://localhost:3005/order/status/accepted_order/');
-        const addedOrders = response.data.filter((newOrder) => {
-              return !ordersTab.value.some((order) => order._id === newOrder.id);
-        });
-        ordersTab.value.push(...addedOrders);
-        addedOrders.forEach((order) => {
-          showNotification(order);
-        });
+        ordersHist.value = response.data.length
         for(order of response.data){
           const response = await axios.get('http://localhost:3005/order/' + order._id);
           if(order.id_restaurant == ''){
@@ -144,7 +139,7 @@ console.log(accountId)
             })
           }else {
             const responseRestId = await axios.get('http://localhost:3006/restaurant/IDcredentials/' + order.id_restaurant);
-            const responseAddress = await axios.get('http://localhost:3004/address/' + responseRestId.data.id_address);
+            const responseAddress = await axios.get('http://localhost:3004/address-by-credentials/' + responseRestId.data.id_address);
 
             toShow.value.push({
               order: response.data,
@@ -166,8 +161,19 @@ console.log(accountId)
 
   onMounted(async () => {
     fetchData();
-    let intervalId = setInterval(fetchData, 20000000);
+    let intervalId = setInterval(fetchData, 5000);
+    let intervalId2 = setInterval(fetchOrders, 5000);
   });
+
+  async function fetchOrders(){
+    const response = await axios.get('http://localhost:3005/order/status/accepted_order/');
+    console.log(ordersHist.value)
+      if(ordersHist.value < response.data.length){
+        showNotification(response.data[response.data.length-1]);
+        ordersHist.value = response.data.length
+      }
+  }
+
   function showNotification(order) {
       const notification = new Notification('New Order Received', {
         body: `Order ID: ${order.id}`,
