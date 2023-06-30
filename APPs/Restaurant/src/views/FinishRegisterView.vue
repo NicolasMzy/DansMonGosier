@@ -77,6 +77,7 @@ const registerForm = async () => {
     }
 };
 </script>
+
 <style scoped>
   @media (min-width: 1024px) {
     .formAuth {
