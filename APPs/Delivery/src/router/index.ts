@@ -16,8 +16,8 @@ const router = createRouter({
     },
     {
       path: '/home',
-      name: 'DeliverytHome',
-      component: () => import('../views/Delivery/DeliveryHome.vue'),
+      name: 'home',
+      component: () => import('../views/RestaurantHome.vue'),
     },
     {
       path: '/tracking',
