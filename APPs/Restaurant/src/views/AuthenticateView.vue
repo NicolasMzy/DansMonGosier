@@ -11,7 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
          <slot name="heading">Just Sign in, <br> we'll do the cooking</slot>
        </h2>
        <p>
-         <slot>If you don't have an<br> account please <router-link to="/settings">Sign up here</router-link></slot>
+         <slot>If you don't have an<br> account please <router-link to="/register">Sign up here</router-link></slot>
        </p>
         <FormAuth />
         <!-- <TierAuthView /> -->

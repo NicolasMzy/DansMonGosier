@@ -153,7 +153,35 @@ export default {
     setup() {
       const showPopup = ref(false);
       const popupMessage = ref('');
+      let ordersHist = ref(0);
 
+      async function fetchOrders(){
+        const response = await axios.get('http://localhost:3005/order/status/accepted_order/');
+        console.log(ordersHist.value)
+          if(ordersHist.value < response.data.length){
+            showNotification(response.data[response.data.length-1]);
+            ordersHist.value = response.data.length
+          }
+      }
+
+  function showNotification(order) {
+      const notification = new Notification('New Order Received', {
+        body: `Order ID: ${order.id}`,
+        icon: 'path/to/notification-icon.png'
+      });
+
+      // Handle click event on the notification
+      notification.onclick = function () {
+        console.log('Notification clicked');
+        // Perform action when the notification is clicked
+      };
+
+      // Handle close event on the notification
+      notification.onclose = function () {
+        console.log('Notification closed');
+        // Perform action when the notification is closed
+      };
+    }
 
       const displayPopup = (message: string) => {
       popupMessage.value = message;
@@ -269,7 +297,11 @@ export default {
         }
     }
 
-    onMounted(makeDataDelivery);
+    onMounted(async () =>{
+      let intervalId = setInterval(makeDataDelivery, 5000);
+      let intervalId2 = setInterval(fetchOrders, 5000);
+    }
+      );
 
     return {
         addresses,
